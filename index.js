@@ -262,12 +262,10 @@ client.on("messageCreate", message => {
         const Message = message.content.toLowerCase()
         var nMessage = ""
         var passe = false
-        console.log(Message)
-        if ("<:quoi:1004394208163008593>".includes(Message)) {
+        if (Message.includes("<:quoi:1004394208163008593>")) {
             nMessage = "quoi"
         } else {
             for (let i = 0; i < Message.length; i++) {
-                console.log(nMessage)
                 if (passe == true) {
                     if (Message[i] == ">") {
                         passe = false;
@@ -282,7 +280,6 @@ client.on("messageCreate", message => {
 
             }
         }
-        console.log(nMessage)
         var nMessage2 = ""
         for (const i of nMessage) {
             if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
