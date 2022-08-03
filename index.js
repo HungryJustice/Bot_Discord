@@ -195,7 +195,7 @@ client.on("messageCreate", message => {
                     choix.push(key)
                 }
             }
-            console.log(choix)
+            console.log(choix.toString())
             if (choix.length == 0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
