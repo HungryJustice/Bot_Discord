@@ -37,6 +37,8 @@ client.on("messageCreate", message => {
                 if (emoji == "<:quoi:1004394208163008593") {
                     nMessage = "quoi"
                 }
+                i = i2
+                console.log(i2)
             }
         }
     }
