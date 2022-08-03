@@ -182,8 +182,13 @@ client.on("messageCreate", message => {
         } else if (message.content.startsWith(prefix + "taj")) {
             console.log(message.author.username + " a saisi !taj.")
             var args = message.content.slice(start = 4).split(" ")
-            args.splice(1,-1)
-            if (args.at(0) == "" && args.length == 1) {
+            var choix = new Array()
+            for (const key in args) {
+                if (key!="" && key!=" ") {
+                    choix.add(key)
+                }
+            }
+            if (choix.length==0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
@@ -239,7 +244,7 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    client.destroy().then(() => {
+                    client.destroy().then(m => {
                       client.login(process.env.TOKEN);
                     });
                   });
