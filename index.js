@@ -23,6 +23,24 @@ client.on("messageCreate", message => {
     const Message = message.content.toLowerCase()
     console.log(Message)
     for (const i of Message) {
+        if ('<'.includes(i)) {
+            if (':'.includes(Message[Message.indexOf(i) + 1])) {
+                var i2 = i.copy()
+                var emoji = "<:"
+                var index = 0
+                while (">".includes(i2)) {
+                    i2 = Message[Message.indexOf(i) + index]
+                    emoji += i2
+                    index++
+                }
+                console.log(emoji)
+                if (emoji == "<:quoi:1004394208163008593") {
+                    nMessage = "quoi"
+                }
+            }
+        }
+    }
+    for (const i of Message) {
         if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
             nMessage += i;
         }
