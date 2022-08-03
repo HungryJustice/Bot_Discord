@@ -33,6 +33,7 @@ client.on("messageCreate", message => {
             return;
         }
     }
+    console.log(message.author.username + " s'est mangé un feur.")
     message.reply("feur.")
 })
 
