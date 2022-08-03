@@ -20,10 +20,10 @@ client.once("ready", () => {
 
 client.on("messageCreate", message => {
     var nMessage = ""
-    for (const key in message.content) {
-        console.log(key, typeof(key))
-        if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(key)) {
-            nMessage += key;
+    for (const i of message.content) {
+        console.log(i, typeof(i))
+        if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
+            nMessage += i;
         }
     }
     var index = 0;
