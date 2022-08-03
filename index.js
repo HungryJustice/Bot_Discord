@@ -33,8 +33,24 @@ client.on("messageCreate", message => {
         }
         index++;
     }
-    console.log(message.author.username + " s'est mangé un feur.")
-    message.reply("feur.")
+    if (message.member.voice.channel) {
+        const connection = joinVoiceChannel({
+            channelId: message.member.voice.channel.id,
+            guildId: message.member.voice.channel.guild.id,
+            adapterCreator: message.member.voice.channel.guild.voiceAdapterCreator,
+        });
+        let resource = createAudioResource("son/feur.mp3");
+        const player = createAudioPlayer();
+        const subscription = connection.subscribe(player);
+        player.play(resource)
+        player.on(AudioPlayerStatus.Idle, () => {
+            connection.destroy()
+        });
+        console.log(message.author.username + " s'est mangé un feur oral.")
+    } else {
+        console.log(message.author.username + " s'est mangé un feur écrit.")
+        message.reply("feur.")
+    }
 })
 
 client.on("messageCreate", message => {
