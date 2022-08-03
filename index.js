@@ -4,7 +4,7 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 
 client.login(process.env.TOKEN);
 //https://www.youtube.com/watch?v=YozBsSdtVpw&t=6s
-const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa")
+const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
 const commands = new Array(items = "!restart", "!stop", "!taj", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
@@ -26,7 +26,7 @@ client.on("messageCreate", message => {
             nMessage += i;
         }
     }
-    nMessage.toLowerCase()
+    nMessage = nMessage.toLowerCase()
     var index = 0;
     while (!nMessage.endsWith(quoi.at(index))) {
         index++;
