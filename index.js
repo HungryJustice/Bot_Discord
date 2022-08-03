@@ -36,7 +36,7 @@ client.on("messageCreate", message => {
             const embed = new Discord.EmbedBuilder();
             embed.setTitle("**__Liste des commandes__**")
             embed.addFields({ name: "!help", value: "Affiche la liste des commandes" })
-            embed.addFields({ name: "!clear x", value: "Nettoyer x messages de moins de 14 jours." })
+            embed.addFields({ name: '!clear "nombre"', value: "Nettoyer x messages de moins de 14 jours." })
             embed.addFields({ name: "!whatdoyoudo", value: "Demande ce que fait le bot actuellement." })
             embed.addFields({ name: '!taj "choix1" "choix2" "choix3" ... ', value: "Effectue un tirage au sort." })
             embed.addFields({ name: '!addtask "tâche"', value: 'Ajoute "tâche" à la liste de !whatdoyoudo.' })
