@@ -262,6 +262,7 @@ client.on("messageCreate", message => {
         const Message = message.content.toLowerCase()
         var nMessage = ""
         var passe = false
+        print(Message)
         if ("<:quoi:1004394208163008593>".includes(Message)) {
             nMessage = "quoi"
         } else {
