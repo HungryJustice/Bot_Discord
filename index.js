@@ -183,7 +183,7 @@ client.on("messageCreate", message => {
             console.log(message.author.username + " a saisi !taj.")
             var args = message.content.slice(start = 4).split(" ")
             console.log(args)
-            if (args.at(-1) == "" || args.length == 0) {
+            if (args.at(0) == "" and args.length == 1) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
