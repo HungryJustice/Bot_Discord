@@ -182,7 +182,7 @@ client.on("messageCreate", message => {
         } else if (message.content.startsWith(prefix + "taj")) {
             console.log(message.author.username + " a saisi !taj.")
             var args = message.content.slice(start = 4).split(" ")
-            console.log(args)
+            args.splice(1,-1)
             if (args.at(0) == "" && args.length == 1) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
