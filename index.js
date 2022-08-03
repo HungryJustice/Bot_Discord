@@ -12,14 +12,13 @@ const commands = new Array(items = "!stop", "!taj", "!deltask", "!addtask", "!he
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
-
 client.once("ready", () => {
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("Me revoilà...")
         .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
-    Client.channel.send({ embeds: [Startembed] })
+    client.channel.send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
