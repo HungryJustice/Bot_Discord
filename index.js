@@ -5,9 +5,9 @@ const { join } = require('node:path');
 const { Player } = require("discord-player");
 const { PassThrough } = require("node:stream");
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
-//test
+
 client.login(process.env.TOKEN);
-const r = "https://www.youtube.com/watch?v=YozBsSdtVpw&t=6s"
+//https://www.youtube.com/watch?v=YozBsSdtVpw&t=6s
 const commands = new Array(items = "!stop", "!taj", "!delltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
