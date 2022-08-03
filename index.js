@@ -48,8 +48,8 @@ client.on("messageCreate", message => {
         });
         console.log(message.author.username + " s'est mangé un feur oral.")
     } else {
-        console.log(message.author.username + " s'est mangé un feur écrit.")
         message.reply("feur.")
+        console.log(message.author.username + " s'est mangé un feur écrit.")
     }
 })
 
