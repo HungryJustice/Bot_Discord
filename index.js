@@ -4,6 +4,7 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 
 client.login(process.env.TOKEN);
 //https://www.youtube.com/watch?v=YozBsSdtVpw&t=6s
+const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa")
 const commands = new Array(items = "!restart", "!stop", "!taj", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
@@ -16,6 +17,24 @@ client.once("ready", () => {
         .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
+
+client.on("messageCreate", message => {
+    var nMessage = ""
+    for (const key in message) {
+        if (key in "abcdefghijklmnopqrstuvwxyz0123456789") {
+            nMessage += key;
+        }
+    }
+    var index = 0;
+    while (!nMessage.endsWith(quoi.at(index))) {
+        index++;
+        if (index > quoi.length - 1) {
+            return;
+        }
+    }
+    message.reply("feur.")
+})
+
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
         var index = 0;
