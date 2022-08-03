@@ -183,9 +183,7 @@ client.on("messageCreate", message => {
             console.log(message.author.username + " a saisi !taj.")
             var args = message.content.slice(start = 4).split(" ")
             console.log(args)
-            var args = message.content.slice(start = 3).split(" ")
-            console.log(args)
-            if (args == [""] || args.length == 0) {
+            if (args.at(0) == "" || args.length == 0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 return;
             }
