@@ -1,5 +1,9 @@
 const Discord = require("discord.js");
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
+// const { createReadStream } = require('node:fs');
+// const { join } = require('node:path');
+// const { Player } = require("discord-player");
+// const { PassThrough } = require("node:stream");
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 
 client.login(process.env.TOKEN);
@@ -17,8 +21,8 @@ client.once("ready", () => {
         .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
-
 client.on("messageCreate", message => {
+    //bot ecris un messag een arrivant donc crach direct car entre dans le else
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
@@ -38,7 +42,7 @@ client.on("messageCreate", message => {
             const embed = new Discord.EmbedBuilder();
             embed.setTitle("**__Liste des commandes__**")
             embed.addFields({ name: "!help", value: "Affiche la liste des commandes" })
-            embed.addFields({ name: '!clear "nombre"', value: "Nettoyer x messages de moins de 14 jours." })
+            embed.addFields({ name: "!clear x", value: "Nettoyer x messages de moins de 14 jours." })
             embed.addFields({ name: "!whatdoyoudo", value: "Demande ce que fait le bot actuellement." })
             embed.addFields({ name: '!taj "choix1" "choix2" "choix3" ... ', value: "Effectue un tirage au sort." })
             embed.addFields({ name: '!addtask "tâche"', value: 'Ajoute "tâche" à la liste de !whatdoyoudo.' })
@@ -254,41 +258,40 @@ client.on("messageCreate", message => {
                 return;
             }
         }
-    } else {
+    } else if (message.author.id != "931190932232097912") {
         const Message = message.content.toLowerCase()
-        var nMessage = Message
-        console.log(Message)
-        while ("<:".includes(nMessage)) {
-            for (const i of Message) {
-                if ('<'.includes(i)) {
-                    if (':'.includes(Message[Message.indexOf(i) + 1])) {
-                        var i2 = i
-                        var emoji = "<:"
-                        var index = 0
-                        while (">".includes(i2)) {
-                            i2 = Message[Message.indexOf(i) + index]
-                            emoji += i2
-                            index++
-                        }
-                        console.log(emoji)
-                        if (emoji == "<:quoi:1004394208163008593>") {
-                            nMessage = "quoi"
-                        } else {
-                            nMessage -= emoji
-                        }
+        var nMessage = ""
+        var passe = false
+        if ("<:quoi:1004394208163008593>".includes(Message)) {
+            nMessage = "quoi"
+        } else {
+            for (let i = 0; i < Message.length; i++) {
+                console.log(nMessage)
+                if (passe == true) {
+                    if (Message[i] == ">") {
+                        passe = false;
                     }
+                } else if (Message[i] == "<") {
+                    if (Message[i + 1] == ":") {
+                        passe = true;
+                    }
+                } else {
+                    nMessage += Message[i]
                 }
+
             }
         }
-        for (const i of Message) {
+        console.log(nMessage)
+        var nMessage2 = ""
+        for (const i of nMessage) {
             if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
-                nMessage += i;
+                nMessage2 += i;
             }
         }
         var index = 0;
-        while (!nMessage.endsWith(quoi.at(index))) {
+        while (!nMessage2.endsWith(quoi.at(index))) {
             if (index > quoi.length - 1) {
-                break;
+                return;
             }
             index++;
         }
