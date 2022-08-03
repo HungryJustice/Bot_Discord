@@ -22,7 +22,7 @@ client.on("messageCreate", message => {
     var nMessage = ""
     for (const key in message.content) {
         console.log(key, typeof(key))
-        if (key in 'abcdefghijklmnopqrstuvwxyz0123456789') {
+        if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(key)) {
             nMessage += key;
         }
     }
