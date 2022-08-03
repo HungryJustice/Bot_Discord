@@ -21,7 +21,6 @@ client.once("ready", () => {
 client.on("messageCreate", message => {
     var nMessage = ""
     for (const i of message.content) {
-        console.log(i, typeof(i))
         if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
             nMessage += i;
         }
@@ -29,10 +28,10 @@ client.on("messageCreate", message => {
     nMessage = nMessage.toLowerCase()
     var index = 0;
     while (!nMessage.endsWith(quoi.at(index))) {
-        index++;
         if (index > quoi.length - 1) {
             return;
         }
+        index++;
     }
     console.log(message.author.username + " s'est mangé un feur.")
     message.reply("feur.")
