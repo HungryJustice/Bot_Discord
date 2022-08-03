@@ -185,6 +185,11 @@ client.on("messageCreate", message => {
             console.log(args)
             if (args.at(0) == "" || args.length == 0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
+                const Tajembed = new Discord.EmbedBuilder()
+                    .setColor("#0099ff")
+                    .setTitle("Comment veux-tu faire un tirage au sort sans choix ?\nJ'te jure...")
+                    .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
+                message.channel.send({ embeds: [Tajembed] })
                 return;
             }
             var index = Math.floor(Math.random() * args.length)
