@@ -22,9 +22,10 @@ client.on("messageCreate", message => {
     var nMessage = ""
     for (const i of message.content) {
         if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
-            nMessage += i.toLowerCase();
+            nMessage += i;
         }
     }
+    nMessage.toLocaleLowerCase(nMessage)
     var index = 0;
     while (!nMessage.endsWith(quoi.at(index))) {
         if (index > quoi.length - 1) {
