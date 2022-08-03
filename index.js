@@ -21,6 +21,7 @@ client.once("ready", () => {
 client.on("messageCreate", message => {
     var nMessage = ""
     const Message = message.content.toLowerCase()
+    console.log(Message)
     for (const i of Message) {
         if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
             nMessage += i;
