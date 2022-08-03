@@ -312,5 +312,61 @@ client.on("messageCreate", message => {
                 return;
             }
         }
+    } else {
+        const Message = message.content.toLowerCase()
+        var nMessage = Message
+        console.log(Message)
+        while ("<:".includes(nMessage)) {
+            for (const i of Message) {
+                if ('<'.includes(i)) {
+                    if (':'.includes(Message[Message.indexOf(i) + 1])) {
+                        var i2 = i
+                        var emoji = "<:"
+                        var index = 0
+                        while (">".includes(i2)) {
+                            i2 = Message[Message.indexOf(i) + index]
+                            emoji += i2
+                            index++
+                        }
+                        console.log(emoji)
+                        if (emoji == "<:quoi:1004394208163008593>") {
+                            nMessage = "quoi"
+                        } else {
+                            nMessage -= emoji
+                        }
+                    }
+                }
+            }
+        }
+        for (const i of Message) {
+            if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
+                nMessage += i;
+            }
+        }
+        var index = 0;
+        while (!nMessage.endsWith(quoi.at(index))) {
+            if (index > quoi.length - 1) {
+                break;
+            }
+            index++;
+        }
+        if (message.member.voice.channel) {
+            const connection = joinVoiceChannel({
+                channelId: message.member.voice.channel.id,
+                guildId: message.member.voice.channel.guild.id,
+                adapterCreator: message.member.voice.channel.guild.voiceAdapterCreator,
+            });
+            let resource = createAudioResource("son/feur.mp3");
+            const player = createAudioPlayer();
+            const subscription = connection.subscribe(player);
+            player.play(resource)
+            player.on(AudioPlayerStatus.Idle, () => {
+                connection.destroy()
+            });
+            console.log(message.author.username + " s'est mangé un feur oral.")
+        } else {
+            message.reply("feur.")
+            console.log(message.author.username + " s'est mangé un feur écrit.")
+        }
     }
 })
