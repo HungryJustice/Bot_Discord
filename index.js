@@ -195,6 +195,7 @@ client.on("messageCreate", message => {
                     choix.push(key)
                 }
             }
+            console.log(choix)
             if (choix.length == 0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
@@ -280,6 +281,8 @@ client.on("messageCreate", message => {
 
             }
         }
+
+
         var nMessage2 = ""
         for (const i of nMessage) {
             if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
