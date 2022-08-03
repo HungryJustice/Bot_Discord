@@ -255,6 +255,27 @@ client.on("messageCreate", message => {
                   });
                 return;
             }
+        }else if (message.content.startsWith(prefix + "play")) {
+            let args = message.content-"!play "
+            const connection = joinVoiceChannel({
+                channelId: message.member.voice.channel.id,
+                guildId: message.member.voice.channel.guild.id,
+                adapterCreator: message.member.voice.channel.guild.voiceAdapterCreator,
+            }).then(function (connection) {
+                // On démarre un stream à partir de la vidéo youtube
+                let stream = YoutubeStream(args)
+                stream.on('error', function () {
+                  message.reply("Je n'ai pas réussi à lire cette vidéo :(")
+                  connection.disconnect()
+                })
+                // On envoie le stream au channel audio
+                // Il faudrait ici éviter les superpositions (envoie de plusieurs vidéo en même temps)
+                connection
+                  .playStream(stream)
+                  .on('end', function () {
+                    connection.disconnect()
+                  })
+              })
         }
     }
 })
