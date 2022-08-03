@@ -190,9 +190,9 @@ client.on("messageCreate", message => {
             console.log(message.author.username + " a saisi !taj.")
             var args = message.content.slice(start = 4).split(" ")
             var choix = new Array()
-            for (const key in args) {
-                if (key != "" && key != " ") {
-                    choix.push(key)
+            for (const iterator of args) {
+                if (iterator != "" && iterator != " ") {
+                    choix.push(iterator)
                 }
             }
             if (choix.length == 0) {
