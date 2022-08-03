@@ -25,7 +25,7 @@ client.on("messageCreate", message => {
     for (const i of Message) {
         if ('<'.includes(i)) {
             if (':'.includes(Message[Message.indexOf(i) + 1])) {
-                var i2 = i.copy()
+                var i2 = i
                 var emoji = "<:"
                 var index = 0
                 while (">".includes(i2)) {
