@@ -26,6 +26,7 @@ client.on("messageCreate", message => {
             nMessage += i;
         }
     }
+    nMessage.toLowerCase()
     var index = 0;
     while (!nMessage.endsWith(quoi.at(index))) {
         index++;
