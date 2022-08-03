@@ -233,16 +233,21 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [Permembed] })
                 return;
             } else {
-                console.log("Bot hors-ligne.")
+                console.log("Redémarrage du bot.")
                 const Stopembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
-                    .setTitle("C'est bon j'me casse.")
+                    .setTitle("Je redémarre.")
                     .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     client.destroy().then(() => {
                       client.login(process.env.TOKEN);
                     });
                   });
+                const Startembed = new Discord.EmbedBuilder()
+                  .setColor("#0099ff")
+                  .setTitle("Me revoilà.")
+                  .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
+                message.channel.send({ embeds: [Startembed] })
                 return;
             }
         }
