@@ -217,6 +217,28 @@ client.on("messageCreate", message => {
                 });
                 return;
             }
+        }else if (message.content.startsWith(prefix + "restart")) {
+            if (message.author.id != 391708236698615809) {
+                console.log(message.author.username + " n'a pas la persimission de saisir !stop.")
+                const Permembed = new Discord.EmbedBuilder()
+                    .setColor("#0099ff")
+                    .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
+                    .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
+                message.channel.send({ embeds: [Permembed] })
+                return;
+            } else {
+                console.log("Bot hors-ligne.")
+                const Stopembed = new Discord.EmbedBuilder()
+                    .setColor("#0099ff")
+                    .setTitle("C'est bon j'me casse.")
+                    .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
+                message.channel.send({ embeds: [Stopembed] }).then(m => {
+                    client.destroy().then(() => {
+                      client.login(process.env.TOKEN);
+                    });
+                  });
+                return;
+            }
         }
     }
 })
