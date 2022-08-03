@@ -18,7 +18,7 @@ client.once("ready", () => {
         .setColor("#0099ff")
         .setTitle("Me revoilà.")
         .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
-    client.channels.cache.get(895364595810717732).send({ embeds: [Startembed] })
+    client.channels.cache.get("895364595810717732").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
