@@ -52,7 +52,7 @@ client.on("messageCreate", message => {
     var index = 0;
     while (!nMessage.endsWith(quoi.at(index))) {
         if (index > quoi.length - 1) {
-            return;
+            break;
         }
         index++;
     }
