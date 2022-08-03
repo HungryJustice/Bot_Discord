@@ -190,7 +190,7 @@ client.on("messageCreate", message => {
             var choix = new Array()
             for (const key in args) {
                 if (key!="" && key!=" ") {
-                    choix.add(key)
+                    choix.push(key)
                 }
             }
             if (choix.length==0) {
