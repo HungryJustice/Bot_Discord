@@ -20,7 +20,7 @@ client.once("ready", () => {
 
 client.on("messageCreate", message => {
     var nMessage = ""
-    for (const key in message) {
+    for (const key in message.content) {
         if (key in "abcdefghijklmnopqrstuvwxyz0123456789") {
             nMessage += key;
         }
