@@ -195,7 +195,6 @@ client.on("messageCreate", message => {
                     choix.push(key)
                 }
             }
-            console.log(choix.toString())
             if (choix.length == 0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
@@ -205,11 +204,11 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [Tajembed] })
                 return;
             }
-            var index = Math.floor(Math.random() * args.length)
+            var index = Math.floor(Math.random() * choix.length)
             if (index < 0) {
-                index = args.length - 1
+                index = choix.length - 1
             }
-            var choose = args[index]
+            var choose = choix[index]
             console.log(choose + " est le choix tiré au sort.")
             const Tajembed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
