@@ -25,7 +25,7 @@ client.on("messageCreate", message => {
             nMessage += i;
         }
     }
-    nMessage.toLocaleLowerCase(nMessage)
+    nMessage.toLocaleLowerCase()
     var index = 0;
     while (!nMessage.endsWith(quoi.at(index))) {
         if (index > quoi.length - 1) {
