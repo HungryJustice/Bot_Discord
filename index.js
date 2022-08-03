@@ -1,14 +1,10 @@
 const Discord = require("discord.js");
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
-// const { createReadStream } = require('node:fs');
-// const { join } = require('node:path');
-// const { Player } = require("discord-player");
-// const { PassThrough } = require("node:stream");
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 
 client.login(process.env.TOKEN);
 //https://www.youtube.com/watch?v=YozBsSdtVpw&t=6s
-const commands = new Array(items = "!restart","!stop", "!taj", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
+const commands = new Array(items = "!restart", "!stop", "!taj", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
@@ -189,11 +185,11 @@ client.on("messageCreate", message => {
             var args = message.content.slice(start = 4).split(" ")
             var choix = new Array()
             for (const key in args) {
-                if (key!="" && key!=" ") {
+                if (key != "" && key != " ") {
                     choix.push(key)
                 }
             }
-            if (choix.length==0) {
+            if (choix.length == 0) {
                 console.log(message.author.username + " n'a saisi aucun choix.")
                 const Tajembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
@@ -233,7 +229,7 @@ client.on("messageCreate", message => {
                 });
                 return;
             }
-        }else if (message.content.startsWith(prefix + "restart")) {
+        } else if (message.content.startsWith(prefix + "restart")) {
             if (message.author.id != 391708236698615809) {
                 console.log(message.author.username + " n'a pas la persimission de saisir !stop.")
                 const Permembed = new Discord.EmbedBuilder()
@@ -250,9 +246,9 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://lh3.googleusercontent.com/uqKLQ3FKz5Aw-1Qqnwavw_RsyTg8SgrT8SgzJ9NU_qdiLAo_zBv_b743bYmR8ErA3K4QhXV4myl20p3PgV8F=w1920-h913");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     client.destroy().then(m => {
-                      client.login(process.env.TOKEN);
+                        client.login(process.env.TOKEN);
                     });
-                  });
+                });
                 return;
             }
         }
