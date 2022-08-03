@@ -1,9 +1,5 @@
 const Discord = require("discord.js");
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
-// const { createReadStream } = require('node:fs');
-// const { join } = require('node:path');
-// const { Player } = require("discord-player");
-// const { PassThrough } = require("node:stream");
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 
 client.login(process.env.TOKEN);
@@ -22,7 +18,6 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    //bot ecris un messag een arrivant donc crach direct car entre dans le else
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
