@@ -5,7 +5,7 @@ const { join } = require('node:path');
 const { Player } = require("discord-player");
 const { PassThrough } = require("node:stream");
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
-
+//test
 client.login(process.env.TOKEN);
 const r = "https://www.youtube.com/watch?v=YozBsSdtVpw&t=6s"
 const commands = new Array(items = "!stop", "!taj", "!delltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
