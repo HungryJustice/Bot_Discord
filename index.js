@@ -23,10 +23,10 @@ client.once("ready", () => {
 })
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
-        var i = 0;
-        while (!message.content.startsWith(commands.at(i))) {
-            i++;
-            if (i > commands.length - 1) {
+        var index = 0;
+        while (!message.content.startsWith(commands.at(index))) {
+            index++;
+            if (index > commands.length - 1) {
                 console.log(message.author.username + " a saisi une commande innexistante.")
                 const wrongembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
