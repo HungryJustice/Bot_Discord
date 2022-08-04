@@ -68,6 +68,7 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
+                        console.log(nargs)
                         var trash = 0
                         var total_messages = new Array()
                         for (const person of args.slice(1)) {
