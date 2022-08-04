@@ -19,7 +19,7 @@ client.once("ready", () => {
 })
 client.on("messageCreate", message => {
     message.channel.messages.fetch().then(messages => {
-        messages.forEach(msg => console.log(msg.content));
+        messages.forEach(msg => console.log(msg));
     });
     //fetchMessages({ limit: 1 }).then(messages => console.log(`[${messages.first().author.name}]${messages.first().content}`));
     return;
