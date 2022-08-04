@@ -75,7 +75,6 @@ client.on("messageCreate", message => {
                         }
                         var size = total_messages.size
                         while (size > 0) {
-                            console.log(size, number)
                             if (size > 100) {
                                 number = 100
                                 size -= 100
