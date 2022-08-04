@@ -18,6 +18,7 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
+    console.log(message.content)
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
@@ -58,6 +59,7 @@ client.on("messageCreate", message => {
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
+                    console.log(args)
                     let number = parseInt(args[1]);
                     if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
@@ -66,15 +68,18 @@ client.on("messageCreate", message => {
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                         message.channel.send({ embeds: [unclearembed] })
-                    } else if (args[1].startsWith("<@") && args) {
+                    } else if (args[1].startsWith("<@")) {
                         var persons = args.split(" ")
+                        var trash = 0
                         console.log(persons)
                         message.channel.messages.fetch().forEach(element => {
                             for (const item of persons) {
                                 if ("<@" + element.author.id + ">" == item)
                                     element.bulkDelete()
+                                trash += 1
                             }
                         });
+                        console.log(trash + " messages ont été effacés.")
                     } else {
                         if (number > 100) {
                             number = 100
