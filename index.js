@@ -7,6 +7,7 @@ const commands = new Array(items = "!restart", "!stop", "!tas", "!deltask", "!ad
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange", "envie", "tagueule", "pierremenes", "salami", "anus", "tagueule2", "chiasse", "tante", "mortparent", "niquertoucher", "fdp")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
+//rajouter !clear username -> clear tous les messages de username
 client.once("ready", () => {
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
@@ -276,9 +277,13 @@ client.on("messageCreate", message => {
 
 
         var nMessage2 = ""
+        var precedant = ""
         for (const i of nMessage) {
             if ('abcdefghijklmnopqrstuvwxyz0123456789'.includes(i)) {
-                nMessage2 += i;
+                if (i != precedant) {
+                    nMessage2 += i;
+                    precedant = i;
+                }
             }
         }
         var index = 0;
