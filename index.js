@@ -60,15 +60,9 @@ client.on("messageCreate", message => {
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
                     console.log(args)
+                    console.log(args[1])
                     let number = parseInt(args[1]);
-                    if (isNaN(number)) {
-                        console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
-                        const unclearembed = new Discord.EmbedBuilder()
-                            .setColor("#0099ff")
-                            .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
-                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                        message.channel.send({ embeds: [unclearembed] })
-                    } else if (args[1].startsWith("<@")) {
+                    if (args[1].startsWith("<@")) {
                         var persons = args.split(" ")
                         var trash = 0
                         console.log(persons)
@@ -80,6 +74,13 @@ client.on("messageCreate", message => {
                             }
                         });
                         console.log(trash + " messages ont été effacés.")
+                    } else if (isNaN(number)) {
+                        console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
+                        const unclearembed = new Discord.EmbedBuilder()
+                            .setColor("#0099ff")
+                            .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
+                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                        message.channel.send({ embeds: [unclearembed] })
                     } else {
                         if (number > 100) {
                             number = 100
