@@ -65,18 +65,36 @@ client.on("messageCreate", message => {
                     console.log(args[1])
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
-                        var trash = 0
-                        message.channel.messages.fetch().then(element => {
-                            for (const item of args.slice(1)) {
-                                console.log(element.edit("ok"))
-                                console.log("<@" + channelelement.id + ">", item)
-                                if ("<@" + element.author["id"] + ">" == item)
-                                    element.bulkDelete()
-                                trash += 1
+                        var nargs = new Array()
+                        for (const arg of args) {
+                            if (arg.endsWith(">") && arg.startsWith("<@")) {
+                                nargs.push(arg.slice(2, -1))
                             }
-                        });
-                        return;
+                        }
+                        console.log(nargs)
+                        var trash = 0
+                        const messages = message.channel.messages.fetch()
+                        var total_messages = new Array()
+                        for (const person of args.slice(1)) {
+                            total_messages.push(messages.filter((m) => m.author.id == person && !m.reactions))
+                        }
+                        var size = total_messages.size()
+                        while (size > 0) {
+                            if (size > 100) {
+                                number = 100
+                                size -= 100
+                            } else {
+                                number = size
+                                size = 0
+                            }
+                            message.channel.bulkDelete(number, true).then(messages => {
+                                trash += messages.size
+                            }).catch(err => {
+                                console.log("Erreur lors de la suppression des messages : " + err)
+                            });
+                        }
                         console.log(trash + " messages ont été effacés.")
+                        return;
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
