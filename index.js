@@ -7,7 +7,7 @@ const commands = new Array(items = "!restart", "!stop", "!tas", "!deltask", "!ad
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange", "envie", "tagueule", "pierremenes", "salami", "anus", "tagueule2", "chiasse", "tante", "mortparent", "niquertoucher", "fdp")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
-//rajouter !clear username -> clear tous les messages de username
+//rajouter !clear @ -> clear tous les messages de @
 client.once("ready", () => {
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
@@ -17,6 +17,7 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
+    console.log(message.content)
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
