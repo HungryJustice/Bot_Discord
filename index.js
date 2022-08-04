@@ -64,7 +64,7 @@ client.on("messageCreate", message => {
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
                         var trash = 0
-                        channel.messages.fetch().then(messages => {
+                        message.channel.messages.fetch().then(messages => {
                             messages.forEach(msg => console.log(msg.content));
                         });
                         const messages = message.channel.messages.fetch().then(element => console.log(element)); //.split("")
