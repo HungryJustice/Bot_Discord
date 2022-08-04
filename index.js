@@ -18,9 +18,7 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    client.channels.cache.get(message.channel.id).messages
-        .fetchMessages({ limit: 1 })
-        .then(messages => console.log(`[${messages.first().author.name}]${messages.first().content}`));
+    message.channel.fetchMessages({ limit: 1 }).then(messages => console.log(`[${messages.first().author.name}]${messages.first().content}`));
     return;
 
     if (message.content.startsWith(prefix)) {
