@@ -72,40 +72,48 @@ client.on("messageCreate", message => {
                         var trash = 0
                         var total_messages = new Array()
 
-                        message.channel.messages.fetch()
-                            .then(message => {
-                                // do something with it
-                                // Check if the author of the message is the bot
-                                for (const person of nargs) {
-                                    if (message.author.id == person) {
-                                        total_messages.push(message)
+                        for (const person of nargs) {
+                            message.channel.messages.fetch().then(messages => {
+                                messages = messages.filter((m) => m.author.id == person)
+                                var size = messages.size
+                                while (size > 0) {
+                                    if (size > 99) {
+                                        number = 99
+                                        size -= 99
+                                    } else {
+                                        number = size
+                                        size = 0
                                     }
-
+                                    message.channel.bulkDelete(messages).then(messages => {
+                                        trash += messages.size
+                                    }).catch(err => {
+                                        console.log("Erreur lors de la suppression des messages : " + err)
+                                    });
                                 }
-                            });
-                        console.log(total_messages)
-                            // for (const person of nargs) {
-                            //     message.channel.messages.fetch().then(messages => {
-                            //         messages = messages.filter((m) => m.author.id == person)
-                            //         var size = messages.size
-                            //         while (size > 0) {
-                            //             if (size > 99) {
-                            //                 number = 99
-                            //                 size -= 99
-                            //             } else {
-                            //                 number = size
-                            //                 size = 0
-                            //             }
-                            //             message.channel.bulkDelete(messages.get(messages.size - size - number, number)).then(messages => {
-                            //                 trash += messages.size
-                            //             }).catch(err => {
-                            //                 console.log("Erreur lors de la suppression des messages : " + err)
-                            //             });
-                            //         }
-                            //     })
-                            // }
-                            // console.log(trash + " messages de " + args.slice(1) + " ont été effacés.")
-                            // return;
+                            })
+                        }
+                        // for (const person of nargs) {
+                        //     message.channel.messages.fetch().then(messages => {
+                        //         messages = messages.filter((m) => m.author.id == person)
+                        //         var size = messages.size
+                        //         while (size > 0) {
+                        //             if (size > 99) {
+                        //                 number = 99
+                        //                 size -= 99
+                        //             } else {
+                        //                 number = size
+                        //                 size = 0
+                        //             }
+                        //             message.channel.bulkDelete(messages.get(messages.size - size - number, number)).then(messages => {
+                        //                 trash += messages.size
+                        //             }).catch(err => {
+                        //                 console.log("Erreur lors de la suppression des messages : " + err)
+                        //             });
+                        //         }
+                        //     })
+                        // }
+                        console.log(trash + " messages de " + args.slice(1) + " ont été effacés.")
+                        return;
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
