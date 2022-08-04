@@ -65,7 +65,7 @@ client.on("messageCreate", message => {
                     if (args[1].startsWith("<@")) {
                         var trash = 0
                         const messages = message.channel.messages.fetch()
-                        console.log(typeOf(messages))
+                        console.log(typeof messages)
                         messages.forEach(element => {
                             for (const item of args.slice(1)) {
                                 if ("<@" + element.author.id + ">" == item)
