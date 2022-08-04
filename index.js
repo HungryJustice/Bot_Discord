@@ -10,6 +10,7 @@ const prefix = "!";
 //rajouter !clear @ -> clear tous les messages de @
 //@ = <@XXXXXXXXXXXXXXXXXX>
 client.once("ready", () => {
+    client.user.setPresence({ activities: [{ name: `discord.js v14`, type: `WATCHING` }], status: 'dnd' })
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
@@ -66,8 +67,8 @@ client.on("messageCreate", message => {
                         var trash = 0
                         message.channel.messages.fetch().then(element => {
                             for (const item of args.slice(1)) {
-                                console.log(element.message.author.id)
-                                console.log("<@" + element.message.author.id + ">", item)
+                                console.log(element.author)
+                                console.log("<@" + element.content + ">", item)
                                 if ("<@" + element.author["id"] + ">" == item)
                                     element.bulkDelete()
                                 trash += 1
