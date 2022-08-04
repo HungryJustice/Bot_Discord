@@ -82,16 +82,14 @@ client.on("messageCreate", message => {
                                         number = size
                                         size = 0
                                     }
-                                    message.channel.bulkDelete(total_messages.slice(0, number)).then(messages => {
+                                    message.channel.bulkDelete(messages.slice(messages.size - size - number, number)).then(messages => {
                                         trash += messages.size
-                                        messages = messages.slice(number + 1)
                                     }).catch(err => {
                                         console.log("Erreur lors de la suppression des messages : " + err)
                                     });
                                 }
                             })
                         }
-                        console.log(total_messages)
                         console.log(trash + " messages de " + args + " ont été effacés.")
                         return;
                     } else if (isNaN(number)) {
