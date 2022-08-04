@@ -18,12 +18,6 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    message.channel.messages.fetch().then(messages => {
-        messages.forEach(msg => console.log(msg));
-    });
-    //fetchMessages({ limit: 1 }).then(messages => console.log(`[${messages.first().author.name}]${messages.first().content}`));
-    return;
-
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
@@ -63,7 +57,7 @@ client.on("messageCreate", message => {
                         .setTitle("Tu m'as pas dit combien de messages fallait que je dégages...")
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [unclearembed] });
-                } else if (args[1].startsWith("<@") && args) {} else {
+                } else {
                     let number = parseInt(args[1]);
                     if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
@@ -72,6 +66,15 @@ client.on("messageCreate", message => {
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                         message.channel.send({ embeds: [unclearembed] })
+                    } else if (args[1].startsWith("<@") && args) {
+                        var persons = args.split(" ")
+                        console.log(persons)
+                        message.channel.messages.fetch().forEach(element => {
+                            for (const item of persons) {
+                                if ("<@" + element.author.id + ">" == item)
+                                    element.bulkDelete()
+                            }
+                        });
                     } else {
                         if (number > 100) {
                             number = 100
