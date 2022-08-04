@@ -73,6 +73,7 @@ client.on("messageCreate", message => {
                         for (const person of nargs) {
                             total_messages.push(message.channel.messages.fetch().then(messages => { messages.filter((m) => m.author.id == person) }))
                         }
+                        console.log(total_messages)
                         var size = total_messages.size
                         while (size > 0) {
                             if (size > 99) {
