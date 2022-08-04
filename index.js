@@ -1,4 +1,5 @@
-const { Discord, GatewayIntentBits, ActivityType } = require('discord.js');
+const Discord = require('discord.js');
+const { GatewayIntentBits, ActivityType } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 client.login(process.env.TOKEN);
@@ -67,7 +68,7 @@ client.on("messageCreate", message => {
                         var trash = 0
                         message.channel.messages.fetch().then(element => {
                             for (const item of args.slice(1)) {
-                                console.log(element.author)
+                                console.log(element.message.author.user.id)
                                 console.log("<@" + element.content + ">", item)
                                 if ("<@" + element.author["id"] + ">" == item)
                                     element.bulkDelete()
