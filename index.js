@@ -8,6 +8,7 @@ const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "g
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
 //rajouter !clear @ -> clear tous les messages de @
+//@ = <@XXXXXXXXXXXXXXXXXX>
 client.once("ready", () => {
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
@@ -17,7 +18,6 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    console.log(message.content)
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
@@ -57,13 +57,13 @@ client.on("messageCreate", message => {
                         .setTitle("Tu m'as pas dit combien de messages fallait que je dégages...")
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [unclearembed] });
-                } else {
+                } else if (args[1].startsWith("<@") && args) {} else {
                     let number = parseInt(args[1]);
                     if (isNaN(number)) {
-                        console.log(message.author.username + " n'a pas saisi de nombre.")
+                        console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
-                            .setTitle("Réfléchit, c'est un nombre qui faut mettre !")
+                            .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                         message.channel.send({ embeds: [unclearembed] })
                     } else {
