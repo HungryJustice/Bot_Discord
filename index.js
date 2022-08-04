@@ -85,8 +85,8 @@ client.on("messageCreate", message => {
                                         number = size
                                         size = 0
                                     }
-                                    message.channel.bulkDelete(number, true).then(messages => {
-                                        trash += messages.size
+                                    message.channel.bulkDelete(messages, true).then(m => {
+                                        trash += m.size
                                     }).catch(err => {
                                         console.log("Erreur lors de la suppression des messages : " + err)
                                     });
