@@ -66,8 +66,8 @@ client.on("messageCreate", message => {
                         var trash = 0
                         message.channel.messages.fetch().then(element => {
                             for (const item of args.slice(1)) {
-                                console.log(element)
-                                console.log("<@" + element.author["id"] + ">", item)
+                                console.log(element.author)
+                                console.log("<@" + element.author + ">", item)
                                 if ("<@" + element.author["id"] + ">" == item)
                                     element.bulkDelete()
                                 trash += 1
