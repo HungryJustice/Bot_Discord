@@ -37,7 +37,7 @@ client.on("messageCreate", message => {
             embed.addFields({ name: "!help", value: "Affiche la liste des commandes" })
             embed.addFields({ name: "!clear x", value: "Nettoyer x messages de moins de 14 jours." })
             embed.addFields({ name: "!whatdoyoudo", value: "Demande ce que fait le bot actuellement." })
-            embed.addFields({ name: '!taj "choix1" "choix2" "choix3" ... ', value: "Effectue un tirage au sort." })
+            embed.addFields({ name: '!tas "choix1" "choix2" "choix3" ... ', value: "Effectue un tirage au sort." })
             embed.addFields({ name: '!addtask "tâche"', value: 'Ajoute "tâche" à la liste de !whatdoyoudo.' })
             embed.addFields({ name: '!deltask "tâche"', value: 'Retire "tâche" de la liste de !whatdoyoudo.' })
             embed.addFields({ name: '!viens', value: 'Rejoins le vocal et diffuse une surprise.' })
@@ -179,8 +179,8 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [noVoiceembed] })
             }
-        } else if (message.content.startsWith(prefix + "taj")) {
-            console.log(message.author.username + " a saisi !taj.")
+        } else if (message.content.startsWith(prefix + "tas")) {
+            console.log(message.author.username + " a saisi !tas.")
             var args = message.content.slice(start = 4).split(" ")
             var choix = new Array()
             for (const iterator of args) {
