@@ -18,6 +18,7 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
+    console.log(message.channel.messages)
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
