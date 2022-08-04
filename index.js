@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { GatewayIntentBits, ActivityTypes } = require('discord.js');
+const ActivityType = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 client.login(process.env.TOKEN);
@@ -11,7 +11,7 @@ const prefix = "!";
 //rajouter !clear @ -> clear tous les messages de @
 //@ = <@XXXXXXXXXXXXXXXXXX>
 client.once("ready", () => {
-    client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityTypes.Streaming }], status: 'dnd' })
+    client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming }], status: 'dnd' })
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
