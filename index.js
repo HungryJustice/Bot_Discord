@@ -67,8 +67,8 @@ client.on("messageCreate", message => {
                         message.channel.messages.fetch().then(element => {
                             for (const item of args.slice(1)) {
                                 console.log(element)
-                                console.log("<@" + element.author.if+">", item)
-                                if ("<@" + element.author.id + ">" == item)
+                                console.log("<@" + element.author["id"] + ">", item)
+                                if ("<@" + element.author["id"] + ">" == item)
                                     element.bulkDelete()
                                 trash += 1
                             }
