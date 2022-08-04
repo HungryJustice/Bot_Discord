@@ -64,17 +64,14 @@ client.on("messageCreate", message => {
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
                         var trash = 0
-                        message.channel.messages.fetch().then(messages => {
-                            messages.forEach(msg => console.log(msg.content));
-                        });
-                        return;
-                        message.forEach(element => {
+                        message.channel.messages.fetch().then(element => {
                             for (const item of args.slice(1)) {
                                 if ("<@" + element.author.id + ">" == item)
                                     element.bulkDelete()
                                 trash += 1
                             }
                         });
+                        return;
                         console.log(trash + " messages ont été effacés.")
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
