@@ -67,8 +67,8 @@ client.on("messageCreate", message => {
                         message.channel.messages.fetch().then(messages => {
                             messages.forEach(msg => console.log(msg.content));
                         });
-                        const messages = message.channel.messages.fetch().then(element => console.log(element)); //.split("")
-                        messages.forEach(element => {
+                        return;
+                        message.forEach(element => {
                             for (const item of args.slice(1)) {
                                 if ("<@" + element.author.id + ">" == item)
                                     element.bulkDelete()
