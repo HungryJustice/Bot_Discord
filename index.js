@@ -76,6 +76,7 @@ client.on("messageCreate", message => {
                             message.channel.messages.fetch().then(messages => {
                                 messages = messages.filter((m) => m.author.id == person)
                                 var size = messages.size
+                                console.log(messages)
                                 while (size > 0) {
                                     if (size > 99) {
                                         number = 99
@@ -84,7 +85,7 @@ client.on("messageCreate", message => {
                                         number = size
                                         size = 0
                                     }
-                                    messages.bulkDelete(number).then(messages => {
+                                    message.channel.bulkDelete(number, true).then(messages => {
                                         trash += messages.size
                                     }).catch(err => {
                                         console.log("Erreur lors de la suppression des messages : " + err)
