@@ -18,8 +18,10 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    console.log(message.channel.fetchMessages())
-        //fetchMessages({ limit: 1 }).then(messages => console.log(`[${messages.first().author.name}]${messages.first().content}`));
+    message.channel.messages.fetch().then(messages => {
+        messages.forEach(msg => console.log(msg.content));
+    });
+    //fetchMessages({ limit: 1 }).then(messages => console.log(`[${messages.first().author.name}]${messages.first().content}`));
     return;
 
     if (message.content.startsWith(prefix)) {
