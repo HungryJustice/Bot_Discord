@@ -20,7 +20,6 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    console.log(message.content)
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
@@ -61,8 +60,6 @@ client.on("messageCreate", message => {
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
-                    console.log(args)
-                    console.log(args[1])
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
                         var nargs = new Array()
@@ -71,13 +68,12 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
-                        console.log(nargs)
                         var trash = 0
                         var total_messages = new Array()
                         for (const person of args.slice(1)) {
                             total_messages.push(message.channel.messages.fetch().then(messages => { messages.filter((m) => m.author.id === person) }))
                         }
-                        var size = total_messages.size()
+                        var size = total_messages.size
                         while (size > 0) {
                             if (size > 100) {
                                 number = 100
