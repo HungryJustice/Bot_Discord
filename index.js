@@ -63,11 +63,10 @@ client.on("messageCreate", message => {
                     console.log(args[1])
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
-                        var persons = args.split(" ")
                         var trash = 0
                         console.log(persons)
                         message.channel.messages.fetch().forEach(element => {
-                            for (const item of persons) {
+                            for (const item of args.slice(1)) {
                                 if ("<@" + element.author.id + ">" == item)
                                     element.bulkDelete()
                                 trash += 1
