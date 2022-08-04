@@ -68,10 +68,12 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
-                        console.log(nargs)
                         var trash = 0
                         var total_messages = new Array()
                         for (const person of nargs) {
+                            console.log(person)
+                            message.channel.messages.fetch().then(messages => { messages.filter((m) => console.log(m.author.id)) })
+                            return
                             total_messages.push(message.channel.messages.fetch().then(messages => { messages.filter((m) => m.author.id == person) }))
                         }
                         var size = total_messages.size
