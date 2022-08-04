@@ -18,8 +18,8 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
-    console.log(message.channel.message)
-    message.channel.message.forEach(element => {
+    console.log(message.channel.cache)
+    message.channel.cache.forEach(element => {
         return;
     });
     if (message.content.startsWith(prefix)) {
