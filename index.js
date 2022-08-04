@@ -75,7 +75,7 @@ client.on("messageCreate", message => {
                         var trash = 0
                         var total_messages = new Array()
                         for (const person of args.slice(1)) {
-                            total_messages.push(message.channel.messages.fetch().filter((m) => m.author.id == person))
+                            total_messages.push(message.channel.messages.fetch().filter((m) => m.author.id === person))
                         }
                         var size = total_messages.size()
                         while (size > 0) {
