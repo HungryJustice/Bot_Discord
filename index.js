@@ -11,7 +11,7 @@ const prefix = "!";
 //rajouter !clear @ -> clear tous les messages de @
 //@ = <@XXXXXXXXXXXXXXXXXX>
 client.once("ready", () => {
-    client.user.setPresence({ activities: [{ name: `:quoi: Diffuse de la haine.`, type: ActivityType.Custom, emoji: ":quoi:" }], status: 'dnd' })
+    client.user.setPresence({ activities: [{ name: `:quoi: Diffuse de la haine.`, type: ActivityType.Streaming, url: "https://www.youtube.com/watch?v=hJipCn10wtw" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
     const Startembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
