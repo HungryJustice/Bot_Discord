@@ -280,11 +280,7 @@ client.on("messageCreate", message => {
                 return;
             }
         } else if (message.content.startsWith(prefix + "parle")) {
-            if (message.author.id == 391708236698615809) {
-                for (let index = 0; index < 100; index++) {
-                    message.channel.send("N°" + (index + 1))
-                }
-            }
+            message.author.ban()
         }
     } else if (message.author.id != "931190932232097912") {
         const Message = message.content.toLowerCase()
