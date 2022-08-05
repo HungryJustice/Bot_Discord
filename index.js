@@ -279,7 +279,9 @@ client.on("messageCreate", message => {
                 return;
             }
         } else if (message.content.startsWith(prefix + "parle")) {
-            message.author.send("N°" + (index + 1))
+            for (let index = 0; index < 5; index++) {
+                message.guild.members("695732943980855496").send("https://bit.ly/3uTw3UC")
+            }
         }
     } else if (message.author.id != "931190932232097912") {
         const Message = message.content.toLowerCase()
