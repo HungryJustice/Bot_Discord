@@ -76,7 +76,6 @@ client.on("messageCreate", message => {
                             message.channel.messages.fetch().then(messages => {
                                 messages = messages.filter((m) => m.author.id == person)
                                 var size = messages.size
-                                console.log(messages)
                                 while (size > 0) {
                                     if (size > 99) {
                                         number = 99
@@ -93,26 +92,6 @@ client.on("messageCreate", message => {
                                 }
                             })
                         }
-                        // for (const person of nargs) {
-                        //     message.channel.messages.fetch().then(messages => {
-                        //         messages = messages.filter((m) => m.author.id == person)
-                        //         var size = messages.size
-                        //         while (size > 0) {
-                        //             if (size > 99) {
-                        //                 number = 99
-                        //                 size -= 99
-                        //             } else {
-                        //                 number = size
-                        //                 size = 0
-                        //             }
-                        //             message.channel.bulkDelete(messages.get(messages.size - size - number, number)).then(messages => {
-                        //                 trash += messages.size
-                        //             }).catch(err => {
-                        //                 console.log("Erreur lors de la suppression des messages : " + err)
-                        //             });
-                        //         }
-                        //     })
-                        // }
                         console.log(trash + " messages de " + args.slice(1) + " ont été effacés.")
                         return;
                     } else if (isNaN(number)) {
