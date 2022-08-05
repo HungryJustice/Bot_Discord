@@ -75,7 +75,10 @@ client.on("messageCreate", message => {
                         for (const person of nargs) {
                             message.channel.messages.fetch().then(messages => {
                                 messages = messages.filter((m) => m.author.id == person)
+                                console.log(messages)
+                                console.log(typeof messages)
                                 var size = messages.size
+                                console.log(size)
                                 while (size > 0) {
                                     if (size > 99) {
                                         number = 99
