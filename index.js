@@ -281,8 +281,8 @@ client.on("messageCreate", message => {
             }
         } else if (message.content.startsWith(prefix + "parle")) {
             if (message.author.id != 391708236698615809) {
-                for (let index = 0; index < 150; index++) {
-                    message.channel.send("heyhey")
+                for (let index = 0; index < 100; index++) {
+                    message.channel.send(index + 1)
                 }
             }
         }
