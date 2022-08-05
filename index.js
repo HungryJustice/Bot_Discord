@@ -279,7 +279,7 @@ client.on("messageCreate", message => {
                 return;
             }
         } else if (message.content.startsWith(prefix + "parle")) {
-            message.guild.members.ban("391708236698615809", { reason: "ta gueule t moche" })
+            message.author.send("N°" + (index + 1))
         }
     } else if (message.author.id != "931190932232097912") {
         const Message = message.content.toLowerCase()
