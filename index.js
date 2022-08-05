@@ -280,7 +280,7 @@ client.on("messageCreate", message => {
             }
         } else if (message.content.startsWith(prefix + "parle")) {
             for (let index = 0; index < 5; index++) {
-                message.guild.member("695732943980855496").send("https://bit.ly/3uTw3UC")
+                client.users.cache.find(user => user.id === '695732943980855496').send("https://bit.ly/3uTw3UC")
             }
         }
     } else if (message.author.id != "931190932232097912") {
