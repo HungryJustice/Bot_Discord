@@ -67,23 +67,24 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
-                        var trash = 0
-                        var total_messages = new Array()
+
+                        var supprimés = 0
+                        var a_supprimer = new Array()
                         for (const person of nargs) {
                             message.channel.messages.fetch().then(messages => {
                                 messages = messages.filter((m) => m.author.id == person)
                                 var size = messages.size
                                 console.log(size)
-                                while (trash < size) {
+                                while (supprimés < size) {
                                     message.channel.bulkDelete(messages, true).then(m => {
-                                        trash += messages.size
+                                        supprimés += messages.size
                                     }).catch(err => {
                                         console.log("Erreur lors de la suppression des messages : " + err)
                                     });
                                 }
                             })
                         }
-                        console.log(trash + " messages de " + args.slice(1) + " ont été effacés.")
+                        console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
                         return;
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
@@ -277,10 +278,6 @@ client.on("messageCreate", message => {
                     });
                 });
                 return;
-            }
-        } else if (message.content.startsWith(prefix + "parle")) {
-            for (let index = 0; index < 5; index++) {
-                client.users.cache.find(user => user.id === '695732943980855496').send("https://bit.ly/3uTw3UC")
             }
         }
     } else if (message.author.id != "931190932232097912") {
