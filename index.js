@@ -77,7 +77,7 @@ client.on("messageCreate", message => {
                             .then(messagePage => (messagePage.size === 1 ? messagePage.at(0) : null));
 
                         while (message) {
-                            await channel.messages
+                            channel.messages
                                 .fetch({ limit: 100, before: message.id })
                                 .then(messagePage => {
                                     messagePage.forEach(msg => messages.push(msg));
