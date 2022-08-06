@@ -72,7 +72,7 @@ client.on("messageCreate", message => {
                         const channel = client.channels.cache.get(message.channelId);
                         let messages = [];
                         // Create message pointer
-                        let message = await channel.messages
+                        let message = channel.messages
                             .fetch({ limit: 1 })
                             .then(messagePage => (messagePage.size === 1 ? messagePage.at(0) : null));
 
