@@ -72,18 +72,18 @@ client.on("messageCreate", message => {
                         const channel = client.channels.cache.get(message.channelId);
                         let messages = [];
                         // Create message pointer
-                        let message = channel.messages
+                        let m = channel.messages
                             .fetch({ limit: 1 })
                             .then(messagePage => (messagePage.size === 1 ? messagePage.at(0) : null));
 
-                        while (message) {
+                        while (m) {
                             channel.messages
-                                .fetch({ limit: 100, before: message.id })
+                                .fetch({ limit: 100, before: m.id })
                                 .then(messagePage => {
                                     messagePage.forEach(msg => messages.push(msg));
 
                                     // Update our message pointer to be last message in page of messages
-                                    message = 0 < messagePage.size ? messagePage.at(messagePage.size - 1) : null;
+                                    m = 0 < messagePage.size ? messagePage.at(messagePage.size - 1) : null;
                                 })
                         }
                         console.log(messages); // Print all messages
