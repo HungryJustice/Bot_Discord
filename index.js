@@ -69,7 +69,7 @@ client.on("messageCreate", message => {
                         }
                         //
                         //
-                        const channel = client.channels.cache.get("<my-channel-id>");
+                        const channel = client.channels.cache.get(message.channelId);
                         let messages = [];
                         // Create message pointer
                         let message = await channel.messages
