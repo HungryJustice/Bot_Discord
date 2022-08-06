@@ -71,7 +71,7 @@ client.on("messageCreate", message => {
                         //
                         let res = [];
                         // Create message pointer
-                        var message = true;
+                        var m = true;
                         while (m) {
                             message.channel.messages
                                 .fetch({ limit: 10 })
