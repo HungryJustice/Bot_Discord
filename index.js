@@ -1,9 +1,8 @@
 const Discord = require('discord.js');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
-
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN)
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
 const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
 const audio = new Array(items = "risitas", "sardoche", "siphano", "branleur", "gensreseaux", "livre", "mbappe", "pizza", "puceau", "television", "tournepage", "issouchange", "envie", "tagueule", "pierremenes", "salami", "anus", "tagueule2", "chiasse", "tante", "mortparent", "niquertoucher", "fdp")
@@ -67,45 +66,44 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
-                        //
-                        //
-                        let res = [];
-                        // Create message pointer
-                        var m = true;
-                        while (m) {
-                            message.channel.messages
-                                .fetch({ limit: 2 })
-                                .then(messagePage => {
-                                    messagePage.forEach(msg => res.push(msg));
 
-                                    // Update our message pointer to be last message in page of messages
-                                    m = 0 < messagePage.size ? messagePage.at(messagePage.size - 1) : null;
-                                    console.log(messages);
-                                    console.log(m)
-                                    console.log(typeof messages);
-                                })
-                        }
-                        return;
-                        //
-                        //
+
+
+
+
+
+                        var options = {}
                         var supprimés = 0
-                        var a_supprimer = new Array()
-                        for (const person of nargs) {
-                            message.channel.messages.fetch().then(messages => {
-                                messages = messages.filter((m) => m.author.id == person)
-                                var size = messages.size
-                                console.log(size)
-                                while (supprimés < size) {
-                                    message.channel.bulkDelete(messages, true).then(m => {
-                                        supprimés += messages.size
+                        var to_trash = new Array()
+                        var into_trash = new Array()
+                        message.channel.messages.fetch(options).then(messages => {
+                                a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
+                                a_supprimer.forEach(msg => {
+                                    into_trash.push(msg)
+                                    if (into_trash.length > 99) {
+                                        to_trash.push(into_trash)
+                                        into_trash = new Array()
+                                    }
+                                })
+                                if (into_trash.length > 0) {
+                                    to_trash.push(into_trash)
+                                }
+                                console.log(to_trash)
+                            }).then(() => {
+                                to_trash.forEach(element => {
+                                    message.channel.bulkDelete(element, true).then(messages => {
+                                        supprimés += element.length
                                     }).catch(err => {
                                         console.log("Erreur lors de la suppression des messages : " + err)
                                     });
-                                }
+                                })
                             })
-                        }
-                        console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
-                        return;
+                            // .then(() => {
+                            //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
+                            //     return;
+                            // })
+
+
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
