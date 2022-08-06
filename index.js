@@ -74,16 +74,17 @@ client.on("messageCreate", message => {
                         var m = true;
                         while (m) {
                             message.channel.messages
-                                .fetch({ limit: 10 })
+                                .fetch({ limit: 2 })
                                 .then(messagePage => {
                                     messagePage.forEach(msg => res.push(msg));
 
                                     // Update our message pointer to be last message in page of messages
                                     m = 0 < messagePage.size ? messagePage.at(messagePage.size - 1) : null;
+                                    console.log(messages);
+                                    console.log(m)
+                                    console.log(typeof messages);
                                 })
                         }
-                        console.log(messages); // Print all messages
-                        console.log(typeof messages); // Print all messages
                         return;
                         //
                         //
