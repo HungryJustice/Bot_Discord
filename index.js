@@ -70,7 +70,7 @@ client.on("messageCreate", message => {
                         //TEST
                         const sum_messages = [];
                         let last_id = false;
-                        let last_id = true;
+                        let last_last_id = true;
                         while (last_id != last_last_id) {
                             const options = { limit: 100 };
                             if (last_id) {
