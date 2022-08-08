@@ -67,11 +67,11 @@ client.on("messageCreate", message => {
                             }
                         }
                         //TEST
-                        const options = { limit: 100 };
+                        const o = { limit: 100 };
                         var messages_channel = new Array()
                         var last_id = false
                         var last_last_id = false
-                        del(options, last_id, last_last_id)
+                        del(o, last_id, last_last_id)
 
                         function del(options, last_id, last_last_id) {
                             channel.fetchMessages(options).then(pageMessage => {
