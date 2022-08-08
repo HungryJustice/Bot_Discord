@@ -78,7 +78,7 @@ client.on("messageCreate", message => {
                             }
                             let sum_messages;
                             message.channel.messages.fetch(options).then(page => {
-                                sum_messages.push(page.filter((m) => nargs.includes(m.author.id)))
+                                globalThis.sum_messages.push(page.filter((m) => nargs.includes(m.author.id)))
                             })
                             console.log(sum_messages)
                             last_last_id = last_id
