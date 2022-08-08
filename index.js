@@ -69,9 +69,9 @@ client.on("messageCreate", message => {
 
                         //TEST
                         const sum_messages = [];
-                        let last_id;
-
-                        while (true) {
+                        let last_id = false;
+                        let last_id = true;
+                        while (last_id != last_last_id) {
                             const options = { limit: 100 };
                             if (last_id) {
                                 options.before = last_id;
@@ -81,6 +81,7 @@ client.on("messageCreate", message => {
                             messages = messages.filter((m) => nargs.includes(m.author.id))
                             sum_messages.push(messages)
                             console.log(sum_messages)
+                            last_last_id = last_id
                             last_id = messages.last().id;
                         }
 
