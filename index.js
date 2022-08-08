@@ -67,63 +67,39 @@ client.on("messageCreate", message => {
                             }
                         }
 
-                        //TEST
-                        const sum_messages = [];
-                        let last_id = false;
-                        let last_last_id = true;
-                        while (last_id != last_last_id) {
-                            const options = { limit: 100 };
-                            if (last_id) {
-                                options.before = last_id;
-                            }
-                            (async() => {
-                                const d = await message.channel.messages.fetch(options)
-                                console.log(d);
-                            })();
-                            message.channel.messages.fetch(options).then(page => {
-                                console.log(page)
-                                globalThis.sum_messages = sum_messages + [page.filter((m) => nargs.includes(m.author.id))]
-                                console.log(sum_messages)
+
+
+
+                        var options = {}
+                        var supprimés = 0
+                        var to_trash = new Array()
+                        var into_trash = new Array()
+                        message.channel.messages.fetch(options).then(messages => {
+                                a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
+                                a_supprimer.forEach(msg => {
+                                    into_trash.push(msg)
+                                    if (into_trash.length > 99) {
+                                        to_trash.push(into_trash)
+                                        into_trash = new Array()
+                                    }
+                                })
+                                if (into_trash.length > 0) {
+                                    to_trash.push(into_trash)
+                                }
+                                console.log(to_trash)
+                            }).then(() => {
+                                to_trash.forEach(element => {
+                                    message.channel.bulkDelete(element, true).then(messages => {
+                                        supprimés += element.length
+                                    }).catch(err => {
+                                        console.log("Erreur lors de la suppression des messages : " + err)
+                                    });
+                                })
                             })
-                            console.log(sum_messages)
-                            last_last_id = last_id
-                            last_id = sum_messages[-1].last().id;
-                        }
-
-                        console.log(sum_messages);
-                        //TEST
-
-
-                        // var options = {}
-                        // var supprimés = 0
-                        // var to_trash = new Array()
-                        // var into_trash = new Array()
-                        // message.channel.messages.fetch(options).then(messages => {
-                        //         a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
-                        //         a_supprimer.forEach(msg => {
-                        //             into_trash.push(msg)
-                        //             if (into_trash.length > 99) {
-                        //                 to_trash.push(into_trash)
-                        //                 into_trash = new Array()
-                        //             }
-                        //         })
-                        //         if (into_trash.length > 0) {
-                        //             to_trash.push(into_trash)
-                        //         }
-                        //         console.log(to_trash)
-                        //     }).then(() => {
-                        //         to_trash.forEach(element => {
-                        //             message.channel.bulkDelete(element, true).then(messages => {
-                        //                 supprimés += element.length
-                        //             }).catch(err => {
-                        //                 console.log("Erreur lors de la suppression des messages : " + err)
-                        //             });
-                        //         })
-                        //     })
-                        //     // .then(() => {
-                        //     //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
-                        //     //     return;
-                        //     // })
+                            // .then(() => {
+                            //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
+                            //     return;
+                            // })
 
 
                     } else if (isNaN(number)) {
