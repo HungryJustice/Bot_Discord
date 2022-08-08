@@ -72,7 +72,6 @@ client.on("messageCreate", message => {
                         let last_id;
 
                         while (true) {
-                            const a = "a"
                             const options = { limit: 100 };
                             if (last_id) {
                                 options.before = last_id;
@@ -80,10 +79,8 @@ client.on("messageCreate", message => {
 
                             message.channel.messages.fetch(options).then(Pagemessage => {
                                 sum_messages.push(Pagemessage);
-                                a = "b"
                             });
-                            console.log("ok")
-                            while (a == "a") {}
+                            console.log(sum_messages)
                             last_id = sum_messages[-1].last().id;
                             if (messages.size != 100 || sum_messages >= limit) {
                                 break;
