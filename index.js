@@ -69,23 +69,22 @@ client.on("messageCreate", message => {
                         //TEST
                         const o = { limit: 100 };
                         var messages_channel = new Array()
-                        var last_id = false
-                        var last_last_id = false
-                        del(o, last_id, last_last_id)
+                        var last_id;
+                        var last_last_id;
+                        del(o, false, false)
 
                         function del(options, last_id, last_last_id) {
                             message.channel.messages.fetch(options).then(messages => {
-                                a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
-                                a_supprimer.forEach(msg => {
-                                    messages_channel.push(msg);
-                                })
+                                messages_channel.push(messages);
                                 last_last_id = last_id
-                                last_id = msg.id
+                                last_id = messsages.last().id
                                 if (last_id) {
                                     options.before = last_id;
                                 }
-                                if (last_id == last_last_id) {
+                                if (last_id != last_last_id) {
                                     del(options, last_id, last_last_id)
+                                } else {
+                                    return
                                 }
                             });
                         }
