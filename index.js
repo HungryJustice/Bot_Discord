@@ -77,7 +77,7 @@ client.on("messageCreate", message => {
                             message.channel.messages.fetch(options).then(messages => {
                                 messages_channel.push(messages);
                                 last_last_id = last_id
-                                last_id = messsages.last().id
+                                last_id = messages.last().id
                                 if (last_id) {
                                     options.before = last_id;
                                 }
