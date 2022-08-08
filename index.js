@@ -66,10 +66,28 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
+                        //TEST
+                        const options = { limit: 100 };
+                        var messages_channel = new Array()
+                        var last_id = false
+                        var last_last_id = false
+                        del(options, last_id, last_last_id)
 
-
-
-
+                        function del(options, last_id, last_last_id) {
+                            channel.fetchMessages(options).then(pageMessage => {
+                                messages_channel.push(...messages.array());
+                                last_last_id = last_id
+                                last_id = messages.last().id;
+                                if (last_id) {
+                                    options.before = last_id;
+                                }
+                                if (last_id == last_last_id) {
+                                    del(options, last_id, last_last_id)
+                                }
+                            });
+                        }
+                        return
+                        //TEST
 
 
                         var options = {}
