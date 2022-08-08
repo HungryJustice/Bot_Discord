@@ -72,6 +72,7 @@ client.on("messageCreate", message => {
 
                         function del(options, last_id, last_last_id) {
                             var messages_channel = new Array()
+                            const a = true
                             message.channel.messages.fetch(options).then(messages => {
                                 if (last_id) {
                                     options.before = last_id;
@@ -81,7 +82,9 @@ client.on("messageCreate", message => {
                                 } else {
                                     return [messages]
                                 }
+                                a = false
                             });
+                            while (a) {}
                             console.log(messages)
                         }
                         //TEST
