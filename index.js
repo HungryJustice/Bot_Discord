@@ -68,10 +68,8 @@ client.on("messageCreate", message => {
                         }
 
                         //TEST
-                        messages_chan = del({ limit: 100 }, false, true).then(mess => {
-                            console.log(mess)
-                            return
-                        })
+                        console.log(del({ limit: 100 }, false, true))
+                        return
 
                         function del(options, last_id, last_last_id) {
                             var messages_channel = new Array()
