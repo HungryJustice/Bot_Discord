@@ -82,7 +82,7 @@ client.on("messageCreate", message => {
                                     return [messages]
                                 }
                             });
-                            console.log(messages_channel)
+                            console.log(messages)
                         }
                         //TEST
 
