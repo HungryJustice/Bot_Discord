@@ -71,7 +71,7 @@ client.on("messageCreate", message => {
                         const o = { limit: 100 };
                         var last_id;
                         var last_last_id;
-                        messages_chan = del(o, false, false).then(mess => {
+                        messages_chan = del(o, false, true).then(mess => {
                             console.log(mess)
                             return
                         })
@@ -80,13 +80,11 @@ client.on("messageCreate", message => {
                             var messages_channel = new Array()
                             message.channel.messages.fetch(options).then(messages => {
                                 messages_channel.push(messages);
-                                last_last_id = last_id
-                                last_id = messages.last().id
                                 if (last_id) {
                                     options.before = last_id;
                                 }
                                 if (last_id != last_last_id) {
-                                    return del(options, last_id, last_last_id) + messages_channel
+                                    return del(options, messages.last().id, last_id) + messages_channel
                                 } else {
                                     return messages_channel
                                 }
