@@ -79,6 +79,7 @@ client.on("messageCreate", message => {
                             }
 
                             const messages = message.channel.messages.fetch(options).then(() => a = false);
+                            console.log("ok")
                             while (a) {}
                             sum_messages.push(messages);
                             last_id = messages.last().id;
