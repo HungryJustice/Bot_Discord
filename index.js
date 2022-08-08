@@ -68,8 +68,7 @@ client.on("messageCreate", message => {
                         }
 
                         //TEST
-                        console.log(del({ limit: 100 }, false, true))
-                        return
+                        messages_chann = del({ limit: 100 }, false, true)
 
                         function del(options, last_id, last_last_id) {
                             var messages_channel = new Array()
@@ -83,40 +82,41 @@ client.on("messageCreate", message => {
                                     return [messages]
                                 }
                             });
+                            print(messages_chann)
                         }
                         //TEST
 
 
-                        var options = {}
-                        var supprimés = 0
-                        var to_trash = new Array()
-                        var into_trash = new Array()
-                        message.channel.messages.fetch(options).then(messages => {
-                                a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
-                                a_supprimer.forEach(msg => {
-                                    into_trash.push(msg)
-                                    if (into_trash.length > 99) {
-                                        to_trash.push(into_trash)
-                                        into_trash = new Array()
-                                    }
-                                })
-                                if (into_trash.length > 0) {
-                                    to_trash.push(into_trash)
-                                }
-                                console.log(to_trash)
-                            }).then(() => {
-                                to_trash.forEach(element => {
-                                    message.channel.bulkDelete(element, true).then(messages => {
-                                        supprimés += element.length
-                                    }).catch(err => {
-                                        console.log("Erreur lors de la suppression des messages : " + err)
-                                    });
-                                })
-                            })
-                            // .then(() => {
-                            //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
-                            //     return;
-                            // })
+                        // var options = {}
+                        // var supprimés = 0
+                        // var to_trash = new Array()
+                        // var into_trash = new Array()
+                        // message.channel.messages.fetch(options).then(messages => {
+                        //         a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
+                        //         a_supprimer.forEach(msg => {
+                        //             into_trash.push(msg)
+                        //             if (into_trash.length > 99) {
+                        //                 to_trash.push(into_trash)
+                        //                 into_trash = new Array()
+                        //             }
+                        //         })
+                        //         if (into_trash.length > 0) {
+                        //             to_trash.push(into_trash)
+                        //         }
+                        //         console.log(to_trash)
+                        //     }).then(() => {
+                        //         to_trash.forEach(element => {
+                        //             message.channel.bulkDelete(element, true).then(messages => {
+                        //                 supprimés += element.length
+                        //             }).catch(err => {
+                        //                 console.log("Erreur lors de la suppression des messages : " + err)
+                        //             });
+                        //         })
+                        //     })
+                        //     // .then(() => {
+                        //     //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
+                        //     //     return;
+                        //     // })
 
 
                     } else if (isNaN(number)) {
