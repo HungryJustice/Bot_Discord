@@ -68,25 +68,26 @@ client.on("messageCreate", message => {
                         }
 
                         //TEST
-                        messages_chann = del({ limit: 100 }, false, true)
+                        const sum_messages = [];
+                        let last_id;
 
-                        function del(options, last_id, last_last_id) {
-                            var messages_channel = new Array()
+                        while (true) {
                             const a = true
-                            message.channel.messages.fetch(options).then(messages => {
-                                if (last_id) {
-                                    options.before = last_id;
-                                }
-                                if (last_id != last_last_id) {
-                                    return del(options, messages.last().id, last_id) + [messages]
-                                } else {
-                                    return [messages]
-                                }
-                                a = false
-                            });
+                            const options = { limit: 100 };
+                            if (last_id) {
+                                options.before = last_id;
+                            }
+
+                            const messages = message.channel.messages.fetch(options).then(() => a = false);
                             while (a) {}
-                            console.log(messages)
+                            sum_messages.push(messages);
+                            last_id = messages.last().id;
+                            if (messages.size != 100 || sum_messages >= limit) {
+                                break;
+                            }
                         }
+
+                        console.log(sum_messages);
                         //TEST
 
 
