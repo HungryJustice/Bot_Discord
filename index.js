@@ -74,7 +74,7 @@ client.on("messageCreate", message => {
                         del(o, last_id, last_last_id)
 
                         function del(options, last_id, last_last_id) {
-                            message.channel.fetchMessages(options).then(pageMessage => {
+                            message.channel.messages.fetch(options).then(pageMessage => {
                                 messages_channel.push(...messages.array());
                                 last_last_id = last_id
                                 last_id = messages.last().id;
@@ -86,7 +86,7 @@ client.on("messageCreate", message => {
                                 }
                             });
                         }
-                        console.log(a_supprimer)
+                        console.log(messages_channel)
                         return
                         //TEST
 
