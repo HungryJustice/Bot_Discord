@@ -78,11 +78,11 @@ client.on("messageCreate", message => {
                             }
 
                             messages = message.channel.messages.fetch(options)
-                            messages = messages.filter((m) => nargs.includes(m.author.id))
-                            sum_messages.push(messages)
+                            mess = messages.filter((m) => nargs.includes(m.author.id))
+                            sum_messages.push(mess)
                             console.log(sum_messages)
                             last_last_id = last_id
-                            last_id = messages.last().id;
+                            last_id = mess.last().id;
                         }
 
                         console.log(sum_messages);
