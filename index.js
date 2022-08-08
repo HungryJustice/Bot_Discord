@@ -66,11 +66,15 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
+
                         //TEST
                         const o = { limit: 100 };
                         var last_id;
                         var last_last_id;
-                        messages_chan = del(o, false, false)
+                        messages_chan = del(o, false, false).then(mess => {
+                            console.log(mess)
+                            return
+                        })
 
                         function del(options, last_id, last_last_id) {
                             var messages_channel = new Array()
@@ -88,8 +92,6 @@ client.on("messageCreate", message => {
                                 }
                             });
                         }
-                        console.log(messages_chan)
-                        return
                         //TEST
 
 
