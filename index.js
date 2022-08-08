@@ -74,10 +74,13 @@ client.on("messageCreate", message => {
                         del(o, last_id, last_last_id)
 
                         function del(options, last_id, last_last_id) {
-                            message.channel.messages.fetch(options).then(pageMessage => {
-                                messages_channel.push(...messages.array());
+                            message.channel.messages.fetch(options).then(messages => {
+                                a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
+                                a_supprimer.forEach(msg => {
+                                    messages_channel.push(msg);
+                                })
                                 last_last_id = last_id
-                                last_id = messages.last().id;
+                                last_id = msg.id
                                 if (last_id) {
                                     options.before = last_id;
                                 }
