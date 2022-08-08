@@ -82,7 +82,7 @@ client.on("messageCreate", message => {
                                 if (last_id != last_last_id) {
                                     return del(options, messages.last().id, last_id) + [messages]
                                 } else {
-                                    return
+                                    return [messages]
                                 }
                             });
                         }
