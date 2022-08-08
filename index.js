@@ -68,10 +68,7 @@ client.on("messageCreate", message => {
                         }
 
                         //TEST
-                        const o = { limit: 100 };
-                        var last_id;
-                        var last_last_id;
-                        messages_chan = del(o, false, true).then(mess => {
+                        messages_chan = del({ limit: 100 }, false, true).then(mess => {
                             console.log(mess)
                             return
                         })
