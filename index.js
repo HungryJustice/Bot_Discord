@@ -76,9 +76,9 @@ client.on("messageCreate", message => {
                             if (last_id) {
                                 options.before = last_id;
                             }
-
+                            let messages;
                             message.channel.messages.fetch(options).then(page => {
-                                messages = page.filter((m) => nargs.includes(m.author.id))
+                                globalThis.messages = page.filter((m) => nargs.includes(m.author.id))
                             })
 
                             sum_messages.push(messages)
