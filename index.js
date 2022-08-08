@@ -76,14 +76,13 @@ client.on("messageCreate", message => {
                         function del(options, last_id, last_last_id) {
                             var messages_channel = new Array()
                             message.channel.messages.fetch(options).then(messages => {
-                                messages_channel.push(messages);
                                 if (last_id) {
                                     options.before = last_id;
                                 }
                                 if (last_id != last_last_id) {
-                                    return del(options, messages.last().id, last_id) + messages_channel
+                                    return del(options, messages.last().id, last_id) + [messages]
                                 } else {
-                                    return messages_channel
+                                    return
                                 }
                             });
                         }
