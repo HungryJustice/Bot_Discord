@@ -22,7 +22,7 @@ client.once("ready", () => {
     const Startembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("Me revoilà.")
-        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
@@ -51,7 +51,7 @@ client.on("messageCreate", message => {
             embed.addFields({ name: '!addtask "tâche"', value: 'Ajoute "tâche" à la liste de !whatdoyoudo.' })
             embed.addFields({ name: '!deltask "tâche"', value: 'Retire "tâche" de la liste de !whatdoyoudo.' })
             embed.addFields({ name: '!viens', value: 'Rejoins le vocal et diffuse une surprise.' })
-            embed.setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+            embed.setThumbnail("https://i.imgur.com/ioQ6NQC.png");
             message.channel.send({ embeds: [embed] })
 
         } else if (message.content.startsWith(prefix + "clear")) {
@@ -146,7 +146,7 @@ client.on("messageCreate", message => {
             const wdydnembed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
                 .setTitle(choose)
-                .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
             message.channel.send({ embeds: [wdydnembed] })
         } else if (message.content.startsWith(prefix + "addtask")) {
             console.log(message.author.username + " a saisi !addtask.")
@@ -158,7 +158,7 @@ client.on("messageCreate", message => {
                 const addtaskembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("C'est bon j'ai appris ça : " + add)
-                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [addtaskembed] })
             } else {
                 console.log(message.author.username + " n'a pas la persimission de saisir !addtask.")
@@ -180,7 +180,7 @@ client.on("messageCreate", message => {
                     const deltaskembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
                         .setTitle("C'est bon j'ai viré ça : " + del)
-                        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [deltaskembed] })
                 } else {
                     console.log(message.author.username + " n'a pas pu retirer la phrase : " + add + " (innexistante)")
@@ -295,7 +295,7 @@ client.on("messageCreate", message => {
                 const Stopembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Je redémarre.")
-                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     client.destroy().then(m => {
                         client.login(process.env.TOKEN);
