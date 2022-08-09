@@ -22,7 +22,7 @@ client.once("ready", () => {
     const Startembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("Me revoilà.")
-        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 client.on("messageCreate", message => {
@@ -35,7 +35,7 @@ client.on("messageCreate", message => {
                 const wrongembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Ça existe pas bouffon.\nC'est !help pour voir celle qui existent.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [wrongembed] });
                 return;
             }
@@ -51,7 +51,7 @@ client.on("messageCreate", message => {
             embed.addFields({ name: '!addtask "tâche"', value: 'Ajoute "tâche" à la liste de !whatdoyoudo.' })
             embed.addFields({ name: '!deltask "tâche"', value: 'Retire "tâche" de la liste de !whatdoyoudo.' })
             embed.addFields({ name: '!viens', value: 'Rejoins le vocal et diffuse une surprise.' })
-            embed.setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+            embed.setThumbnail("https://i.imgur.com/tmff2s4.jpg");
             message.channel.send({ embeds: [embed] })
 
         } else if (message.content.startsWith(prefix + "clear")) {
@@ -63,7 +63,7 @@ client.on("messageCreate", message => {
                     const unclearembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
                         .setTitle("Tu m'as pas dit combien de messages fallait que je dégages...")
-                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
                     let number = parseInt(args[1]);
@@ -115,7 +115,7 @@ client.on("messageCreate", message => {
                         const unclearembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
-                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                            .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
                     } else {
                         if (number > 100) {
@@ -133,7 +133,7 @@ client.on("messageCreate", message => {
                 const Permembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Permembed] })
             }
         } else if (message.content.startsWith(prefix + "whatdoyoudo")) {
@@ -146,7 +146,7 @@ client.on("messageCreate", message => {
             const wdydnembed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
                 .setTitle(choose)
-                .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
             message.channel.send({ embeds: [wdydnembed] })
         } else if (message.content.startsWith(prefix + "addtask")) {
             console.log(message.author.username + " a saisi !addtask.")
@@ -158,14 +158,14 @@ client.on("messageCreate", message => {
                 const addtaskembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("C'est bon j'ai appris ça : " + add)
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [addtaskembed] })
             } else {
                 console.log(message.author.username + " n'a pas la persimission de saisir !addtask.")
                 const Permembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Permembed] })
             }
 
@@ -180,14 +180,14 @@ client.on("messageCreate", message => {
                     const deltaskembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
                         .setTitle("C'est bon j'ai viré ça : " + del)
-                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                     message.channel.send({ embeds: [deltaskembed] })
                 } else {
                     console.log(message.author.username + " n'a pas pu retirer la phrase : " + add + " (innexistante)")
                     const unknowndeltaskembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
                         .setTitle("Cette tâche existe pas bouffon.")
-                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                     message.channel.send({ embeds: [unknowndeltaskembed] })
                 }
             } else {
@@ -195,7 +195,7 @@ client.on("messageCreate", message => {
                 const Permembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Permembed] })
             }
         } else if (message.content.startsWith(prefix + "viens")) {
@@ -204,7 +204,7 @@ client.on("messageCreate", message => {
                 const Voiceembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("T'es chiant sérieux, j'arrive.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Voiceembed] })
                 var index = Math.floor(Math.random() * audio.length)
                 if (index < 0) {
@@ -229,7 +229,7 @@ client.on("messageCreate", message => {
                 const noVoiceembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Où veux-tu que je viennes, t'es même pas dans un salon vocal...")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [noVoiceembed] })
             }
         } else if (message.content.startsWith(prefix + "tas")) {
@@ -246,7 +246,7 @@ client.on("messageCreate", message => {
                 const Tajembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Comment veux-tu faire un tirage au sort sans choix ?\nJ'te jure...")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Tajembed] })
                 return;
             }
@@ -259,7 +259,7 @@ client.on("messageCreate", message => {
             const Tajembed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
                 .setTitle(choose + " à été tiré au sort.")
-                .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
             message.channel.send({ embeds: [Tajembed] })
         } else if (message.content.startsWith(prefix + "stop")) {
             if (message.author.id != 391708236698615809) {
@@ -267,7 +267,7 @@ client.on("messageCreate", message => {
                 const Permembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Permembed] })
                 return;
             } else {
@@ -275,7 +275,7 @@ client.on("messageCreate", message => {
                 const Stopembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("C'est bon j'me casse.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Stopembed] }).then(() => {
                     client.destroy()
                 });
@@ -287,7 +287,7 @@ client.on("messageCreate", message => {
                 const Permembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Permembed] })
                 return;
             } else {
@@ -295,7 +295,7 @@ client.on("messageCreate", message => {
                 const Stopembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Je redémarre.")
-                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     client.destroy().then(m => {
                         client.login(process.env.TOKEN);
