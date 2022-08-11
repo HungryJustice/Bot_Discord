@@ -39,9 +39,9 @@ client.once("ready", () => {
 })
 
 
-// client.on('messageUpdate', (oldmessage, newmessage) => {
-//     newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
-// })
+client.on('messageUpdate', (oldmessage, newmessage) => {
+    newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+})
 
 client.on('messageReactionAdd', async(reaction, user) => {
     message.reply("vu : " + reaction)
