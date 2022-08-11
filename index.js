@@ -110,10 +110,9 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                console.log(user.id, message.author.id)
-                                return user.id == message.author.id;
+                                return user.id != "931190932232097912";
                             };
-                            m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
+                            m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
@@ -165,9 +164,9 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return user.id == message.author.id;
+                                return user.id != "931190932232097912";
                             };
-                            m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
+                            m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
