@@ -87,7 +87,7 @@ async function getFiles() {
 const files_drive = getFiles()
 
 client.login(token)
-console.log(files_drive.)
+console.log(files_drive)
 client.once("ready", () => {
     if (files_drive.hasOwnProperty('restarttrue')) {
         const restartembed = new Discord.EmbedBuilder()
