@@ -85,7 +85,8 @@ async function getFiles() {
 }
 
 client.login(token)
-
+console.log(getFiles())
+console.log(typeof getFiles())
 client.once("ready", () => {
     if (Object.entries(getFiles())[0][0] == "resarttrue") {
         const restartembed = new Discord.EmbedBuilder()
