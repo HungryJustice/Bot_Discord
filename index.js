@@ -145,7 +145,7 @@ client.on("messageCreate", message => {
                             m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.name === ':1007234604480069662:') {
+                                    if (reaction.emoji.name === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
@@ -169,12 +169,14 @@ client.on("messageCreate", message => {
                                                 });
                                             })
                                         })
-                                    } else if (reaction.emoji.name === ':croix:') {
+                                    } else if (reaction.emoji.name === '1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
+                                        return
                                     }
                                 })
                                 .catch(collected => {
                                     m.channel.bulkDelete(2, true)
+                                    return
                                 });
                         })
                     } else if (isNaN(number)) {
