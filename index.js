@@ -73,15 +73,47 @@ async function deletefile(id) {
     }
 }
 
-async function getFiles() {
-    drive.files.list({
-        auth: oauth2Client,
-        pageSize: 10,
-        fields: 'files(id,name)'
-    }, (err, { data }) => {
-        if (err) return console.log("Erreur de l'api google drive : " + err);
-        return data.files;
-    })
+// async function getFiles() {
+//     drive.files.list({
+//         auth: oauth2Client,
+//         pageSize: 10,
+//         fields: 'files(id,name)'
+//     }, (err, { data }) => {
+//         if (err) return console.log("Erreur de l'api google drive : " + err);
+//         return data.files;
+//     })
+// }
+async function getFileList(drive) {
+    const res = await drive.files.list({
+        fields: "files(id, name, mimeType, createdTime, parents, properties)",
+    });
+    const files = res.data.files;
+    const fileArray = [];
+    if (files.length) {
+        const fileDisplay = [];
+        const fileId = [];
+        const mimeType = [];
+        const parents = [];
+        const properties = [];
+        console.log("Files:");
+        for (var i = 0; i < files.length; i++) {
+            fileDisplay.push(files[i].name);
+            fileId.push(files[i].id);
+            mimeType.push(files[i].mimeType);
+            properties.push(files[i].properties);
+            parents.push(files[i].parents);
+        }
+        for (var y = 0; y < fileDisplay.length; y++) {
+            fileArray.push({
+                file: fileDisplay[y],
+                id: fileId[y],
+                type: mimeType[y],
+                parents: parents[y],
+                properties: properties[y],
+            });
+        }
+    }
+    return fileArray;
 }
 
 async function getFiles() {
@@ -92,10 +124,8 @@ async function getFiles() {
             if (err) console.log(err);
         });
 }
-await getFiles()
-return
 client.login(token)
-files_drive = await getFiles()
+files_drive = getFiles()
 console.log(files_drive)
 console.log(typeof files_drive)
 client.once("ready", () => {
