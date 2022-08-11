@@ -27,7 +27,7 @@ client.once("ready", () => {
 
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
-    newmessage.reply("Vu !")
+    newmessage.reply("Vu !\n||" + oldmessage.content + "||")
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
