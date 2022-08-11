@@ -112,7 +112,7 @@ client.on("messageCreate", message => {
                                 return (1 == 1)
                                 return (reaction.emoji === '1007234604480069662' || reaction.emoji === '1007238080153006110') && user.id === message.author.id;
                             };
-                            m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
+                            m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
                                     console.log(reaction)
