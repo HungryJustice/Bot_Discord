@@ -122,49 +122,62 @@ client.on("messageCreate", message => {
                 } else {
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
-                        if (await confirm(message)) {
-                            var nargs = new Array()
-                            for (const arg of args) {
-                                if (arg.endsWith(">") && arg.startsWith("<@")) {
-                                    nargs.push(arg.slice(2, -1))
-                                }
+                        var nargs = new Array()
+                        for (const arg of args) {
+                            if (arg.endsWith(">") && arg.startsWith("<@")) {
+                                nargs.push(arg.slice(2, -1))
                             }
-
-
-
-
-                            var options = {}
-                            var supprimés = 0
-                            var to_trash = new Array()
-                            var into_trash = new Array()
-                            message.channel.messages.fetch(options).then(messages => {
-                                    a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
-                                    a_supprimer.forEach(msg => {
-                                        into_trash.push(msg)
-                                        if (into_trash.length > 99) {
-                                            to_trash.push(into_trash)
-                                            into_trash = new Array()
-                                        }
-                                    })
-                                    if (into_trash.length > 0) {
-                                        to_trash.push(into_trash)
-                                    }
-                                    console.log(to_trash)
-                                }).then(() => {
-                                    to_trash.forEach(element => {
-                                        message.channel.bulkDelete(element, true).then(messages => {
-                                            supprimés += element.length
-                                        }).catch(err => {
-                                            console.log("Erreur lors de la suppression des messages : " + err)
-                                        });
-                                    })
-                                })
-                                // .then(() => {
-                                //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
-                                //     return;
-                                // })
-
                         }
+                        var options = {}
+                        var supprimés = 0
+                        var to_trash = new Array()
+                        var into_trash = new Array()
+                        const confirmembed = new Discord.EmbedBuilder()
+                            .setColor("#0099ff")
+                            .setTitle("T'es sur ?")
+                            .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                        message.reply({ embeds: [confirmembed] }).then(m => {
+                            m.react('1007234604480069662');
+                            m.react('1007238080153006110');
+                            m.react('1007234604480069662').then(() => m.react('1007238080153006110'))
+                            const filter = (reaction, user) => {
+                                return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
+                            };
+                            m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
+                                .then(collected => {
+                                    const reaction = collected.first();
+                                    if (reaction.emoji.name === ':coche:') {
+                                        m.channel.bulkDelete(2, true)
+                                        message.channel.messages.fetch(options).then(messages => {
+                                            a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
+                                            a_supprimer.forEach(msg => {
+                                                into_trash.push(msg)
+                                                if (into_trash.length > 99) {
+                                                    to_trash.push(into_trash)
+                                                    into_trash = new Array()
+                                                }
+                                            })
+                                            if (into_trash.length > 0) {
+                                                to_trash.push(into_trash)
+                                            }
+                                            console.log(to_trash)
+                                        }).then(() => {
+                                            to_trash.forEach(element => {
+                                                message.channel.bulkDelete(element, true).then(messages => {
+                                                    supprimés += element.length
+                                                }).catch(err => {
+                                                    console.log("Erreur lors de la suppression des messages : " + err)
+                                                });
+                                            })
+                                        })
+                                    } else if (reaction.emoji.name === ':croix:') {
+                                        m.channel.bulkDelete(2, true)
+                                    }
+                                })
+                                .catch(collected => {
+                                    m.channel.bulkDelete(2, true)
+                                });
+                        })
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
@@ -172,15 +185,38 @@ client.on("messageCreate", message => {
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
-                    } else if (await confirm(message)) {
-                        if (number > 100) {
-                            number = 100
-                        }
-                        message.channel.bulkDelete(number, true).then(messages => {
-                            console.log(messages.size + " messages ont été effacés.")
-                        }).catch(err => {
-                            console.log("Erreur lors de la suppression des messages : " + err)
-                        });
+                    } else {
+                        const confirmembed = new Discord.EmbedBuilder()
+                            .setColor("#0099ff")
+                            .setTitle("T'es sur ?")
+                            .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                        message.reply({ embeds: [confirmembed] }).then(m => {
+                            m.react('1007234604480069662');
+                            m.react('1007238080153006110');
+                            const filter = (reaction, user) => {
+                                return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
+                            };
+                            m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
+                                .then(collected => {
+                                    const reaction = collected.first();
+                                    if (reaction.emoji.name === ':coche:') {
+                                        m.channel.bulkDelete(2, true)
+                                        if (number > 100) {
+                                            number = 100
+                                        }
+                                        message.channel.bulkDelete(number, true).then(messages => {
+                                            console.log(messages.size + " messages ont été effacés.")
+                                        }).catch(err => {
+                                            console.log("Erreur lors de la suppression des messages : " + err)
+                                        });
+                                    } else if (reaction.emoji.name === ':croix:') {
+                                        m.channel.bulkDelete(2, true)
+                                    }
+                                })
+                                .catch(collected => {
+                                    m.channel.bulkDelete(2, true)
+                                });
+                        })
                     }
                 }
             } else {
