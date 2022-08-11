@@ -44,7 +44,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', async(reaction, user) => {
-    reaction.message.reply("vu : " + reaction)
+    reaction.message.reply("vu : " + reaction.emoji)
 });
 
 client.on("messageCreate", message => {
