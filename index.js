@@ -116,6 +116,9 @@ async function getFiles() {
 }
 client.login(token)
 getFiles()
+files_drive = [
+    [0, 0]
+]
 client.once("ready", () => {
     if (files_drive[0][0] == "resarttrue") {
         const restartembed = new Discord.EmbedBuilder()
@@ -407,7 +410,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
-                    deletefile(Object.entries(getFiles())[0][1])
+                    deletefile(files_drive[0][1])
                     uploadFile("drive/restartfalse", "restarttrue")
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
