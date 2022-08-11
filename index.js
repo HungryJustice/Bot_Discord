@@ -45,9 +45,9 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     }
 })
 
-// client.on('messageReactionAdd', async(reaction, user) => {
-//     reaction.message.reply("vu : " + reaction.emoji)
-// });
+client.on('messageReactionAdd', async(reaction, user) => {
+    console.log(reaction.emoji)
+});
 
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
