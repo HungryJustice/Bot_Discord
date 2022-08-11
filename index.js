@@ -294,7 +294,11 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    client.destroy().then(() => {
+                    const restart = async() => {
+                        client.destroy()
+                    };
+
+                    restart().then(() => {
                         client.login(token)
                         const chan = message.channel
                         const Startembed = new Discord.EmbedBuilder()
