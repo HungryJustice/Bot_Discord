@@ -25,6 +25,10 @@ client.once("ready", () => {
     console.log(`Bot en ligne.`)
 })
 
+
+client.on('messageUpdate', (oldmessage, newmessage) => {
+    newmessage.reply("Vu !")
+})
 client.on('messageReactionAdd', (messageReaction, user) => {
     console.log(user, messageReaction)
 })
