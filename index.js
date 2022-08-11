@@ -30,14 +30,14 @@ function confirm(message) {
     const confirmembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("T'es sur ?")
-        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+        .setThumbnail("https://i.imgur.com/tmff2s4.jpg")
+        .react('1007234604480069662')
+        .react('1007238080153006110')
     message.reply({ embeds: [confirmembed] }).then(m => {
-        m.react('1007234604480069662')
-        m.react('1007238080153006110')
         const filter = (reaction, user) => {
             return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
         };
-        m.awaitReactions({ filter, max: 1, time: 4000, idle: 5000, errors: ['time'] })
+        m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
             .then(collected => {
                 const reaction = collected.first();
 
