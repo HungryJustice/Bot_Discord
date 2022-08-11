@@ -26,36 +26,6 @@ const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!delt
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
 
-async function confirm(message) {
-    const confirmembed = new Discord.EmbedBuilder()
-        .setColor("#0099ff")
-        .setTitle("T'es sur ?")
-        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
-    message.reply({ embeds: [confirmembed] }).then(m => {
-        m.react('1007234604480069662');
-        m.react('1007238080153006110');
-        m.react('1007234604480069662').then(() => m.react('1007238080153006110'))
-        const filter = (reaction, user) => {
-            return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
-        };
-        m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
-            .then(collected => {
-                const reaction = collected.first();
-
-                if (reaction.emoji.name === ':coche:') {
-                    m.channel.bulkDelete(2, true)
-                    return true
-                } else if (reaction.emoji.name === ':croix:') {
-                    m.channel.bulkDelete(2, true)
-                    return false
-                }
-            })
-            .catch(collected => {
-                m.channel.bulkDelete(2, true)
-            });
-    })
-}
-
 client.login(token)
 
 client.once("ready", () => {
@@ -139,12 +109,12 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return (reaction.emoji.name === '1007234604480069662' || reaction.emoji.name === '1007238080153006110') && user.id === message.author.id;
+                                return (reaction.emoji === '1007234604480069662' || reaction.emoji === '1007238080153006110') && user.id === message.author.id;
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.name === '1007234604480069662') {
+                                    if (reaction.emoji === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
@@ -168,7 +138,7 @@ client.on("messageCreate", message => {
                                                 });
                                             })
                                         })
-                                    } else if (reaction.emoji.name === '1007238080153006110') {
+                                    } else if (reaction.emoji === '1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
@@ -194,12 +164,12 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return (reaction.emoji.name === '1007234604480069662' || reaction.emoji.name === '1007238080153006110') && user.id === message.author.id;
+                                return (reaction.emoji === '1007234604480069662' || reaction.emoji === '1007238080153006110') && user.id === message.author.id;
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.name === '1007234604480069662') {
+                                    if (reaction.emoji === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         if (number > 100) {
                                             number = 100
@@ -209,7 +179,7 @@ client.on("messageCreate", message => {
                                         }).catch(err => {
                                             console.log("Erreur lors de la suppression des messages : " + err)
                                         });
-                                    } else if (reaction.emoji.name === '1007238080153006110') {
+                                    } else if (reaction.emoji === '1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
