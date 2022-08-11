@@ -110,6 +110,7 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
+                                console.log(user.id, message.author.id)
                                 return user.id == message.author.id;
                             };
                             m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
