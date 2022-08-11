@@ -32,7 +32,7 @@ client.once("ready", () => {
             .setTitle("Je suis de retour.")
             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
         client.channels.get("1003898726206668851").send({ embeds: [restartembed] })
-        request.patch("https://api.heroku.com/apps/" + appName + "/config-vars", '{"RESTART": "false"}')
+        process.env.RESTART = 'false';
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
@@ -320,7 +320,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
-                    request.patch("https://api.heroku.com/apps/" + appName + "/config-vars", '{"RESTART": "true"}')
+                    process.env.RESTART = 'true';
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
