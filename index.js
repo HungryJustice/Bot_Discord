@@ -42,7 +42,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
 })
 
-client.on('messageReactionAdd', (messageReaction, user) => {
+client.on('messageReactionAdd', (reaction, user) => {
     user.send("test")
 })
 
