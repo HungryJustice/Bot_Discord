@@ -3,19 +3,20 @@ const fs = require('fs');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
-client.login(process.env.TOKEN)
+const token = process.env.TOKEN
 const files = fs.readdirSync('son')
-
 const audio = new Array()
 for (const file of files) {
     audio.push(file)
 }
 audio.splice(audio.indexOf('feur.mp3'), 1)
-console.log(audio, audio.length)
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
 const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
+
+client.login(token)
+
 client.once("ready", () => {
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
@@ -25,6 +26,7 @@ client.once("ready", () => {
         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
     client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
+
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
         var index = 0;
@@ -297,9 +299,8 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    client.destroy().then(m => {
-                        client.login(process.env.TOKEN);
-                    });
+                    client.destroy()
+                    client.login(token);
                 });
                 return;
             }
