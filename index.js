@@ -26,6 +26,22 @@ const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!delt
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
 
+function confirm(message) {
+    var continu = true
+    const confirmembed = new Discord.EmbedBuilder()
+        .setColor("#0099ff")
+        .setTitle("T'es sur ?")
+        .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+    message.reply({ embeds: [confirmembed] }).then(m => {
+        m.react('')
+    })
+
+
+
+
+    return continu
+}
+
 client.login(token)
 
 client.once("ready", () => {
@@ -40,7 +56,9 @@ client.once("ready", () => {
 
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
-    newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+    if (!newmessage.embeds) {
+        newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+    }
 })
 
 client.on('messageReactionAdd', async(reaction, user) => {
@@ -89,7 +107,7 @@ client.on("messageCreate", message => {
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
                     let number = parseInt(args[1]);
-                    if (args[1].startsWith("<@")) {
+                    if (args[1].startsWith("<@") && confirm()) {
                         var nargs = new Array()
                         for (const arg of args) {
                             if (arg.endsWith(">") && arg.startsWith("<@")) {
@@ -139,7 +157,7 @@ client.on("messageCreate", message => {
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
-                    } else {
+                    } else if (confirm()) {
                         if (number > 100) {
                             number = 100
                         }
