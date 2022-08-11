@@ -73,7 +73,7 @@ async function deletefile(id) {
     }
 }
 
-async function getFiles() {
+function getFiles() {
     drive.files.list({
         auth: oauth2Client,
         pageSize: 10,
