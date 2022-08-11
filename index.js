@@ -1,12 +1,16 @@
 const Discord = require('discord.js');
+const request = require('request');
 const fs = require('fs');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
+const { channel } = require('diagnostics_channel');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 
 const token = process.env.TOKEN
-
-//const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
+const restart = process.env.RESTART
+var appName = 'botdiscordlouismazin';
+var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
+    //const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
 
 const files = fs.readdirSync('son')
 const audio = new Array()
@@ -22,6 +26,14 @@ const prefix = "!";
 client.login(token)
 
 client.once("ready", () => {
+    if (restart == "true") {
+        const restartembed = new Discord.EmbedBuilder()
+            .setColor("#0099ff")
+            .setTitle("Je suis de retour.")
+            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+        client.channels.get("1003898726206668851").send({ embeds: [restartembed] })
+        request.patch("https://api.heroku.com/apps/" + appName + "/config-vars", '{"RESTART": "false"}')
+    }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
@@ -307,10 +319,8 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    var appName = 'botdiscordlouismazin';
-                    var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
                     var chan = message.channel
-                    var request = require('request');
+                    request.patch("https://api.heroku.com/apps/" + appName + "/config-vars", '{"RESTART": "true"}')
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
@@ -323,13 +333,6 @@ client.on("messageCreate", message => {
                             return
                         }
                     )
-                    setTimeout(() => {
-                        const restartembed = new Discord.EmbedBuilder()
-                            .setColor("#0099ff")
-                            .setTitle("Je suis de retour.")
-                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                        chan.send({ embeds: [restartembed] })
-                    }, 0);
 
                 });
             }
