@@ -87,7 +87,7 @@ async function getFiles() {
 const files_drive = getFiles()
 
 client.login(token)
-console.log(files_drive)
+
 client.once("ready", () => {
     if (files_drive.hasOwnProperty('restarttrue')) {
         const restartembed = new Discord.EmbedBuilder()
@@ -96,7 +96,9 @@ client.once("ready", () => {
             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
         client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
     }
-    client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' }) console.log(`Bot en ligne.`) uploadFile("drive/restartfalse", "restartfalse")
+    client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
+    console.log(`Bot en ligne.`)
+    uploadFile("drive/restartfalse", "restartfalse")
 })
 
 
