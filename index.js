@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const request = require('request');
+const mime = require('mime-types')
 const { google } = require('googleapis');
 const fs = require('fs');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
@@ -43,17 +44,19 @@ const drive = google.drive({
     auth: oauth2Client
 })
 
-async function uploadFile(path) {
+async function uploadFile(path, filename) {
     try {
-        const response = await drive.files.create({
-            requestBody: {
-                name: 'Test',
-                mimeType: 'image/png'
-            },
-            media: {
-                mimeType: 'image/png',
-                body: fs.createReadStream('red.png')
-            }
+        const metadata = {
+            'name': filename
+        }
+        const media = {
+            mimeType: mime.lookup(path),
+            body: fs.createReadStream(path)
+        }
+        await drive.files.create({
+            auth: oauth2Client,
+            resource: metadata,
+            media: media
         })
     } catch (error) {
         console.log(error.message)
@@ -70,28 +73,20 @@ async function deletefile(id) {
     }
 }
 
-async function importfiles() {
-    try {
-        drive.files.list({
-            auth: oauth2Client,
-            pageSize: 10,
-            fields: 'files(id,name)'
-        }, (err, { data }) => {
-            if (err) return console.log("Erreur de l'api google drive : " + err);
-            const files = data.files;
-            console.log(files)
-        })
-    } catch (error) {
-        console.log(error.message)
-    }
-}
 
-importfiles()
+const files = drive.files.list({
+    auth: oauth2Client,
+    pageSize: 10,
+    fields: 'files(id,name)'
+}, (err, { data }) => {
+    if (err) return console.log("Erreur de l'api google drive : " + err);
+    return data.files;
+})
 
 client.login(token)
 
 client.once("ready", () => {
-    if (restart == "true") {
+    if (files.get({ name: "restarttrue" })) {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
@@ -100,6 +95,7 @@ client.once("ready", () => {
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
+    uploadFile("drive/restartfalse")
 })
 
 
@@ -379,6 +375,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
+                    uploadFile("drive/restartfalse")
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
