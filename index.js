@@ -419,7 +419,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
-                    deletefile(Object.entries(await getFiles())[0][1])
+                    deletefile(Object.entries(getFiles())[0][1])
                     uploadFile("drive/restartfalse", "restarttrue")
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
