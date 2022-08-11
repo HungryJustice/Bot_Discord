@@ -301,24 +301,28 @@ client.on("messageCreate", message => {
                     var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
                     var chan = message.channel
                     var request = require('request');
-
-                    request.delete({
-                            url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/vnd.heroku+json; version=3',
-                                'Authorization': 'Bearer ' + tok
+                    const redem = async() => {
+                        request.delete({
+                                url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/vnd.heroku+json; version=3',
+                                    'Authorization': 'Bearer ' + tok
+                                }
+                            },
+                            function(error, response, body) {
+                                return
                             }
-                        },
-                        function(error, response, body) {
-                            return
-                        }
-                    )
-                    const restartembed = new Discord.EmbedBuilder()
-                        .setColor("#0099ff")
-                        .setTitle("Je suis de retour.")
-                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                    chan.send({ embeds: [restartembed] })
+                        )
+                    };
+
+                    redem().then(() => {
+                        const restartembed = new Discord.EmbedBuilder()
+                            .setColor("#0099ff")
+                            .setTitle("Je suis de retour.")
+                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                        chan.send({ embeds: [restartembed] })
+                    })
                 });
                 return;
             }
@@ -386,8 +390,8 @@ client.on("messageCreate", message => {
 })
 
 //Exemple async utile
-// const restart = async() => {
-//     client.destroy()
-// };
-//
-// restart().then(() => {})
+const restart = async() => {
+    client.destroy()
+};
+
+restart().then(() => {})
