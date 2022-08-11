@@ -211,10 +211,12 @@ client.on("messageCreate", message => {
                                         });
                                     } else if (reaction.emoji.name === ':croix:') {
                                         m.channel.bulkDelete(2, true)
+                                        return
                                     }
                                 })
                                 .catch(collected => {
                                     m.channel.bulkDelete(2, true)
+                                    return
                                 });
                         })
                     }
