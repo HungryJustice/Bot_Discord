@@ -34,7 +34,10 @@ function confirm(message) {
     message.reply({ embeds: [confirmembed] }).then(m => {
         m.react('1007234604480069662')
         m.react('1007238080153006110')
-        m.awaitReactions({ filter, max: 1, time: 60000, errors: ['time'] })
+        const filter = (reaction, user) => {
+            return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
+        };
+        m.awaitReactions({ filter, max: 1, time: 10000, errors: ['time'] })
             .then(collected => {
                 const reaction = collected.first();
 
@@ -46,6 +49,9 @@ function confirm(message) {
                     return false
                 }
             })
+            .catch(collected => {
+                m.channel.bulkDelete(2, true)
+            });
     })
 }
 
