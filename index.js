@@ -74,7 +74,7 @@ async function deletefile(id) {
 }
 
 
-const files = drive.files.list({
+const files_drive = drive.files.list({
     auth: oauth2Client,
     pageSize: 10,
     fields: 'files(id,name)'
@@ -86,7 +86,7 @@ const files = drive.files.list({
 client.login(token)
 
 client.once("ready", () => {
-    if (files.get({ name: "restarttrue" })) {
+    if (files_drive.get({ name: "restarttrue" })) {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
