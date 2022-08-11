@@ -320,7 +320,7 @@ client.on("messageCreate", message => {
                         )
                     };
 
-                    redem().then(() => {
+                    await redem().then(() => {
                         const restartembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("Je suis de retour.")
