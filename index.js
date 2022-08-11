@@ -43,7 +43,7 @@ const drive = google.drive({
     auth: oauth2Client
 })
 
-async function uploadFile() {
+async function uploadFile(path) {
     try {
         const response = await drive.files.create({
             requestBody: {
@@ -59,6 +59,17 @@ async function uploadFile() {
         console.log(error.message)
     }
 }
+
+async function deletefile(id) {
+    try {
+        await drive.files.delete({
+            fileId: id
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
 async function importfiles() {
     try {
         drive.files.list({
@@ -68,20 +79,13 @@ async function importfiles() {
         }, (err, { data }) => {
             if (err) return console.log("Erreur de l'api google drive : " + err);
             const files = data.files;
-            if (files.length) {
-                files.map((file) => {
-                    console.log(file.name + ' (' + file.id + ')')
-                })
-            } else {
-                console.log('Pas de fichiers trouvés.')
-            }
+            console.log(files)
         })
     } catch (error) {
         console.log(error.message)
     }
 }
 
-uploadFile()
 importfiles()
 
 client.login(token)
@@ -122,7 +126,7 @@ client.on("messageCreate", message => {
                 return;
             }
         }
-        console.log(message.author.username + " a saisi " + message.content)
+        console.log(message.author.username + " a saisi " + message.content + ".")
         if (message.content.startsWith(prefix + "help")) {
             const embed = new Discord.EmbedBuilder();
             embed.setTitle("**__Liste des commandes__**")
