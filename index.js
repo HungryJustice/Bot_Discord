@@ -125,7 +125,8 @@ async function getFiles() {
         });
 }
 client.login(token)
-files_drive = await getFiles()
+getFiles()
+files_drive = console.log()
 console.log(files_drive)
 console.log(typeof files_drive)
 client.once("ready", () => {
