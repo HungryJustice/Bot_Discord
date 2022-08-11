@@ -166,7 +166,7 @@ client.on("messageCreate", message => {
                             const filter = (reaction, user) => {
                                 return (reaction.emoji.id === '1007234604480069662' || reaction.emoji.id === '1007238080153006110') && user.id === message.author.id;
                             };
-                            m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
+                            m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
