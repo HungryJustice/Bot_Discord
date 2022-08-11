@@ -31,28 +31,28 @@ function confirm(message) {
         .setColor("#0099ff")
         .setTitle("T'es sur ?")
         .setThumbnail("https://i.imgur.com/tmff2s4.jpg")
-    const m = await message.reply({ embeds: [confirmembed] })
-    m.react('1007234604480069662')
-    m.react('1007238080153006110')
-    const filter = (reaction, user) => {
-        return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
-    };
-    m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
-        .then(collected => {
-            const reaction = collected.first();
+        .reaction('1007234604480069662')
+        .reaction('1007238080153006110')
+    message.reply({ embeds: [confirmembed] }).then(m => {
+        const filter = (reaction, user) => {
+            return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
+        };
+        m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
+            .then(collected => {
+                const reaction = collected.first();
 
-            if (reaction.emoji.name === ':coche:') {
+                if (reaction.emoji.name === ':coche:') {
+                    m.channel.bulkDelete(2, true)
+                    return true
+                } else if (reaction.emoji.name === ':croix:') {
+                    m.channel.bulkDelete(2, true)
+                    return false
+                }
+            })
+            .catch(collected => {
                 m.channel.bulkDelete(2, true)
-                return true
-            } else if (reaction.emoji.name === ':croix:') {
-                m.channel.bulkDelete(2, true)
-                return false
-            }
-        })
-        .catch(collected => {
-            m.channel.bulkDelete(2, true)
-        });
-
+            });
+    })
 }
 
 client.login(token)
