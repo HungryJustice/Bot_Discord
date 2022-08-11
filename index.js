@@ -32,12 +32,8 @@ function confirm(message) {
         .setTitle("T'es sur ?")
         .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
     message.reply({ embeds: [confirmembed] }).then(m => {
-        try {
-            await m.react('1007234604480069662');
-            await m.react('1007238080153006110');
-        } catch (error) {
-            console.error('One of the emojis failed to react:', error);
-        }
+        m.react('1007234604480069662');
+        m.react('1007238080153006110');
         m.react('1007234604480069662').then(() => m.react('1007238080153006110'))
         const filter = (reaction, user) => {
             return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
