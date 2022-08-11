@@ -301,7 +301,7 @@ client.on("messageCreate", message => {
                     var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
                     var request = require('request');
 
-                    request.deploy({
+                    console.log(request.toJSON({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -312,7 +312,7 @@ client.on("messageCreate", message => {
                         function(error, response, body) {
                             return
                         }
-                    );
+                    ))
                 });
                 return;
             }
