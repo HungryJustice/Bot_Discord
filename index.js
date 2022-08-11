@@ -25,6 +25,10 @@ client.once("ready", () => {
     console.log(`Bot en ligne.`)
 })
 
+client.on('messageReactionAdd', (messageReaction, user)) {
+    console.log(user, messageReaction)
+}
+
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
         var index = 0;
