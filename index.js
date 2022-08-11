@@ -3,7 +3,11 @@ const fs = require('fs');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
+
 const token = process.env.TOKEN
+
+//const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
+
 const files = fs.readdirSync('son')
 const audio = new Array()
 for (const file of files) {
@@ -16,7 +20,6 @@ const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, 
 const prefix = "!";
 
 client.login(token)
-
 client.once("ready", () => {
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
@@ -294,19 +297,22 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    const restart = async() => {
-                        client.destroy()
-                    };
+                    var appName = 'botdiscordlouismazin';
+                    var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
+                    var request = require('request');
 
-                    restart().then(() => {
-                        client.login(token)
-                        const chan = message.channel
-                        const Startembed = new Discord.EmbedBuilder()
-                            .setColor("#0099ff")
-                            .setTitle("Me revoilà.")
-                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                        chan.send({ embeds: [Startembed] })
-                    })
+                    request.delete({
+                            url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/vnd.heroku+json; version=3',
+                                'Authorization': 'Bearer ' + tok
+                            }
+                        },
+                        function(error, response, body) {
+                            return
+                        }
+                    );
                 });
                 return;
             }
@@ -372,3 +378,10 @@ client.on("messageCreate", message => {
         }
     }
 })
+
+//Exemple async utile
+// const restart = async() => {
+//     client.destroy()
+// };
+//
+// restart().then(() => {})
