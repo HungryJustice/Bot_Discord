@@ -61,7 +61,7 @@ client.on('messageReactionAdd', async(reaction, user) => {
     // The reaction is now also fully available and the properties will be reflected accurately:
     console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
 });
-/*
+
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
         var index = 0;
@@ -413,4 +413,3 @@ client.on("messageCreate", message => {
 // };
 
 // restart().then(() => {})
-*/
