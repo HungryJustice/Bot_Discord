@@ -59,8 +59,30 @@ async function uploadFile() {
         console.log(error.message)
     }
 }
+async function importfiles() {
+    try {
+        drive.files.list({
+            auth: oauth2Client,
+            pageSize: 10,
+            fields: 'files(id,name)'
+        }, (err, { data }) => {
+            if (err) return console.log("Erreur de l'api google drive : " + err);
+            const files = data.files;
+            if (files.length) {
+                files.map((file) => {
+                    console.log('${file.name} (${file.id})')
+                })
+            } else {
+                console.log('Pas de fichiers trouvés.')
+            }
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
 uploadFile()
+importfiles()
 
 client.login(token)
 
