@@ -301,7 +301,7 @@ client.on("messageCreate", message => {
                     var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
                     var request = require('request');
 
-                    request.delete({
+                    request.deploy({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
                                 'Content-Type': 'application/json',
