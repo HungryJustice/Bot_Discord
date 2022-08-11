@@ -46,8 +46,8 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', async(reaction, user) => {
-    console.log(reaction.emoji)
-    console.log(typeof reaction.emoji)
+    console.log(reaction.emoji.id)
+    console.log(typeof reaction.emoji.id)
 });
 
 client.on("messageCreate", message => {
@@ -111,13 +111,13 @@ client.on("messageCreate", message => {
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
                                 return (1 == 1)
-                                return (reaction.emoji === '1007234604480069662' || reaction.emoji === '1007238080153006110') && user.id === message.author.id;
+                                return (reaction.emoji.id === '1007234604480069662' || reaction.emoji.id === '1007238080153006110') && user.id === message.author.id;
                             };
                             m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
                                     console.log(reaction)
-                                    if (reaction.emoji === '1007234604480069662') {
+                                    if (reaction.emoji.id === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
@@ -141,7 +141,7 @@ client.on("messageCreate", message => {
                                                 });
                                             })
                                         })
-                                    } else if (reaction.emoji === '1007238080153006110') {
+                                    } else if (reaction.emoji.id === '1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
@@ -167,12 +167,12 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return (reaction.emoji === '1007234604480069662' || reaction.emoji === '1007238080153006110') && user.id === message.author.id;
+                                return (reaction.emoji.id === '1007234604480069662' || reaction.emoji.id === '1007238080153006110') && user.id === message.author.id;
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji === '1007234604480069662') {
+                                    if (reaction.emoji.id === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         if (number > 100) {
                                             number = 100
@@ -182,7 +182,7 @@ client.on("messageCreate", message => {
                                         }).catch(err => {
                                             console.log("Erreur lors de la suppression des messages : " + err)
                                         });
-                                    } else if (reaction.emoji === '1007238080153006110') {
+                                    } else if (reaction.emoji.id === '1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
