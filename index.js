@@ -299,9 +299,10 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var appName = 'botdiscordlouismazin';
                     var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
+                    var chan = message.channel
                     var request = require('request');
 
-                    console.log(request.url({
+                    request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -312,7 +313,12 @@ client.on("messageCreate", message => {
                         function(error, response, body) {
                             return
                         }
-                    ))
+                    )
+                    const restartembed = new Discord.EmbedBuilder()
+                        .setColor("#0099ff")
+                        .setTitle("Je suis de retour.")
+                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    chan.send({ embeds: [restartembed] })
                 });
                 return;
             }
