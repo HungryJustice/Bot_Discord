@@ -385,7 +385,7 @@ client.on("messageCreate", message => {
             });
             console.log(message.author.username + " s'est mangé un feur oral.")
         } else {
-            message.reply({ files: ['son/feur.mp3'], message: "feur." })
+            message.reply({ files: ['son/feur.mp3'], content: "feur." })
             console.log(message.author.username + " s'est mangé un feur écrit.")
         }
     }
