@@ -46,10 +46,10 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     }
 })
 
-client.on('messageReactionAdd', async(reaction, user) => {
-    console.log(reaction.emoji.id)
-    console.log(typeof reaction.emoji.id)
-});
+// client.on('messageReactionAdd', async(reaction, user) => {
+//     console.log(reaction.emoji.id)
+//     console.log(typeof reaction.emoji.id)
+// });
 
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
@@ -116,7 +116,6 @@ client.on("messageCreate", message => {
                             m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    console.log(reaction)
                                     if (reaction.emoji.id === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
@@ -131,7 +130,6 @@ client.on("messageCreate", message => {
                                             if (into_trash.length > 0) {
                                                 to_trash.push(into_trash)
                                             }
-                                            console.log(to_trash)
                                         }).then(() => {
                                             to_trash.forEach(element => {
                                                 message.channel.bulkDelete(element, true).then(messages => {
