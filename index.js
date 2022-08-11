@@ -329,7 +329,7 @@ client.on("messageCreate", message => {
                             .setTitle("Je suis de retour.")
                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                         chan.send({ embeds: [restartembed] })
-                    }, 5000);
+                    }, 0);
 
                 });
             }
