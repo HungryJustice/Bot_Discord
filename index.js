@@ -26,7 +26,7 @@ const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!delt
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
 
-function confirm(message) {
+async function confirm(message) {
     const confirmembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("T'es sur ?")
@@ -122,7 +122,7 @@ client.on("messageCreate", message => {
                 } else {
                     let number = parseInt(args[1]);
                     if (args[1].startsWith("<@")) {
-                        if (confirm(message)) {
+                        if (await confirm(message)) {
                             var nargs = new Array()
                             for (const arg of args) {
                                 if (arg.endsWith(">") && arg.startsWith("<@")) {
@@ -172,7 +172,7 @@ client.on("messageCreate", message => {
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
-                    } else if (confirm(message)) {
+                    } else if (await confirm(message)) {
                         if (number > 100) {
                             number = 100
                         }
