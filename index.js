@@ -36,7 +36,7 @@ client.once("ready", () => {
     client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
-    console.log(client.channels.cache.get("1003898726206668851").fetch("1007269163078791268"))
+    client.channels.cache.get("1003898726206668851").fetch("1007269163078791268").then(page => console.log(page))
 })
 
 
