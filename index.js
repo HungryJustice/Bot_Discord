@@ -199,7 +199,7 @@ client.on("messageCreate", message => {
                             m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.name === ':coche:') {
+                                    if (reaction.emoji.name === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         if (number > 100) {
                                             number = 100
