@@ -20,11 +20,6 @@ client.login(token)
 client.once("ready", () => {
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
-    const Startembed = new Discord.EmbedBuilder()
-        .setColor("#0099ff")
-        .setTitle("Me revoilà.")
-        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-    client.channels.cache.get("1003898726206668851").send({ embeds: [Startembed] })
 })
 
 client.on("messageCreate", message => {
@@ -299,8 +294,15 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    client.destroy()
-                    client.login(token);
+                    client.destroy().then(() => {
+                        client.login(token)
+                        const chan = message.channel
+                        const Startembed = new Discord.EmbedBuilder()
+                            .setColor("#0099ff")
+                            .setTitle("Me revoilà.")
+                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                        chan.send({ embeds: [Startembed] })
+                    })
                 });
                 return;
             }
