@@ -110,7 +110,7 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return 1 == 1;
+                                return (reaction.emoji.id == '1007234604480069662' || reaction.emoji.id == '1007238080153006110') && user.id == message.author.id;
                             };
                             m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
                                 .then(collected => {
@@ -164,7 +164,7 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return 1 == 1;
+                                return (reaction.emoji.id == '1007234604480069662' || reaction.emoji.id == '1007238080153006110') && user.id == message.author.id;
                             };
                             m.awaitReactions({ filter, max: 3, time: 4000, errors: ['time'] })
                                 .then(collected => {
