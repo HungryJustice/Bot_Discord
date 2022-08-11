@@ -27,20 +27,25 @@ const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, 
 const prefix = "!";
 
 function confirm(message) {
-    return true
-    var continu = true
     const confirmembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("T'es sur ?")
         .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
     message.reply({ embeds: [confirmembed] }).then(m => {
-        m.react('')
+        m.react(':coche: :croix:')
+        m.awaitReactions({ filter, max: 1, time: 60000, errors: ['time'] })
+            .then(collected => {
+                const reaction = collected.first();
+
+                if (reaction.emoji.name === ':coche:') {
+                    m.channel.bulkDelete(2, true)
+                    return true
+                } else if (reaction.emoji.name === ':croix:') {
+                    m.channel.bulkDelete(2, true)
+                    return false
+                }
+            })
     })
-
-
-
-
-    return continu
 }
 
 client.login(token)
@@ -108,49 +113,50 @@ client.on("messageCreate", message => {
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
                     let number = parseInt(args[1]);
-                    if (args[1].startsWith("<@") && confirm(message)) {
-                        var nargs = new Array()
-                        for (const arg of args) {
-                            if (arg.endsWith(">") && arg.startsWith("<@")) {
-                                nargs.push(arg.slice(2, -1))
-                            }
-                        }
-
-
-
-
-                        var options = {}
-                        var supprimés = 0
-                        var to_trash = new Array()
-                        var into_trash = new Array()
-                        message.channel.messages.fetch(options).then(messages => {
-                                a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
-                                a_supprimer.forEach(msg => {
-                                    into_trash.push(msg)
-                                    if (into_trash.length > 99) {
-                                        to_trash.push(into_trash)
-                                        into_trash = new Array()
-                                    }
-                                })
-                                if (into_trash.length > 0) {
-                                    to_trash.push(into_trash)
+                    if (args[1].startsWith("<@")) {
+                        if (confirm(message)) {
+                            var nargs = new Array()
+                            for (const arg of args) {
+                                if (arg.endsWith(">") && arg.startsWith("<@")) {
+                                    nargs.push(arg.slice(2, -1))
                                 }
-                                console.log(to_trash)
-                            }).then(() => {
-                                to_trash.forEach(element => {
-                                    message.channel.bulkDelete(element, true).then(messages => {
-                                        supprimés += element.length
-                                    }).catch(err => {
-                                        console.log("Erreur lors de la suppression des messages : " + err)
-                                    });
+                            }
+
+
+
+
+                            var options = {}
+                            var supprimés = 0
+                            var to_trash = new Array()
+                            var into_trash = new Array()
+                            message.channel.messages.fetch(options).then(messages => {
+                                    a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
+                                    a_supprimer.forEach(msg => {
+                                        into_trash.push(msg)
+                                        if (into_trash.length > 99) {
+                                            to_trash.push(into_trash)
+                                            into_trash = new Array()
+                                        }
+                                    })
+                                    if (into_trash.length > 0) {
+                                        to_trash.push(into_trash)
+                                    }
+                                    console.log(to_trash)
+                                }).then(() => {
+                                    to_trash.forEach(element => {
+                                        message.channel.bulkDelete(element, true).then(messages => {
+                                            supprimés += element.length
+                                        }).catch(err => {
+                                            console.log("Erreur lors de la suppression des messages : " + err)
+                                        });
+                                    })
                                 })
-                            })
-                            // .then(() => {
-                            //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
-                            //     return;
-                            // })
+                                // .then(() => {
+                                //     console.log(supprimés + " messages de " + args.slice(1) + " ont été effacés.")
+                                //     return;
+                                // })
 
-
+                        }
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
