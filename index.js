@@ -37,7 +37,7 @@ function confirm(message) {
         const filter = (reaction, user) => {
             return (reaction.emoji.name === ':coche:' || reaction.emoji.name === ':croix:') && user.id === message.author.id;
         };
-        m.awaitReactions({ filter, max: 1, time: 10000, errors: ['time'] })
+        m.awaitReactions({ filter, max: 1, errors: ['time'] })
             .then(collected => {
                 const reaction = collected.first();
 
