@@ -1,17 +1,12 @@
 const Discord = require('discord.js');
 const request = require('request');
-const mime = require('mime-types')
-const { google } = require('googleapis');
 const fs = require('fs');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
-const { channel } = require('diagnostics_channel');
+
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
 
-const id_client = process.env.ID_CLIENT
-const id_secret = process.env.ID_SECRET
-const token_refresh = process.env.REFRESH_TOKEN
-const redirect = "https://developers.google.com/oauthplayground"
+
 const token = process.env.TOKEN
 
 //const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
@@ -31,106 +26,15 @@ const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!delt
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
 
-const oauth2Client = new google.auth.OAuth2(
-    id_client,
-    id_secret,
-    redirect
-)
-
-oauth2Client.setCredentials({ refresh_token: token_refresh })
-
-const drive = google.drive({
-    version: 'v3',
-    auth: oauth2Client
-})
-
-async function uploadFile(path, filename) {
-    try {
-        const metadata = {
-            'name': filename
-        }
-        const media = {
-            mimeType: mime.lookup(path),
-            body: fs.createReadStream(path)
-        }
-        await drive.files.create({
-            auth: oauth2Client,
-            resource: metadata,
-            media: media
-        })
-    } catch (error) {
-        console.log(error.message)
-    }
-}
-
-async function deletefile(id) {
-    try {
-        await drive.files.delete({
-            fileId: id
-        })
-    } catch (error) {
-        console.log(error.message)
-    }
-}
-
-// async function getFiles() {
-//     drive.files.list({
-//         auth: oauth2Client,
-//         pageSize: 10,
-//         fields: 'files(id,name)'
-//     }, (err, { data }) => {
-//         if (err) return console.log("Erreur de l'api google drive : " + err);
-//         return data.files;
-//     })
-// }
-async function getFileList(drive) {
-    const res = await drive.files.list({
-        fields: "files(id, name)",
-    });
-    const files = res.data.files;
-    const fileArray = [];
-    if (files.length) {
-        const fileDisplay = [];
-        const fileId = []
-        for (var i = 0; i < files.length; i++) {
-            fileDisplay.push(files[i].name);
-            fileId.push(files[i].id)
-        }
-        for (var y = 0; y < fileDisplay.length; y++) {
-            fileArray.push({
-                file: fileDisplay[y],
-                id: fileId[y]
-            });
-        }
-    }
-    return fileArray;
-}
-
-async function getFiles() {
-    const drive = google.drive({ version: "v3", oauth2Client });
-    getFileList(drive)
-        .then((fileArray) => console.log(fileArray))
-        .catch((err) => {
-            if (err) console.log(err);
-        });
-}
 client.login(token)
-getFiles()
-files_drive = [
-    [0, 0]
-]
 client.once("ready", () => {
-    if (files_drive[0][0] == "resarttrue") {
-        const restartembed = new Discord.EmbedBuilder()
-            .setColor("#0099ff")
-            .setTitle("Je suis de retour.")
-            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-        client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
-    }
+    const restartembed = new Discord.EmbedBuilder()
+        .setColor("#0099ff")
+        .setTitle("Je suis de retour.")
+        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+    client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
-    deletefile(files_drive[0][1])
-    uploadFile("drive/restartfalse", "restartfalse")
 })
 
 
@@ -139,6 +43,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
+    console.log('ok')
     console.log(user, messageReaction)
 })
 
@@ -409,9 +314,6 @@ client.on("messageCreate", message => {
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
-                    var chan = message.channel
-                    deletefile(files_drive[0][1])
-                    uploadFile("drive/restartfalse", "restarttrue")
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
