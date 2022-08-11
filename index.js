@@ -85,31 +85,21 @@ async function deletefile(id) {
 // }
 async function getFileList(drive) {
     const res = await drive.files.list({
-        fields: "files(id, name, mimeType, createdTime, parents, properties)",
+        fields: "files(id, name)",
     });
     const files = res.data.files;
     const fileArray = [];
     if (files.length) {
         const fileDisplay = [];
-        const fileId = [];
-        const mimeType = [];
-        const parents = [];
-        const properties = [];
-        console.log("Files:");
+        const fileId = []
         for (var i = 0; i < files.length; i++) {
             fileDisplay.push(files[i].name);
-            fileId.push(files[i].id);
-            mimeType.push(files[i].mimeType);
-            properties.push(files[i].properties);
-            parents.push(files[i].parents);
+            fileId.push(files[i].id)
         }
         for (var y = 0; y < fileDisplay.length; y++) {
             fileArray.push({
                 file: fileDisplay[y],
-                id: fileId[y],
-                type: mimeType[y],
-                parents: parents[y],
-                properties: properties[y],
+                id: fileId[y]
             });
         }
     }
@@ -126,11 +116,8 @@ async function getFiles() {
 }
 client.login(token)
 getFiles()
-files_drive = console.log()
-console.log(files_drive)
-console.log(typeof files_drive)
 client.once("ready", () => {
-    if (Object.entries(files_drive)[0][0] == "resarttrue") {
+    if (files_drive[0][0] == "resarttrue") {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
@@ -139,7 +126,7 @@ client.once("ready", () => {
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
-    deletefile(Object.entries(files_drive)[0][1])
+    deletefile(files_drive[0][1])
     uploadFile("drive/restartfalse", "restartfalse")
 })
 
