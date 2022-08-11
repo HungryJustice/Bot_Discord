@@ -109,11 +109,13 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
+                                return (1 == 1)
                                 return (reaction.emoji === '1007234604480069662' || reaction.emoji === '1007238080153006110') && user.id === message.author.id;
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, idle: 10000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
+                                    console.log(reaction)
                                     if (reaction.emoji === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
