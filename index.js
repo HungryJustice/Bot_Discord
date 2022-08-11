@@ -98,7 +98,7 @@ client.once("ready", () => {
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
-    uploadFile("drive/restartfalse")
+    uploadFile("drive/restartfalse", "restartfalse")
 })
 
 
@@ -378,7 +378,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
-                    uploadFile("drive/restartfalse")
+                    uploadFile("drive/restartfalse", "restarttrue")
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
