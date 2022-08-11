@@ -84,12 +84,10 @@ async function getFiles() {
     })
 }
 
-const files_drive = getFiles()
-
 client.login(token)
 
 client.once("ready", () => {
-    if (files_drive.hasOwnProperty('restarttrue')) {
+    if (Object.entries(getFiles())[0][0] == "resarttrue") {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
@@ -98,6 +96,7 @@ client.once("ready", () => {
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
+    deletefile(Object.entries(getFiles())[0][1])
     uploadFile("drive/restartfalse", "restartfalse")
 })
 
@@ -378,6 +377,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
+                    deletefile(Object.entries(getFiles())[0][1])
                     uploadFile("drive/restartfalse", "restarttrue")
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
