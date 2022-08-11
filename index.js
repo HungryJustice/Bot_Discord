@@ -108,7 +108,7 @@ client.on("messageCreate", message => {
                     message.channel.send({ embeds: [unclearembed] });
                 } else {
                     let number = parseInt(args[1]);
-                    if (args[1].startsWith("<@") && confirm()) {
+                    if (args[1].startsWith("<@") && confirm(message)) {
                         var nargs = new Array()
                         for (const arg of args) {
                             if (arg.endsWith(">") && arg.startsWith("<@")) {
@@ -158,7 +158,7 @@ client.on("messageCreate", message => {
                             .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
-                    } else if (confirm()) {
+                    } else if (confirm(message)) {
                         if (number > 100) {
                             number = 100
                         }
