@@ -390,8 +390,8 @@ client.on("messageCreate", message => {
 })
 
 //Exemple async utile
-const restart = async() => {
-    client.destroy()
-};
+// const restart = async() => {
+//     client.destroy()
+// };
 
-restart().then(() => {})
+// restart().then(() => {})
