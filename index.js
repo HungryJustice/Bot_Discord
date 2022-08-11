@@ -43,8 +43,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReaction', (messageReaction, user) => {
-    console.log('ok')
-    console.log(user, messageReaction)
+    user.send("test")
 })
 
 client.on("messageCreate", message => {
