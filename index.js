@@ -1,17 +1,24 @@
 const Discord = require('discord.js');
 const request = require('request');
+const { google } = require('googleapis');
 const fs = require('fs');
 const { ActivityType, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const { channel } = require('diagnostics_channel');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
-process.env.TEST = "réussi"
+
+const id_client = process.env.ID_CLIENT
+const id_secret = process.env.ID_SECRET
+const token_refresh = process.env.REFRESH_TOKEN
+const redirect = "https://developers.google.com/oauthplayground"
 const token = process.env.TOKEN
-const restart = process.env.RESTART
+
+//const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
+
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
-    //const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
 
+const restart = "true"
 const files = fs.readdirSync('son')
 const audio = new Array()
 for (const file of files) {
@@ -23,6 +30,38 @@ const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!delt
 const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, ferme ta gueule maintenant.", "Je suis en train de lire tes conneries", "Je veux devenir utouber", "Arrêtes de me faire chier !", "Je me filmes en mengeant des pizzas.", "Toute ma vie j'ai cherché un boulot pour gagner 500 000 balles par an sans faire grand chose.")
 const prefix = "!";
 
+const oauth2Client = new google.auth.OAuth2(
+    id_client,
+    id_secret,
+    redirect
+)
+
+oauth2Client.setCredentials({ refresh_token: token_refresh })
+
+const drive = google.drive({
+    version: 'v3',
+    auth: oauth2Client
+})
+
+async function uploadFile() {
+    try {
+        const response = await drive.files.create({
+            requestBody: {
+                name: 'Test',
+                mimeType: 'image/png'
+            },
+            media: {
+                mimeType: 'image/png',
+                body: fs.createReadStream('red.png')
+            }
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+uploadFile()
+
 client.login(token)
 
 client.once("ready", () => {
@@ -32,7 +71,6 @@ client.once("ready", () => {
             .setTitle("Je suis de retour.")
             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
         client.channels.get("1003898726206668851").send({ embeds: [restartembed] })
-        process.env.RESTART = 'false';
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
@@ -320,7 +358,6 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     var chan = message.channel
-                    process.env.RESTART = 'true';
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
