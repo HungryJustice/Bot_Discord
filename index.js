@@ -32,7 +32,8 @@ function confirm(message) {
         .setTitle("T'es sur ?")
         .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
     message.reply({ embeds: [confirmembed] }).then(m => {
-        m.react(':coche: :croix:')
+        m.react('1007234604480069662')
+        m.react('1007238080153006110')
         m.awaitReactions({ filter, max: 1, time: 60000, errors: ['time'] })
             .then(collected => {
                 const reaction = collected.first();
