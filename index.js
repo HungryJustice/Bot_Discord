@@ -70,7 +70,7 @@ async function importfiles() {
             const files = data.files;
             if (files.length) {
                 files.map((file) => {
-                    console.log('${file.name} (${file.id})')
+                    console.log(file.name + ' (' + file.id + ')')
                 })
             } else {
                 console.log('Pas de fichiers trouvés.')
