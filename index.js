@@ -84,6 +84,15 @@ async function getFiles() {
     })
 }
 
+function getFiles() {
+    const drive = google.drive({ version: "v3", oauth2Client });
+    getFileList(drive)
+        .then((fileArray) => console.log(fileArray))
+        .catch((err) => {
+            if (err) console.log(err);
+        });
+}
+return
 client.login(token)
 files_drive = await getFiles()
 console.log(files_drive)
