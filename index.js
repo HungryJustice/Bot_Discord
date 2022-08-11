@@ -173,7 +173,7 @@ client.on("messageCreate", message => {
                                 .then(collected => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
-                                        m.channel.bulkDelete(2, true)
+                                        number += 2
                                         if (number > 100) {
                                             number = 100
                                         }
