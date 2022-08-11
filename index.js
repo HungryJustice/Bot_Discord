@@ -5,7 +5,7 @@ const { ActivityType, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
 const { channel } = require('diagnostics_channel');
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences] });
-
+process.env.TEST = "réussi"
 const token = process.env.TOKEN
 const restart = process.env.RESTART
 var appName = 'botdiscordlouismazin';
