@@ -92,6 +92,7 @@ function getFiles() {
             if (err) console.log(err);
         });
 }
+getFiles()
 return
 client.login(token)
 files_drive = await getFiles()
