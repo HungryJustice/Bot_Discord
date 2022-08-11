@@ -20,6 +20,7 @@ const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, 
 const prefix = "!";
 
 client.login(token)
+
 client.once("ready", () => {
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
@@ -27,7 +28,7 @@ client.once("ready", () => {
 
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
-    newmessage.reply("Vu !\n||" + oldmessage.content + "||")
+    newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
 })
 
 client.on('messageReactionAdd', (messageReaction, user) => {
@@ -310,30 +311,27 @@ client.on("messageCreate", message => {
                     var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
                     var chan = message.channel
                     var request = require('request');
-                    const redem = async() => {
-                        await request.delete({
-                                url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/vnd.heroku+json; version=3',
-                                    'Authorization': 'Bearer ' + tok
-                                }
-                            },
-                            function(error, response, body) {
-                                return
+                    request.delete({
+                            url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/vnd.heroku+json; version=3',
+                                'Authorization': 'Bearer ' + tok
                             }
-                        )
-                    };
-
-                    redem().then(() => {
+                        },
+                        function(error, response, body) {
+                            return
+                        }
+                    )
+                    setTimeout(() => {
                         const restartembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("Je suis de retour.")
                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                         chan.send({ embeds: [restartembed] })
-                    })
+                    }, 5000);
+
                 });
-                return;
             }
         }
     } else if (message.author.id != "931190932232097912") {
