@@ -29,6 +29,7 @@ client.once("ready", () => {
 client.on('messageUpdate', (oldmessage, newmessage) => {
     newmessage.reply("Vu !")
 })
+
 client.on('messageReactionAdd', (messageReaction, user) => {
     console.log(user, messageReaction)
 })
@@ -310,7 +311,7 @@ client.on("messageCreate", message => {
                     var chan = message.channel
                     var request = require('request');
                     const redem = async() => {
-                        request.delete({
+                        await request.delete({
                                 url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -324,7 +325,7 @@ client.on("messageCreate", message => {
                         )
                     };
 
-                    await redem().then(() => {
+                    redem().then(() => {
                         const restartembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("Je suis de retour.")
