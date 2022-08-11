@@ -27,6 +27,7 @@ const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, 
 const prefix = "!";
 
 function confirm(message) {
+    return true
     var continu = true
     const confirmembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
