@@ -73,15 +73,18 @@ async function deletefile(id) {
     }
 }
 
+async function getFiles() {
+    drive.files.list({
+        auth: oauth2Client,
+        pageSize: 10,
+        fields: 'files(id,name)'
+    }, (err, { data }) => {
+        if (err) return console.log("Erreur de l'api google drive : " + err);
+        return data.files;
+    })
+}
 
-const files_drive = drive.files.list({
-    auth: oauth2Client,
-    pageSize: 10,
-    fields: 'files(id,name)'
-}, (err, { data }) => {
-    if (err) return console.log("Erreur de l'api google drive : " + err);
-    return data.files;
-})
+const files_drive = getFiles()
 
 client.login(token)
 
