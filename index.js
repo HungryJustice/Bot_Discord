@@ -38,22 +38,13 @@ client.once("ready", () => {
 })
 
 
-client.on('messageUpdate', (oldmessage, newmessage) => {
-    newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
-})
+// client.on('messageUpdate', (oldmessage, newmessage) => {
+//     newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+// })
 
-client.on('messageReactionAdd', async(reaction, user) => {
+client.on('messageReactionAdd', (reaction, user) => {
     user.send("test")
-    if (reaction.partial) {
-        // If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
-        try {
-            await reaction.fetch();
-        } catch (error) {
-            console.error('Something went wrong when fetching the message:', error);
-            // Return as `reaction.message.author` may be undefined/null
-            return;
-        }
-    }
+    console.log(reaction)
 })
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
