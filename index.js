@@ -85,10 +85,11 @@ async function getFiles() {
 }
 
 client.login(token)
-console.log(await getFiles())
-console.log(typeof await getFiles())
+files_drive = await getFiles()
+console.log(files_drive)
+console.log(typeof files_drive)
 client.once("ready", () => {
-    if (Object.entries(await getFiles())[0][0] == "resarttrue") {
+    if (Object.entries(files_drive)[0][0] == "resarttrue") {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
@@ -97,7 +98,7 @@ client.once("ready", () => {
     }
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
-    deletefile(Object.entries(await getFiles())[0][1])
+    deletefile(Object.entries(files_drive)[0][1])
     uploadFile("drive/restartfalse", "restartfalse")
 })
 
