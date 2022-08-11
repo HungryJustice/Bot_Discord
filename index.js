@@ -122,8 +122,8 @@ client.on("messageCreate", message => {
                 return;
             }
         }
+        console.log(message.author.username + " a saisi " + message.content)
         if (message.content.startsWith(prefix + "help")) {
-            console.log(message.author.username + " a saisi !help.")
             const embed = new Discord.EmbedBuilder();
             embed.setTitle("**__Liste des commandes__**")
             embed.addFields({ name: "!help", value: "Affiche la liste des commandes" })
@@ -137,7 +137,7 @@ client.on("messageCreate", message => {
             message.channel.send({ embeds: [embed] })
 
         } else if (message.content.startsWith(prefix + "clear")) {
-            console.log(message.author.username + " a saisi !clear.")
+            console.log(message.author.username + " a saisi " + message.content)
             if (message.member.permissions.has(Discord.PermissionFlagsBits.ManageMessages)) {
                 let args = message.content.split(" ");
                 if (args[1] == undefined) {
@@ -219,7 +219,6 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [Permembed] })
             }
         } else if (message.content.startsWith(prefix + "whatdoyoudo")) {
-            console.log(message.author.username + " a saisi !whatdoyoudo.")
             var index = Math.floor(Math.random() * text.length)
             if (index < 0) {
                 index = text.length - 1
@@ -231,7 +230,6 @@ client.on("messageCreate", message => {
                 .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
             message.channel.send({ embeds: [wdydnembed] })
         } else if (message.content.startsWith(prefix + "addtask")) {
-            console.log(message.author.username + " a saisi !addtask.")
             if (message.member.permissions.has(Discord.PermissionFlagsBits.ManageGuild)) {
                 var args = message.content.split("")
                 var add = message.content.slice(start = 9)
@@ -252,7 +250,6 @@ client.on("messageCreate", message => {
             }
 
         } else if (message.content.startsWith(prefix + "deltask")) {
-            console.log(message.author.username + " a saisi !deltask.")
             if (message.member.permissions.has(Discord.PermissionFlagsBits.ManageGuild)) {
                 var args = message.content.split("")
                 var del = message.content.slice(start = 9)
@@ -281,7 +278,6 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [Permembed] })
             }
         } else if (message.content.startsWith(prefix + "viens")) {
-            console.log(message.author.username + " a saisi !viens.")
             if (message.member.voice.channel) {
                 const Voiceembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
@@ -315,7 +311,6 @@ client.on("messageCreate", message => {
                 message.channel.send({ embeds: [noVoiceembed] })
             }
         } else if (message.content.startsWith(prefix + "tas")) {
-            console.log(message.author.username + " a saisi !tas.")
             var args = message.content.slice(start = 4).split(" ")
             var choix = new Array()
             for (const iterator of args) {
