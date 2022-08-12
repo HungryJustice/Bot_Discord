@@ -161,9 +161,9 @@ client.on("messageCreate", message => {
                             .setTitle("T'es sur ?")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
-                            m.react('1007234604480069662');
-                            m.react('1007238080153006110');
                             const filter = (reaction, user) => {
+                                m.react('1007234604480069662');
+                                m.react('1007238080153006110');
                                 return user.id != "931190932232097912";
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
