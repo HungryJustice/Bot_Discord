@@ -162,10 +162,10 @@ client.on("messageCreate", message => {
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
                             const filter = (reaction, user) => {
-                                m.react('1007234604480069662');
-                                m.react('1007238080153006110');
                                 return user.id != "931190932232097912";
                             };
+                            m.react('1007234604480069662');
+                            m.react('1007238080153006110');
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
