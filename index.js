@@ -10,8 +10,8 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 
 const token = process.env.TOKEN
 console.log(emojiList = client.emojis.cache.map(emoji => emoji.toString()).join(" "))
-const coche = client.emojis.cache.find(emoji => emoji.name === ":coche:");
-const croix = client.emojis.cache.find(emoji => emoji.name === ":coche:");
+const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
+const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
