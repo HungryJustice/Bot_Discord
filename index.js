@@ -46,10 +46,11 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     }
 })
 
-// client.on('messageReactionAdd', async(reaction, user) => {
-//     console.log(reaction.emoji.id)
-//     console.log(typeof reaction.emoji.id)
-// });
+client.on('messageReactionAdd', async(reaction, user) => {
+    console.log(reaction.message.reactions)
+    console.log(reaction.emoji.id)
+    console.log(typeof reaction.emoji.id)
+});
 
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
@@ -186,8 +187,9 @@ client.on("messageCreate", message => {
                                         var stop_boucle = false
                                         message.channel.messages.fetch(options).then(messages => {
                                             messages.forEach(msg => {
-                                                if (msg.reaction.filter(emo => emo.id == "1008076515658977441")) {
+                                                if (msg.reactions.filter(emo => emo.id == "1008076515658977441")) {
                                                     stop_boucle = true
+                                                        //remplacer par break
                                                 }
                                                 if (!stop_boucle) {
                                                     into_trash.push(msg)
