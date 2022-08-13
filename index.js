@@ -9,19 +9,6 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 //essayer de remplacer le await reaction par le client.on('messageReactionAdd')
 
 const token = process.env.TOKEN
-console.log(client.emojis.cache.map(emoji => emoji.toString()).join(" "))
-const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
-const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
-console.log(coche)
-console.log(croix)
-coche = {
-    id: "4851450",
-    name: "coche"
-}
-croix = {
-    id: "4851450",
-    name: "croix"
-}
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
@@ -38,7 +25,21 @@ const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, 
 const prefix = "!";
 
 client.login(token)
-
+    ////////
+console.log(client.emojis.cache.map(emoji => emoji.toString()).join(" "))
+const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
+const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
+console.log(coche)
+console.log(croix)
+coche = {
+    id: "4851450",
+    name: "coche"
+}
+croix = {
+        id: "4851450",
+        name: "croix"
+    }
+    ///////
 client.once("ready", () => {
     const restartembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
