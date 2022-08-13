@@ -106,8 +106,8 @@ client.on("messageCreate", message => {
                             .setTitle("T'es sur ?")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
-                            m.react(':coche:');
-                            m.react(':croix:');
+                            m.react('coche');
+                            m.react('croix');
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
@@ -163,8 +163,8 @@ client.on("messageCreate", message => {
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
-                            m.react(':coche:');
-                            m.react(':croix:');
+                            m.react('coche');
+                            m.react('croix');
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
