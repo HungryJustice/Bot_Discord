@@ -15,11 +15,11 @@ const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
 console.log(coche)
 console.log(croix)
 coche = {
-    id = "4851450",
+    id: "4851450",
     name: "coche"
 }
 croix = {
-    id = "4851450",
+    id: "4851450",
     name: "croix"
 }
 var appName = 'botdiscordlouismazin';
