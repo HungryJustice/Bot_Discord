@@ -26,7 +26,7 @@ const prefix = "!";
 
 client.login(token)
     ////////
-console.log(client.emojis.cache.map(emoji => emoji.toString()).join(" "))
+console.log(client.emojis.cache)
 const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
 const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
 console.log(coche)
