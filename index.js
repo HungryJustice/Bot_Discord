@@ -9,7 +9,8 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 //essayer de remplacer le await reaction par le client.on('messageReactionAdd')
 
 const token = process.env.TOKEN
-
+const coche = client.emojis.cache.find(emoji => emoji.name === "coche");
+const croix = client.emojis.cache.find(emoji => emoji.name === "coche");
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
@@ -106,15 +107,15 @@ client.on("messageCreate", message => {
                             .setTitle("T'es sur ?")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
-                            m.react('coche');
-                            m.react('croix');
+                            m.react(coche.id);
+                            m.react(croix.id);
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.name === 'coche') {
+                                    if (reaction.emoji === coche) {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
@@ -137,7 +138,7 @@ client.on("messageCreate", message => {
                                                 });
                                             })
                                         })
-                                    } else if (reaction.emoji.id === '1007238080153006110') {
+                                    } else if (reaction.emoji === croix) {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
@@ -163,12 +164,12 @@ client.on("messageCreate", message => {
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
-                            m.react('coche');
-                            m.react('croix');
+                            m.react(coche.id);
+                            m.react(croix.id);
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.name === 'coche') {
+                                    if (reaction.emoji === coche) {
                                         number += 2
                                         if (number > 100) {
                                             number = 100
@@ -178,7 +179,7 @@ client.on("messageCreate", message => {
                                         }).catch(err => {
                                             console.log("Erreur lors de la suppression des messages : " + err)
                                         });
-                                    } else if (reaction.emoji.id === '1007238080153006110') {
+                                    } else if (reaction.emoji === croix) {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
