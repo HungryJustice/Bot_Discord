@@ -39,7 +39,7 @@ client.once("ready", () => {
 
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
-    if (newmessage.embeds == []) {
+    if (newmessage.embeds.lenght == 0) {
         newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
     }
 })
