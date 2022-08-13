@@ -44,10 +44,9 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     }
 })
 
-// client.on('messageReactionAdd', async(reaction, user) => {
-//     console.log(reaction.emoji.id)
-//     console.log(typeof reaction.emoji.id)
-// });
+client.on('messageReactionAdd', async(reaction, user) => {
+    console.log(reaction.emoji.id)
+});
 
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
