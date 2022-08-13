@@ -97,6 +97,8 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
+                        console.log(nargs)
+
                         var options = {}
                         var supprimés = 0
                         var to_trash = new Array()
@@ -120,6 +122,9 @@ client.on("messageCreate", message => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
                                                 into_trash.push(msg)
+                                                if (msg.author != "391708236698615809") {
+                                                    console.log(msg.author.id)
+                                                }
                                                 if (into_trash.length > 99) {
                                                     to_trash.push(into_trash)
                                                     into_trash = new Array()
