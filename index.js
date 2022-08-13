@@ -12,11 +12,13 @@ const token = process.env.TOKEN
 console.log(client.emojis.cache.map(emoji => emoji.toString()).join(" "))
 const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
 const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
-const coche = {
+console.log(coche)
+console.log(croix)
+coche = {
     id = "4851450",
     name: "coche"
 }
-const croix = {
+croix = {
     id = "4851450",
     name: "croix"
 }
