@@ -121,6 +121,7 @@ client.on("messageCreate", message => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
+                                        var stop_boucle = false
                                         message.channel.messages.fetch().then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
