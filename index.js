@@ -9,6 +9,7 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 //essayer de remplacer le await reaction par le client.on('messageReactionAdd')
 
 const token = process.env.TOKEN
+
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
@@ -25,21 +26,7 @@ const text = new Array(items = "Actuellement ? Je chies.", "Je vais me coucher, 
 const prefix = "!";
 
 client.login(token)
-    ////////
-console.log(client.emojis.cache)
-const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
-const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
-console.log(coche)
-console.log(croix)
-coche = {
-    id: "4851450",
-    name: "coche"
-}
-croix = {
-        id: "4851450",
-        name: "croix"
-    }
-    ///////
+
 client.once("ready", () => {
     const restartembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
@@ -119,15 +106,15 @@ client.on("messageCreate", message => {
                             .setTitle("T'es sur ?")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
-                            m.react(coche.id);
-                            m.react(croix.id);
+                            m.react(':coche:1007234604480069662');
+                            m.react(':croix:1007238080153006110');
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji === coche) {
+                                    if (reaction.emoji.id === ':coche:1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
@@ -150,7 +137,7 @@ client.on("messageCreate", message => {
                                                 });
                                             })
                                         })
-                                    } else if (reaction.emoji === croix) {
+                                    } else if (reaction.emoji.id === ':croix:1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
@@ -176,12 +163,12 @@ client.on("messageCreate", message => {
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
-                            m.react(coche.id);
-                            m.react(croix.id);
+                            m.react(':coche:1007234604480069662');
+                            m.react(':croix:1007238080153006110');
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji === coche) {
+                                    if (reaction.emoji.id === ':coche:1007234604480069662') {
                                         number += 2
                                         if (number > 100) {
                                             number = 100
@@ -191,7 +178,7 @@ client.on("messageCreate", message => {
                                         }).catch(err => {
                                             console.log("Erreur lors de la suppression des messages : " + err)
                                         });
-                                    } else if (reaction.emoji === croix) {
+                                    } else if (reaction.emoji.id === ':croix:1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
                                     }
