@@ -100,8 +100,6 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
-                        console.log(nargs)
-
                         var options = {}
                         var supprimés = 0
                         var to_trash = new Array()
@@ -120,14 +118,17 @@ client.on("messageCreate", message => {
                                 .then(collected => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
+                                        var stopboucle = false
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
-                                                into_trash.push(msg)
-                                                if (into_trash.length > 99) {
-                                                    to_trash.push(into_trash)
-                                                    into_trash = new Array()
+                                                if (!stopboucle) {
+                                                    into_trash.push(msg)
+                                                    if (into_trash.length > 99) {
+                                                        to_trash.push(into_trash)
+                                                        into_trash = new Array()
+                                                    }
                                                 }
                                             })
                                             if (into_trash.length > 0) {
