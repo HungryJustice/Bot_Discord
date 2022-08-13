@@ -39,19 +39,17 @@ client.once("ready", () => {
 
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
-    if (newmessage.embeds.lenght == 0) {
+    try {
+        newmessage.embeds.length
+    } catch (error) {
         newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
-    } else {
-        console.log(oldmessage)
-        console.log(newmessage.embed.lenght)
     }
 })
 
-client.on('messageReactionAdd', async(reaction, user) => {
-    console.log(reaction.emoji.id)
-    console.log(typeof reaction.emoji.id)
-    console.log(reaction.message.reactions)
-});
+// client.on('messageReactionAdd', async(reaction, user) => {
+//     console.log(reaction.emoji.id)
+//     console.log(typeof reaction.emoji.id)
+// });
 
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
@@ -132,7 +130,7 @@ client.on("messageCreate", message => {
                                                         into_trash = new Array()
                                                     }
                                                 }
-                                                if (msg.reactions.filter("")) {
+                                                if (msg.reactions.filter(emo => emo.id == "1008076515658977441")) {
                                                     stop_boucle = true
                                                 }
                                             })
@@ -195,7 +193,7 @@ client.on("messageCreate", message => {
                                                         into_trash = new Array()
                                                     }
                                                 }
-                                                if (msg.reactions.filter("")) {
+                                                if (msg.reactions.filter(emo => emo.id == "1008076515658977441")) {
                                                     stop_boucle = true
                                                 }
                                             })
