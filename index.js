@@ -47,10 +47,11 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     }
 })
 
-// client.on('messageReactionAdd', async(reaction, user) => {
-//     console.log(reaction.emoji.id)
-//     console.log(typeof reaction.emoji.id)
-// });
+client.on('messageReactionAdd', async(reaction, user) => {
+    console.log(reaction.emoji.id)
+    console.log(typeof reaction.emoji.id)
+    console.log(reaction.message.reactions)
+});
 
 client.on("messageCreate", message => {
     if (message.content.startsWith(prefix)) {
@@ -100,6 +101,8 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
+                        console.log(nargs)
+
                         var options = {}
                         var supprimés = 0
                         var to_trash = new Array()
@@ -118,17 +121,19 @@ client.on("messageCreate", message => {
                                 .then(collected => {
                                     const reaction = collected.first();
                                     if (reaction.emoji.id === '1007234604480069662') {
-                                        var stopboucle = false
                                         m.channel.bulkDelete(2, true)
-                                        message.channel.messages.fetch(options).then(messages => {
+                                        message.channel.messages.fetch().then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
-                                                if (!stopboucle) {
+                                                if (!stop_boucle) {
                                                     into_trash.push(msg)
                                                     if (into_trash.length > 99) {
                                                         to_trash.push(into_trash)
                                                         into_trash = new Array()
                                                     }
+                                                }
+                                                if (msg.reactions.filter("")) {
+                                                    stop_boucle = true
                                                 }
                                             })
                                             if (into_trash.length > 0) {
@@ -179,11 +184,33 @@ client.on("messageCreate", message => {
                                         if (number > 100) {
                                             number = 100
                                         }
-                                        message.channel.bulkDelete(number, true).then(messages => {
-                                            console.log(messages.size + " messages ont été effacés.")
-                                        }).catch(err => {
-                                            console.log("Erreur lors de la suppression des messages : " + err)
-                                        });
+                                        options.limit = number
+                                        var stop_boucle = false
+                                        message.channel.messages.fetch(options).then(messages => {
+                                            messages.forEach(msg => {
+                                                if (!stop_boucle) {
+                                                    into_trash.push(msg)
+                                                    if (into_trash.length > 99) {
+                                                        to_trash.push(into_trash)
+                                                        into_trash = new Array()
+                                                    }
+                                                }
+                                                if (msg.reactions.filter("")) {
+                                                    stop_boucle = true
+                                                }
+                                            })
+                                            if (into_trash.length > 0) {
+                                                to_trash.push(into_trash)
+                                            }
+                                        }).then(() => {
+                                            to_trash.forEach(element => {
+                                                message.channel.bulkDelete(element, true).then(messages => {
+                                                    supprimés += element.length
+                                                }).catch(err => {
+                                                    console.log("Erreur lors de la suppression des messages : " + err)
+                                                });
+                                            })
+                                        })
                                     } else if (reaction.emoji.id === '1007238080153006110') {
                                         m.channel.bulkDelete(2, true)
                                         return
