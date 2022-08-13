@@ -439,13 +439,13 @@ client.on("messageCreate", message => {
         var index = 0;
         while (!nMessage2.endsWith(quoi.at(index))) {
             if (index > quoi.length - 1) {
-                var rd = Math.floor(Math.random() * 256)
-                if (rd == 1) {
+                var rd = Math.floor(Math.random() * 4096)
+                if (rd == 256) {
                     const RATIOembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
                         .setTitle("RATIO.")
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                    message.channel.send({ embeds: [RATIOembed] }).then(shiny => shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître"))
+                    message.channel.send({ embeds: [RATIOembed] }).then(shiny => shiny.reply("GG, ce message n'avait qu'une chance sur 4096 d'apparaître"))
                 }
                 return
             }
