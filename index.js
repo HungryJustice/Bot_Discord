@@ -106,15 +106,15 @@ client.on("messageCreate", message => {
                             .setTitle("T'es sur ?")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
-                            m.react('1007234604480069662');
-                            m.react('1007238080153006110');
+                            m.react(':coche:');
+                            m.react(':croix:');
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.id === '1007234604480069662') {
+                                    if (reaction.emoji.name === 'coche') {
                                         m.channel.bulkDelete(2, true)
                                         message.channel.messages.fetch(options).then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
@@ -163,12 +163,12 @@ client.on("messageCreate", message => {
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
-                            m.react('1007234604480069662');
-                            m.react('1007238080153006110');
+                            m.react(':coche:');
+                            m.react(':croix:');
                             m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
                                 .then(collected => {
                                     const reaction = collected.first();
-                                    if (reaction.emoji.id === '1007234604480069662') {
+                                    if (reaction.emoji.name === 'coche') {
                                         number += 2
                                         if (number > 100) {
                                             number = 100
