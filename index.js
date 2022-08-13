@@ -349,7 +349,8 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
-                message.channel.send({ embeds: [Permembed] })
+                const shiny = message.channel.send({ embeds: [Permembed] })
+                shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître")
                 return;
             } else {
                 console.log("Redémarrage du bot.")
