@@ -45,7 +45,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', async(reaction, user) => {
-    console.log(reaction.emoji.id)
+    console.log(reaction.emoji)
     console.log(typeof reaction.emoji.id)
 });
 
