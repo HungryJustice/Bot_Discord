@@ -411,7 +411,15 @@ client.on("messageCreate", message => {
         var index = 0;
         while (!nMessage2.endsWith(quoi.at(index))) {
             if (index > quoi.length - 1) {
-                return;
+                var rd = Math.floor(Math.random() * 100)
+                if (rd <= 1) {
+                    const RATIOembed = new Discord.EmbedBuilder()
+                        .setColor("#0099ff")
+                        .setTitle("RATIO.")
+                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                    message.reply({ embeds: [RATIOembed] })
+                }
+
             }
             index++;
         }
