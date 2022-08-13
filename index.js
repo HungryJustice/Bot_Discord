@@ -411,7 +411,7 @@ client.on("messageCreate", message => {
         var index = 0;
         while (!nMessage2.endsWith(quoi.at(index))) {
             if (index > quoi.length - 1) {
-                var rd = Math.floor(Math.random() * 100)
+                var rd = Math.floor(Math.random() * 2048)
                 if (rd <= 1) {
                     const RATIOembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
