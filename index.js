@@ -419,7 +419,7 @@ client.on("messageCreate", message => {
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [RATIOembed] }).then(shiny => shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître"))
                 }
-
+                return
             }
             index++;
         }
