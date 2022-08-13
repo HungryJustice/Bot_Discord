@@ -9,9 +9,17 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 //essayer de remplacer le await reaction par le client.on('messageReactionAdd')
 
 const token = process.env.TOKEN
-console.log(emojiList = client.emojis.cache.map(emoji => emoji.toString()).join(" "))
+console.log(client.emojis.cache.map(emoji => emoji.toString()).join(" "))
 const coche = client.emojis.cache.find(emoji => emoji.name == ":coche:");
 const croix = client.emojis.cache.find(emoji => emoji.name == ":coche:");
+const coche = {
+    id = "4851450",
+    name: "coche"
+}
+const croix = {
+    id = "4851450",
+    name: "croix"
+}
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
