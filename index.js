@@ -10,8 +10,6 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 
 const token = process.env.TOKEN
 
-//const token = "OTMxMTkwOTMyMjMyMDk3OTEy.GsV-0-.vj7VjCC8y8Ca-GGEAxlyW6chGmEvPw2tj-B-Fo"
-
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
