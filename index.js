@@ -417,8 +417,7 @@ client.on("messageCreate", message => {
                         .setColor("#0099ff")
                         .setTitle("RATIO.")
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                    const shiny = message.channel.send({ embeds: [RATIOembed] })
-                    shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître")
+                    message.channel.send({ embeds: [RATIOembed] }).then(shiny => shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître"))
                 }
 
             }
