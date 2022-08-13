@@ -351,8 +351,7 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("J'ai pas dutout envie de faire ça, puis t'façon t'as pas le droit.")
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
-                const shiny = message.channel.send({ embeds: [Permembed] })
-                shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître")
+                message.channel.send({ embeds: [Permembed] })
                 return;
             } else {
                 console.log("Redémarrage du bot.")
@@ -399,8 +398,6 @@ client.on("messageCreate", message => {
 
             }
         }
-
-
         var nMessage2 = ""
         var precedant = ""
         for (const i of nMessage) {
@@ -420,7 +417,8 @@ client.on("messageCreate", message => {
                         .setColor("#0099ff")
                         .setTitle("RATIO.")
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                    message.reply({ embeds: [RATIOembed] })
+                    const shiny = message.channel.send({ embeds: [RATIOembed] })
+                    shiny.reply("GG, ce message n'avait qu'une chance sur 256 d'apparaître")
                 }
 
             }
