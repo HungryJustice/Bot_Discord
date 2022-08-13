@@ -41,6 +41,9 @@ client.once("ready", () => {
 client.on('messageUpdate', (oldmessage, newmessage) => {
     if (newmessage.embeds.lenght == 0) {
         newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+    } else {
+        console.log(oldmessage)
+        console.log(newmessage.embed.lenght)
     }
 })
 
