@@ -123,7 +123,7 @@ client.on("messageCreate", message => {
                                         message.channel.messages.fetch().then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
-                                                if (msg.reactions.filter(emo => emo.id == "1008076515658977441")) {
+                                                if (msg.reaction.filter(emo => emo.id == "1008076515658977441")) {
                                                     stop_boucle = true
                                                 }
                                                 if (!stop_boucle) {
@@ -182,11 +182,11 @@ client.on("messageCreate", message => {
                                         if (number > 100) {
                                             number = 100
                                         }
-                                        options.limit = number
+                                        const options = { limit: number };
                                         var stop_boucle = false
                                         message.channel.messages.fetch(options).then(messages => {
                                             messages.forEach(msg => {
-                                                if (msg.reactions.filter(emo => emo.id == "1008076515658977441")) {
+                                                if (msg.reaction.filter(emo => emo.id == "1008076515658977441")) {
                                                     stop_boucle = true
                                                 }
                                                 if (!stop_boucle) {
