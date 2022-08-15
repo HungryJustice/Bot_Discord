@@ -124,7 +124,7 @@ client.on("messageCreate", message => {
                                         message.channel.messages.fetch().then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
-                                                if (msg.reactions.cache.filter(emo => emo.id == "1008076515658977441")) throw BreakException;
+                                                if (reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441")) throw BreakException;
                                                 into_trash.push(msg)
                                                 if (into_trash.length > 99) {
                                                     to_trash.push(into_trash)
@@ -186,7 +186,7 @@ client.on("messageCreate", message => {
                                         var stop_boucle = false
                                         message.channel.messages.fetch(options).then(messages => {
                                             messages.forEach(msg => {
-                                                if (msg.reactions.cache.filter(emo => emo.id == "1008076515658977441")) throw BreakException;
+                                                if (reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441")) throw BreakException;
                                                 into_trash.push(msg)
                                                 if (into_trash.length > 99) {
                                                     to_trash.push(into_trash)
