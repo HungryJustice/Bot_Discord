@@ -48,8 +48,8 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 
 client.on('messageReactionAdd', async(reaction, user) => {
     console.log(reaction.message.reactions)
-    console.log(reaction.emoji.id)
-    console.log(typeof reaction.emoji.id)
+    console.log(reaction.message.reactions.cache)
+    console.log(reaction.message.reactions.cache.filter(react => react.id == "1008076515658977441"))
 });
 
 client.on("messageCreate", message => {
@@ -126,14 +126,12 @@ client.on("messageCreate", message => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
                                                 if (msg.reaction.cache.filter(emo => emo.id == "1008076515658977441")) {
-                                                    stop_boucle = true
+                                                    break
                                                 }
-                                                if (!stop_boucle) {
-                                                    into_trash.push(msg)
-                                                    if (into_trash.length > 99) {
-                                                        to_trash.push(into_trash)
-                                                        into_trash = new Array()
-                                                    }
+                                                into_trash.push(msg)
+                                                if (into_trash.length > 99) {
+                                                    to_trash.push(into_trash)
+                                                    into_trash = new Array()
                                                 }
                                             })
                                             if (into_trash.length > 0) {
@@ -189,15 +187,12 @@ client.on("messageCreate", message => {
                                         message.channel.messages.fetch(options).then(messages => {
                                             messages.forEach(msg => {
                                                 if (msg.reactions.cache.filter(emo => emo.id == "1008076515658977441")) {
-                                                    stop_boucle = true
-                                                        //remplacer par break
+                                                    break
                                                 }
-                                                if (!stop_boucle) {
-                                                    into_trash.push(msg)
-                                                    if (into_trash.length > 99) {
-                                                        to_trash.push(into_trash)
-                                                        into_trash = new Array()
-                                                    }
+                                                into_trash.push(msg)
+                                                if (into_trash.length > 99) {
+                                                    to_trash.push(into_trash)
+                                                    into_trash = new Array()
                                                 }
                                             })
                                             if (into_trash.length > 0) {
