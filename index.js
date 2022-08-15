@@ -121,6 +121,7 @@ client.on("messageCreate", message => {
                                     if (reaction.emoji.id === '1007234604480069662') {
                                         m.channel.bulkDelete(2, true)
                                         var stop_boucle = false
+                                        var BreakException = {};
                                         message.channel.messages.fetch().then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
@@ -184,6 +185,7 @@ client.on("messageCreate", message => {
                                         }
                                         const options = { limit: number };
                                         var stop_boucle = false
+                                        var BreakException = {};
                                         message.channel.messages.fetch(options).then(messages => {
                                             messages.forEach(msg => {
                                                 if (reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441")) throw BreakException;
