@@ -443,7 +443,7 @@ client.on("messageCreate", message => {
                 if (rd == 256) {
                     const RATIOembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
-                        .setTitle("RATIO.")
+                        .setTitle("YOU CATCH A SHINYYYYY.")
                         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                     message.channel.send({ embeds: [RATIOembed] }).then(shiny => shiny.reply("GG, ce message n'avait qu'une chance sur 4096 d'apparaître"))
                 }
