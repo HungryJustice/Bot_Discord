@@ -47,9 +47,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', async(reaction, user) => {
-    console.log(reaction.emoji.id)
     console.log(reaction.message.reactions)
-    console.log(reaction.message.reactions.cache)
     console.log(reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441"))
 });
 
