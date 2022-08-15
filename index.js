@@ -164,7 +164,6 @@ client.on("messageCreate", message => {
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
                     } else {
-                        var options = {}
                         var supprimés = 0
                         var to_trash = new Array()
                         var into_trash = new Array()
