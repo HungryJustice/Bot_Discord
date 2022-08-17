@@ -7,7 +7,7 @@ const { joinVoiceChannel, AudioPlayerStatus, createAudioPlayer, createAudioResou
 const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guilds, Discord.IntentsBitField.Flags.MessageContent, Discord.IntentsBitField.Flags.GuildMessages, Discord.IntentsBitField.Flags.GuildVoiceStates, Discord.IntentsBitField.Flags.GuildPresences, Discord.IntentsBitField.Flags.GuildMessageReactions] });
 
 //essayer de remplacer le await reaction par le client.on('messageReactionAdd')
-
+//faire !stats et finir la mise en place de :limited: a pas dépasser lors du !clear
 const token = process.env.TOKEN
 
 var appName = 'botdiscordlouismazin';
