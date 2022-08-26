@@ -358,11 +358,10 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("C'est bon j'me casse.")
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
+                client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                 message.channel.send({ embeds: [Stopembed] }).then(() => {
-                    client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                     client.destroy()
                 });
-                return;
             }
         } else if (message.content.startsWith(prefix + "restart")) {
             if (message.author.id != 391708236698615809) {
