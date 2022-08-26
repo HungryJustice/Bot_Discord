@@ -42,18 +42,13 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     if (newmessage.embeds.length == 0) {
         if (oldmessage.content != newmessage.content) {
             newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
-            console.log("3")
-        } else {
-            console.log("2")
         }
-    } else {
-        console.log("1")
     }
 })
 
 client.on('messageReactionAdd', async(reaction, user) => {
-    console.log(reaction.message.reactions)
-    console.log(reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441"))
+    console.log(reaction.message.reactions.reactions)
+    console.log(reaction.message.reactions.reactions.cache.filter(react => react.emoji.id == "1008076515658977441"))
 });
 
 client.on("messageCreate", message => {
