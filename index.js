@@ -373,9 +373,9 @@ client.on("messageCreate", message => {
                     .setTitle("C'est bon j'me casse.")
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
-                message.channel.send({ embeds: [Stopembed] }).then(() => {
-                    bloquer = true
-                });
+                message.channel.send({ embeds: [Stopembed] })
+                bloquer = true
+                return
             }
         } else if (message.content.startsWith(prefix + "restart")) {
             if (message.author.id != 391708236698615809) {
