@@ -34,7 +34,7 @@ client.once("ready", () => {
         .setColor("#0099ff")
         .setTitle("Je redémarre.")
         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-    console.log(client.guilds.cache.channels.get("1003898726206668851").fetch().filter(messages => messages.embeds == [Testembed]))
+    console.log(client.guilds.cache.channels) //.get("1003898726206668851").fetch().filter(messages => messages.embeds == [Testembed]))
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
