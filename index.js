@@ -30,7 +30,11 @@ var bloquer = false;
 client.login(token)
 
 client.once("ready", () => {
-    console.log(client.presence.activities)
+    const Testembed = new Discord.EmbedBuilder()
+        .setColor("#0099ff")
+        .setTitle("Je redémarre.")
+        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+    console.log(client.channels.get("1003898726206668851").fetch().filter(messages => messages.embeds == [Testembed]))
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
