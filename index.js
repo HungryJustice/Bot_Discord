@@ -359,6 +359,7 @@ client.on("messageCreate", message => {
                     .setTitle("C'est bon j'me casse.")
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 message.channel.send({ embeds: [Stopembed] }).then(() => {
+                    client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                     client.destroy()
                 });
                 return;
@@ -378,6 +379,7 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                client.user.setPresence({ activities: [{ name: `redémarrer.`, type: ActivityType.Playing }], status: 'dnd' })
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
