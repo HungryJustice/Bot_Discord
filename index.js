@@ -360,7 +360,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                 message.channel.send({ embeds: [Stopembed] }).then(() => {
-                    client.destroy()
+                    setTimeout(client.destroy(), 5000);
                 });
             }
         } else if (message.content.startsWith(prefix + "restart")) {
