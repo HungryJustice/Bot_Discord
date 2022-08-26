@@ -39,10 +39,10 @@ client.once("ready", () => {
 
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
-    try {
-        newmessage.embeds.at(0)
-    } catch (error) {
-        newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+    if (newmessage.embeds.length == 0) {
+        if (oldmessage.content != newmessage.content) {
+            newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+        }
     }
 })
 
