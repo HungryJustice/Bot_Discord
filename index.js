@@ -23,6 +23,7 @@ audio.splice(audio.indexOf('feur.mp3'), 1)
 
 fs.readFile('infos.json', function(erreur, fichier) {
     let infos = JSON.parse(fichier)
+    infos.
     console.log(infos)
 })
 
@@ -53,8 +54,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', (reaction, user) => {
-    console.log(reaction.id)
-    console.log(reaction.message.reactions.filter(react => react.emoji.id == "1008076515658977441"))
+    console.log(reaction.cache.id)
 });
 
 client.on("messageCreate", message => {
