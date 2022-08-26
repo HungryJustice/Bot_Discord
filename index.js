@@ -23,6 +23,7 @@ audio.splice(audio.indexOf('feur.mp3'), 1)
 
 fs.readFile('infos.json', function(erreur, fichier) {
     let infos = JSON.parse(fichier)
+    const mapinfos = new Map(Object.entries(JSON.parse(infos)));
 })
 
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
@@ -33,7 +34,7 @@ const prefix = "!";
 client.login(token)
 
 client.once("ready", () => {
-    if (infos.includes('"restart_manuel": true"')) {
+    if (mapinfos.get("restart_manuel")) {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
