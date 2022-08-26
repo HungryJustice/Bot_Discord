@@ -8,22 +8,19 @@ const client = new Discord.Client({ intents: [Discord.IntentsBitField.Flags.Guil
 
 //essayer de remplacer le await reaction par le client.on('messageReactionAdd')
 //faire !stats et finir la mise en place de :limited: a pas dépasser lors du !clear
+//!ping @pseudo envois un message privé et public : ramene toi ici : #idsalon ,connards
 const token = process.env.TOKEN
 
 var appName = 'botdiscordlouismazin';
 var tok = "27fcf1f1-b3d9-471a-8d5e-1d02b1014885"
 
-const restart = "true"
+
 const files = fs.readdirSync('son')
 const audio = new Array()
 for (const file of files) {
     audio.push(file)
 }
 audio.splice(audio.indexOf('feur.mp3'), 1)
-
-let fichier = fs.readFileSync('infos.json')
-let infos = JSON.parse(fichier)
-const mapinfos = new Map(Object.entries(infos));
 
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
 const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
@@ -33,18 +30,11 @@ const prefix = "!";
 client.login(token)
 
 client.once("ready", () => {
-    if (mapinfos.get("restart_manuel")) {
-        const restartembed = new Discord.EmbedBuilder()
-            .setColor("#0099ff")
-            .setTitle("Je suis de retour.")
-            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-        client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
-        infos = {
-            "restart_manuel": false
-        }
-        let donnees = JSON.stringify(infos)
-        fs.writeFileSync('infos.json', donnees)
-    }
+    const restartembed = new Discord.EmbedBuilder()
+        .setColor("#0099ff")
+        .setTitle("Je suis de retour.")
+        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+    client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
@@ -59,7 +49,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', (reaction, user) => {
-    console.log(reaction)
+    console.log(reaction.message.reactions)
 });
 
 client.on("messageCreate", message => {
@@ -393,11 +383,6 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                infos = {
-                    "restart_manuel": true
-                }
-                let donnees = JSON.stringify(infos)
-                fs.writeFileSync('infos.json', donnees)
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
