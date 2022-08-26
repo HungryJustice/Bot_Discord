@@ -48,6 +48,19 @@ client.on('messageReactionAdd', (reaction, user) => {
 });
 
 client.on("messageCreate", message => {
+    if (bloquer = true) {
+        if (message.content == "!start" && message.author.id == 391708236698615809) {
+            const Startembed = new Discord.EmbedBuilder()
+                .setColor("#0099ff")
+                .setTitle("Je suis de retour.")
+                .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+            message.channel.send({ embeds: [Startembed] })
+            client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
+            console.log(`Bot en ligne.`)
+        } else {
+            return
+        }
+    }
     if (message.content.startsWith(prefix)) {
         var index = 0;
         while (!message.content.startsWith(commands.at(index))) {
@@ -360,7 +373,7 @@ client.on("messageCreate", message => {
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                 client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                 message.channel.send({ embeds: [Stopembed] }).then(() => {
-                    setTimeout(client.destroy(), 5000);
+                    bloquer = true
                 });
             }
         } else if (message.content.startsWith(prefix + "restart")) {
