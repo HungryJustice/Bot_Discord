@@ -40,7 +40,7 @@ client.once("ready", () => {
 
 client.on('messageUpdate', (oldmessage, newmessage) => {
     try {
-        newmessage.embeds.length
+        console.log(newmessage.embeds.length)
     } catch (error) {
         newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
     }
