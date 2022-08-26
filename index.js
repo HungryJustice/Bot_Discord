@@ -49,7 +49,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', (reaction, user) => {
-    console.log(reaction.message.reactions)
+    console.log(reaction.message)
 });
 
 client.on("messageCreate", message => {
