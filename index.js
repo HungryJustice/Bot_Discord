@@ -48,7 +48,7 @@ client.on('messageReactionAdd', (reaction, user) => {
 });
 
 client.on("messageCreate", message => {
-    if (bloquer = true) {
+    if (bloquer == true) {
         if (message.content == "!start" && message.author.id == 391708236698615809) {
             const Startembed = new Discord.EmbedBuilder()
                 .setColor("#0099ff")
@@ -373,8 +373,8 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("C'est bon j'me casse.")
                     .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
-                client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                 message.channel.send({ embeds: [Stopembed] })
+                client.user.setPresence({ activities: [{ name: `être éteint.`, type: ActivityType.Playing }], status: 'dnd' })
                 bloquer = true
                 return
             }
