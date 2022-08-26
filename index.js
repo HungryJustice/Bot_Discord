@@ -22,9 +22,7 @@ for (const file of files) {
 audio.splice(audio.indexOf('feur.mp3'), 1)
 
 fs.readFile('infos.json', function(erreur, fichier) {
-    let infos = JSON.parse(fichier)
-    infos.
-    console.log(infos)
+    var infos = JSON.parse(fichier)
 })
 
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
@@ -35,11 +33,21 @@ const prefix = "!";
 client.login(token)
 
 client.once("ready", () => {
-    const restartembed = new Discord.EmbedBuilder()
-        .setColor("#0099ff")
-        .setTitle("Je suis de retour.")
-        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-    client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
+    if (infos.includes('"restart_manuel": false"')) {
+        const restartembed = new Discord.EmbedBuilder()
+            .setColor("#0099ff")
+            .setTitle("Je suis de retour.")
+            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+        client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
+        infos = {
+            "restart_manuel": false
+        }
+        let donnees = JSON.stringify(infos)
+        fs.writeFileSync('infos.json', donnees)
+    }
+
+    let donnees = JSON.stringify(personne)
+    fs.writeFileSync('personnage2.json', donnees)
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
