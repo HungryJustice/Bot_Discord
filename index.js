@@ -42,7 +42,12 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     if (newmessage.embeds.length == 0) {
         if (oldmessage.content != newmessage.content) {
             newmessage.reply("Vu !\n>>||" + oldmessage.content + "||")
+            console.log("3")
+        } else {
+            console.log("2")
         }
+    } else {
+        console.log("1")
     }
 })
 
