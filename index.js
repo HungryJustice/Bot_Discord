@@ -33,7 +33,7 @@ const prefix = "!";
 client.login(token)
 
 client.once("ready", () => {
-    if (infos.includes('"restart_manuel": false"')) {
+    if (infos.includes('"restart_manuel": true"')) {
         const restartembed = new Discord.EmbedBuilder()
             .setColor("#0099ff")
             .setTitle("Je suis de retour.")
@@ -393,6 +393,11 @@ client.on("messageCreate", message => {
                     .setColor("#0099ff")
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                infos = {
+                    "restart_manuel": true
+                }
+                let donnees = JSON.stringify(infos)
+                fs.writeFileSync('infos.json', donnees)
                 message.channel.send({ embeds: [Stopembed] }).then(m => {
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
@@ -445,8 +450,8 @@ client.on("messageCreate", message => {
         var index = 0;
         while (!nMessage2.endsWith(quoi.at(index))) {
             if (index > quoi.length - 1) {
-                var rd = Math.floor(Math.random() * 4096)
-                if (rd == 256) {
+                var rd = Math.floor(Math.random() * 2048)
+                if (rd == 1024) {
                     const RATIOembed = new Discord.EmbedBuilder()
                         .setColor("#0099ff")
                         .setTitle("YOU CATCH A SHINYYYYY.")
