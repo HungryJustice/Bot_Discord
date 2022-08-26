@@ -34,7 +34,7 @@ client.once("ready", () => {
         .setColor("#0099ff")
         .setTitle("Je redémarre.")
         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-    client.channels.cache.get("1003898726206668851").messages.fetch().then(message => {
+    client.channels.cache.get("1003898726206668851").messages.fetch().then(messages => {
         a_supprimertest = messages.filter((m) => m.embeds == [testembed])
         if (a_supprimertest.length > 0) {
             client.channels.cache.get("1003898726206668851").bulkDelete(a_supprimertest)
