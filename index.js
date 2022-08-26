@@ -22,7 +22,7 @@ for (const file of files) {
 audio.splice(audio.indexOf('feur.mp3'), 1)
 
 fs.readFile('infos.json', function(erreur, fichier) {
-    var infos = JSON.parse(fichier)
+    let infos = JSON.parse(fichier)
 })
 
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
