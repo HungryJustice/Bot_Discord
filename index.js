@@ -45,9 +45,6 @@ client.once("ready", () => {
         let donnees = JSON.stringify(infos)
         fs.writeFileSync('infos.json', donnees)
     }
-
-    let donnees = JSON.stringify(personne)
-    fs.writeFileSync('personnage2.json', donnees)
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
