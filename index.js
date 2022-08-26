@@ -30,7 +30,7 @@ var bloquer = false;
 client.login(token)
 
 client.once("ready", () => {
-    console.log(client)
+    console.log(client.guilds.first())
     const Testembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("Je redémarre.")
