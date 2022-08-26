@@ -30,11 +30,21 @@ const prefix = "!";
 client.login(token)
 
 client.once("ready", () => {
-    const restartembed = new Discord.EmbedBuilder()
+    const testembed = new Discord.EmbedBuilder()
         .setColor("#0099ff")
-        .setTitle("Je suis de retour.")
+        .setTitle("Je redémarre.")
         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-    client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
+    client.channels.cache.get("1003898726206668851").messages.fetch().then(message => {
+        a_supprimertest = messages.filter((m) => m.embeds == [testembed])
+        if (a_supprimertest.length > 0) {
+            client.channels.cache.get("1003898726206668851").bulkDelete(a_supprimertest)
+            const restartembed = new Discord.EmbedBuilder()
+                .setColor("#0099ff")
+                .setTitle("Je suis de retour.")
+                .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+            client.channels.cache.get("1003898726206668851").send({ embeds: [restartembed] })
+        }
+    });
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
@@ -49,7 +59,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', (reaction, user) => {
-    console.log(reaction.message)
+    console.log(reaction.message.reactions)
 });
 
 client.on("messageCreate", message => {
