@@ -23,7 +23,6 @@ audio.splice(audio.indexOf('feur.mp3'), 1)
 
 let fichier = fs.readFileSync('infos.json')
 let infos = JSON.parse(fichier)
-console.log(infos)
 const mapinfos = new Map(Object.entries(infos));
 
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
