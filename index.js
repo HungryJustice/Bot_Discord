@@ -30,7 +30,7 @@ var bloquer = false;
 client.login(token)
 
 client.once("ready", () => {
-    console.log(guild.presences.get(cleint.user.id))
+    console.log(client.guild.presences.get(client.user.id))
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
