@@ -389,12 +389,12 @@ client.on("messageCreate", message => {
                 return;
             } else {
                 console.log("Redémarrage du bot.")
-                const Stopembed = new Discord.EmbedBuilder()
+                const Restartembed = new Discord.EmbedBuilder()
                     .setColor("#0099ff")
                     .setTitle("Je redémarre.")
                     .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                 client.user.setPresence({ activities: [{ name: `redémarrer.`, type: ActivityType.Playing }], status: 'dnd' })
-                message.channel.send({ embeds: [Stopembed] }).then(m => {
+                message.channel.send({ embeds: [Restartembed] }).then(m => {
                     request.delete({
                             url: 'https://api.heroku.com/apps/' + appName + '/dynos/',
                             headers: {
