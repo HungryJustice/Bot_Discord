@@ -57,6 +57,7 @@ client.on("messageCreate", message => {
             message.channel.send({ embeds: [Startembed] })
             client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
             console.log(`Bot en ligne.`)
+            return
         } else {
             return
         }
