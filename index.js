@@ -21,10 +21,9 @@ for (const file of files) {
 }
 audio.splice(audio.indexOf('feur.mp3'), 1)
 
-fs.readFile('infos.json', function(erreur, fichier) {
-    let infos = JSON.parse(fichier)
-    const mapinfos = new Map(Object.entries(JSON.parse(infos)));
-})
+let fichier = fs.readFileSync('infos.json')
+let infos = JSON.parse(fichier)
+const mapinfos = new Map(Object.entries(JSON.parse(infos)));
 
 const quoi = new Array(items = "kwa", "quoi", "qwa", "qua", "kua", "kwa", "koi", "qoi", "coi", "coa", "qoa", "quoa", "cwa", "cowa", "qoua", "koua", "kowa")
 const commands = new Array(items = "!parle", "!restart", "!stop", "!tas", "!deltask", "!addtask", "!help", "!whatdoyoudo", "!clear", "!viens")
