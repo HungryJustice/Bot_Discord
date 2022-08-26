@@ -59,7 +59,7 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
 })
 
 client.on('messageReactionAdd', (reaction, user) => {
-    console.log(reaction.cache.id)
+    console.log(reaction)
 });
 
 client.on("messageCreate", message => {
