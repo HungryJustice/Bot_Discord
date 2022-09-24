@@ -141,6 +141,8 @@ client.on("messageCreate", message => {
                                         message.channel.messages.fetch().then(messages => {
                                             a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
                                             a_supprimer.forEach(msg => {
+                                                //regarder si un message contient emoji stop dans les arg1
+                                                //derniers messages, si oui prendre son index et bulk delete debut jusqu'à l'index-1.
                                                 if (reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441")) throw BreakException;
                                                 into_trash.push(msg)
                                                 if (into_trash.length > 99) {
