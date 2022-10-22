@@ -146,6 +146,7 @@ client.on("messageCreate", message => {
                                             }
                                         })
                                         for (const msg of to_trash) {
+                                            console.log("delete")
                                             msg.delete()
                                         }
                                         const deletedembed = new Discord.EmbedBuilder()
@@ -210,6 +211,7 @@ client.on("messageCreate", message => {
                                             }
                                         })
                                         for (const msg of to_trash) {
+                                            console.log("delete")
                                             msg.delete()
                                         }
                                         const deletedembed = new Discord.EmbedBuilder()
