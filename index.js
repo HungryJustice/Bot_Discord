@@ -130,7 +130,7 @@ client.on("messageCreate", message => {
                                 return user.id != "931190932232097912";
                             };
                             //wait reaction.emoji.id === '1007234604480069662' for delete messages up to the emoji that has the ID "1008076515658977441"
-                            m.awaitReactions(filter, max = 3, time = 4000, errors = ['time']).then(collected => {
+                            m.awaitReactions(filter, max = 999, time = 4000, errors = ['time']).then(collected => {
                                 const reaction = collected.first();
                                 m.channel.bulkDelete(2, true)
                                 if (reaction.emoji.id === '1007234604480069662') {
