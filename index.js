@@ -48,10 +48,11 @@ client.on('messageUpdate', (oldmessage, newmessage) => {
     }
 })
 
+/*
 client.on('messageReactionAdd', (reaction, user) => {
     console.log(reaction.emoji.id)
 });
-
+*/
 client.on("messageCreate", message => {
     if (bloquer == true) {
         if (message.content == "!start" && message.author.id == 391708236698615809) {
