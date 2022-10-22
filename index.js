@@ -117,7 +117,6 @@ client.on("messageCreate", message => {
                         }
                         console.log(nargs)
                         var options = {}
-                        var supprimés = 0
                         var to_trash = new Array()
                         const confirmembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
@@ -148,11 +147,10 @@ client.on("messageCreate", message => {
                                         })
                                         for (const msg of to_trash) {
                                             msg.delete()
-                                            supprimés++
                                         }
                                         const deletedembed = new Discord.EmbedBuilder()
                                             .setColor("#0099ff")
-                                            .setTitle("J'ai supprimé " + supprimés + " messages.")
+                                            .setTitle("J'ai supprimé " + to_trash.length() + " messages.")
                                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                                         message.channel.send({ embeds: [deletedembed] });
                                     })
@@ -184,7 +182,6 @@ client.on("messageCreate", message => {
                             number = 100
                         }
                         var options = {}
-                        var supprimés = 0
                         var to_trash = new Array()
                         const confirmembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
@@ -214,11 +211,10 @@ client.on("messageCreate", message => {
                                         })
                                         for (const msg of to_trash) {
                                             msg.delete()
-                                            supprimés++
                                         }
                                         const deletedembed = new Discord.EmbedBuilder()
                                             .setColor("#0099ff")
-                                            .setTitle("J'ai supprimé " + supprimés + " messages.")
+                                            .setTitle("J'ai supprimé " + to_trash.length() + " messages.")
                                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                                         message.channel.send({ embeds: [deletedembed] });
                                     })
