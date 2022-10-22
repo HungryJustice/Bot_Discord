@@ -116,11 +116,9 @@ client.on("messageCreate", message => {
                             }
                         }
                         console.log(nargs)
-
                         var options = {}
                         var supprimés = 0
                         var to_trash = new Array()
-                        var into_trash = new Array()
                         const confirmembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("T'es sur ?")
@@ -140,11 +138,10 @@ client.on("messageCreate", message => {
                                     message.channel.messages.fetch({ limit: 100 }).then(messages => {
                                         messages.forEach(msg => {
                                             var reacts = new Array()
-                                            while (!("1008076515658977441" in reacts)) {
-                                                reacts = new Array()
-                                                msg.reactions.cache.forEach(reaction => {
-                                                    reacts.push(reaction.emoji.id)
-                                                })
+                                            msg.reactions.cache.forEach(reaction => {
+                                                reacts.push(reaction.emoji.id)
+                                            })
+                                            if (!("1008076515658977441" in reacts) && msg.author.id in nargs) {
                                                 to_trash.push(msg)
                                             }
                                         })
@@ -174,112 +171,71 @@ client.on("messageCreate", message => {
                                 message.channel.send({ embeds: [deletedembed] });
                             })
                         })
-
-                        /*
-                            m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
-                                .then(collected => {
-                                    const reaction = collected.first();
-                                    if (reaction.emoji.id === '1007234604480069662') {
-                                        m.channel.bulkDelete(2, true)
-                                        var stop_boucle = false
-                                        var BreakException = {};
-                                        message.channel.messages.fetch().then(messages => {
-                                            a_supprimer = messages.filter((m) => nargs.includes(m.author.id))
-                                            a_supprimer.forEach(msg => {
-                                                //regarder si un message contient emoji stop dans les arg1
-                                                //derniers messages, si oui prendre son index et bulk delete debut jusqu'à l'index-1.
-                                                if (reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441")) throw BreakException;
-                                                into_trash.push(msg)
-                                                if (into_trash.length > 99) {
-                                                    to_trash.push(into_trash)
-                                                    into_trash = new Array()
-                                                }
-                                            })
-                                            if (into_trash.length > 0) {
-                                                to_trash.push(into_trash)
-                                            }
-                                        }).then(() => {
-                                            to_trash.forEach(element => {
-                                                message.channel.bulkDelete(element, true).then(messages => {
-                                                    supprimés += element.length
-                                                }).catch(err => {
-                                                    console.log("Erreur lors de la suppression des messages : " + err)
-                                                });
-                                            })
-                                        })
-                                    } else if (reaction.emoji.id === '1007238080153006110') {
-                                        m.channel.bulkDelete(2, true)
-                                        return
-                                    }
-                                })
-                                .catch(collected => {
-                                    m.channel.bulkDelete(2, true)
-                                    return
-                                });
-                                
-                        })*/
                     } else if (isNaN(number)) {
                         console.log(message.author.username + " n'a pas saisi de nombre ni de personne.")
                         const unclearembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
-                            .setTitle("Réfléchit, c'est un nombre ou un @ qui faut mettre !")
+                            .setTitle("Réfléchit, c'est un nombre ou un @someone qui faut mettre !")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.channel.send({ embeds: [unclearembed] })
                     } else {
+                        if (number > 100) {
+                            number = 100
+                        }
+                        var options = {}
                         var supprimés = 0
                         var to_trash = new Array()
-                        var into_trash = new Array()
                         const confirmembed = new Discord.EmbedBuilder()
                             .setColor("#0099ff")
                             .setTitle("T'es sur ?")
                             .setThumbnail("https://i.imgur.com/tmff2s4.jpg");
                         message.reply({ embeds: [confirmembed] }).then(m => {
+                            m.react('1007234604480069662');
+                            m.react('1007238080153006110');
                             const filter = (reaction, user) => {
                                 return user.id != "931190932232097912";
                             };
-                            m.react('1007234604480069662');
-                            m.react('1007238080153006110');
-                            m.awaitReactions({ filter, max: 1, time: 4000, errors: ['time'] })
-                                .then(collected => {
-                                    const reaction = collected.first();
-                                    if (reaction.emoji.id === '1007234604480069662') {
-                                        number += 2
-                                        if (number > 100) {
-                                            number = 100
-                                        }
-                                        const options = { limit: number };
-                                        var stop_boucle = false
-                                        var BreakException = {};
-                                        message.channel.messages.fetch(options).then(messages => {
-                                            messages.forEach(msg => {
-                                                if (reaction.message.reactions.cache.filter(react => react.emoji.id == "1008076515658977441")) throw BreakException;
-                                                into_trash.push(msg)
-                                                if (into_trash.length > 99) {
-                                                    to_trash.push(into_trash)
-                                                    into_trash = new Array()
-                                                }
+                            //wait reaction.emoji.id === '1007234604480069662' for delete messages up to the emoji that has the ID "1008076515658977441"
+                            m.awaitReactions(filter, { max: 1, time: 4000, errors: ['time'] }).then(collected => {
+                                const reaction = collected.first();
+                                m.channel.bulkDelete(2, true)
+                                if (reaction.emoji.id === '1007234604480069662') {
+                                    console.log("oui")
+                                    message.channel.messages.fetch({ limit: number }).then(messages => {
+                                        messages.forEach(msg => {
+                                            var reacts = new Array()
+                                            msg.reactions.cache.forEach(reaction => {
+                                                reacts.push(reaction.emoji.id)
                                             })
-                                            if (into_trash.length > 0) {
-                                                to_trash.push(into_trash)
+                                            if (!("1008076515658977441" in reacts)) {
+                                                to_trash.push(msg)
                                             }
-                                        }).then(() => {
-                                            to_trash.forEach(element => {
-                                                message.channel.bulkDelete(element, true).then(messages => {
-                                                    supprimés += element.length
-                                                }).catch(err => {
-                                                    console.log("Erreur lors de la suppression des messages : " + err)
-                                                });
-                                            })
                                         })
-                                    } else if (reaction.emoji.id === '1007238080153006110') {
-                                        m.channel.bulkDelete(2, true)
-                                        return
-                                    }
-                                })
-                                .catch(collected => {
-                                    m.channel.bulkDelete(2, true)
-                                    return
-                                });
+                                        for (const msg of to_trash) {
+                                            msg.delete()
+                                            supprimés++
+                                        }
+                                        const deletedembed = new Discord.EmbedBuilder()
+                                            .setColor("#0099ff")
+                                            .setTitle("J'ai supprimé " + supprimés + " messages.")
+                                            .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                                        message.channel.send({ embeds: [deletedembed] });
+                                    })
+                                } else {
+                                    console.log("non")
+                                    const deletedembed = new Discord.EmbedBuilder()
+                                        .setColor("#0099ff")
+                                        .setTitle("J'ai rien supprimé.")
+                                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                                    message.channel.send({ embeds: [deletedembed] });
+                                }
+                            }).catch(collected => {
+                                const deletedembed = new Discord.EmbedBuilder()
+                                    .setColor("#0099ff")
+                                    .setTitle("J'ai rien supprimé.")
+                                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                                message.channel.send({ embeds: [deletedembed] });
+                            })
                         })
                     }
                 }
