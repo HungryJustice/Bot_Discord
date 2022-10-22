@@ -132,42 +132,47 @@ client.on("messageCreate", message => {
                                 return user.id != "931190932232097912";
                             };
                             //wait reaction.emoji.id === '1007234604480069662' for delete messages up to the emoji that has the ID "1008076515658977441"
-                            m.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-                                .then(collected => {
-                                    const reaction = collected.first();
-                                    if (reaction.emoji.id === '1007234604480069662') {
-                                        console.log("oui")
-                                        message.channel.messages.fetch({ limit: 100 }).then(messages => {
-                                            messages.forEach(msg => {
-                                                var reacts = new Array()
-                                                while (!("1008076515658977441" in reacts)) {
-                                                    reacts = new Array()
-                                                    msg.reactions.cache.forEach(reaction => {
-                                                        reacts.push(reaction.emoji.id)
-                                                    })
-                                                    to_trash.push(msg)
-                                                }
-                                            })
-                                            console.log(to_trash)
-                                            for (const msg of to_trash) {
-                                                msg.delete()
-                                                supprimés++
+                            m.awaitReactions(filter, { max: 1, time: 4000, errors: ['time'] }).then(collected => {
+                                const reaction = collected.first();
+                                m.channel.bulkDelete(2, true)
+                                if (reaction.emoji.id === '1007234604480069662') {
+                                    console.log("oui")
+                                    message.channel.messages.fetch({ limit: 100 }).then(messages => {
+                                        messages.forEach(msg => {
+                                            var reacts = new Array()
+                                            while (!("1008076515658977441" in reacts)) {
+                                                reacts = new Array()
+                                                msg.reactions.cache.forEach(reaction => {
+                                                    reacts.push(reaction.emoji.id)
+                                                })
+                                                to_trash.push(msg)
                                             }
-                                            const deletedembed = new Discord.EmbedBuilder()
-                                                .setColor("#0099ff")
-                                                .setTitle("J'ai supprimé " + supprimés + " messages.")
-                                                .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                                            message.channel.send({ embeds: [deletedembed] });
                                         })
-                                    } else {
-                                        console.log("non")
+                                        for (const msg of to_trash) {
+                                            msg.delete()
+                                            supprimés++
+                                        }
                                         const deletedembed = new Discord.EmbedBuilder()
                                             .setColor("#0099ff")
-                                            .setTitle("J'ai rien supprimé.")
+                                            .setTitle("J'ai supprimé " + supprimés + " messages.")
                                             .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
                                         message.channel.send({ embeds: [deletedembed] });
-                                    }
-                                })
+                                    })
+                                } else {
+                                    console.log("non")
+                                    const deletedembed = new Discord.EmbedBuilder()
+                                        .setColor("#0099ff")
+                                        .setTitle("J'ai rien supprimé.")
+                                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                                    message.channel.send({ embeds: [deletedembed] });
+                                }
+                            }).catch(collected => {
+                                const deletedembed = new Discord.EmbedBuilder()
+                                    .setColor("#0099ff")
+                                    .setTitle("J'ai rien supprimé.")
+                                    .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
+                                message.channel.send({ embeds: [deletedembed] });
+                            })
                         })
 
                         /*
