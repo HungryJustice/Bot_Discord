@@ -139,7 +139,13 @@ client.on("messageCreate", message => {
                                         console.log("oui")
                                         message.channel.messages.fetch({ limit: 100 }).then(messages => {
                                             messages.forEach(msg => {
-                                                if (msg.author.id == nargs[0]) {
+                                                //create array react
+                                                var reacts = new Array()
+                                                    //get reaction from msg and put in reacts
+                                                msg.reactions.cache.forEach(reaction => {
+                                                    reacts.push(reaction.emoji.id)
+                                                })
+                                                while (!("1008076515658977441" in reacts)) {
                                                     to_trash.push(msg)
                                                 }
                                             })
