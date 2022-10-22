@@ -116,7 +116,6 @@ client.on("messageCreate", message => {
                                 nargs.push(arg.slice(2, -1))
                             }
                         }
-                        console.log(nargs)
                         var options = {}
                         var to_trash = new Array()
                         const confirmembed = new Discord.EmbedBuilder()
