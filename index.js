@@ -169,14 +169,6 @@ client.on("messageCreate", message => {
                                         message.channel.send({ embeds: [deletedembed] });
                                     }
                                 })
-                                .catch(collected => {
-                                    console.log("non")
-                                    const deletedembed = new Discord.EmbedBuilder()
-                                        .setColor("#0099ff")
-                                        .setTitle("J'ai rien supprimé.")
-                                        .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-                                    message.channel.send({ embeds: [deletedembed] });
-                                });
                         })
 
                         /*
