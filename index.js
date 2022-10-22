@@ -34,7 +34,6 @@ client.once("ready", () => {
         .setColor("#0099ff")
         .setTitle("Je redémarre.")
         .setThumbnail("https://i.imgur.com/ioQ6NQC.png");
-    console.log(client.guilds.cache.channels) //.get("1003898726206668851").fetch().filter(messages => messages.embeds == [Testembed]))
     client.user.setPresence({ activities: [{ name: `de la haine.`, type: ActivityType.Streaming, url: "https://youtube.com/watch?v=dQw4w9WgXcQ" }], status: 'dnd' })
     console.log(`Bot en ligne.`)
 })
@@ -191,6 +190,7 @@ client.on("messageCreate", message => {
                         message.reply({ embeds: [confirmembed] }).then(m => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
+                            //not enter into await reactions, don't keep return true;
                             const filter = (reaction, user) => {
                                 return true;
                                 return reaction.emoji.id == "1007234604480069662" || reaction.emoji.id == "1007238080153006110";
