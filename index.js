@@ -141,7 +141,8 @@ client.on("messageCreate", message => {
                                             msg.reactions.cache.forEach(reaction => {
                                                 reacts.push(reaction.emoji.id)
                                             })
-                                            if (!("1008076515658977441" in reacts) && msg.author.id in nargs) {
+                                            reacts.indexOf("1008076515658977441") > -1
+                                            if (reacts.indexOf("1008076515658977441") < 0 && nargs.indexOf(msg.author.id) > -1) {
                                                 to_trash.push(msg)
                                             }
                                         })
@@ -207,7 +208,7 @@ client.on("messageCreate", message => {
                                             msg.reactions.cache.forEach(reaction => {
                                                 reacts.push(reaction.emoji.id)
                                             })
-                                            if (!("1008076515658977441" in reacts)) {
+                                            if (reacts.indexOf("1008076515658977441") < 0) {
                                                 to_trash.push(msg)
                                             }
                                         })
