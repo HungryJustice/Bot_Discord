@@ -192,6 +192,7 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
+                                return true;
                                 return reaction.emoji.id == "1007234604480069662" || reaction.emoji.id == "1007238080153006110";
                             };
                             console.log("1")
