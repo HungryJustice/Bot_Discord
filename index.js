@@ -126,10 +126,10 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return user.id != "931190932232097912";
+                                return reaction.emoji.id == "1007234604480069662" || reaction.emoji.id == "1007238080153006110";
                             };
                             //wait reaction.emoji.id === '1007234604480069662' for delete messages up to the emoji that has the ID "1008076515658977441"
-                            m.awaitReactions(filter, max = 999, time = 4000, errors = ['time']).then(collected => {
+                            m.awaitReactions(filter, max = 1, time = 4000, errors = ['time']).then(collected => {
                                 const reaction = collected.first();
                                 m.channel.bulkDelete(2, true)
                                 if (reaction.emoji.id === '1007234604480069662') {
@@ -192,7 +192,7 @@ client.on("messageCreate", message => {
                             m.react('1007234604480069662');
                             m.react('1007238080153006110');
                             const filter = (reaction, user) => {
-                                return user.id != "931190932232097912";
+                                return reaction.emoji.id == "1007234604480069662" || reaction.emoji.id == "1007238080153006110";
                             };
                             console.log("1")
                             m.awaitReactions(filter, max = 999, time = 4000, errors = ['time']).then(collected => {
